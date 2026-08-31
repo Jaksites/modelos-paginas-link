@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ateliê Doce Sabor | Catálogo Express</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+      }
+      .card-shadow {
+        box-shadow:
+          0 4px 15px -1px rgba(0, 0, 0, 0.05),
+          0 2px 6px -1px rgba(0, 0, 0, 0.02);
+      }
+    </style>
+  </head>
+  <body
+    class="bg-gray-50 text-gray-800 min-h-screen flex flex-col items-center justify-between p-4 sm:p-6 selection:bg-rose-100 selection:text-rose-600"
+  >
+    <!-- Container Principal (Ajustado para Grid de Produtos) -->
+    <main
+      class="w-full max-w-xl md:max-w-2xl flex flex-col items-center gap-6 my-4"
+    >
+      <!-- HEADER DA LOJA -->
+      <header class="flex flex-col items-center text-center">
+        <!-- Logo / Foto de Perfil da Marca -->
+        <div class="relative mb-3">
+          <div
+            class="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-white p-1.5 shadow-sm ring-1 ring-gray-200 overflow-hidden"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1535141192574-5d4897c13136?auto=format&fit=crop&q=80&w=400"
+              alt="Logo Ateliê Doce Sabor"
+              class="w-full h-full object-cover rounded-xl"
+            />
+          </div>
+        </div>
+
+        <!-- Nome da Loja -->
+        <h1
+          class="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight flex items-center gap-2"
+        >
+          Ateliê Doce Sabor
+          <i
+            data-lucide="badge-check"
+            class="w-5 h-5 text-rose-500 fill-rose-100"
+          ></i>
+        </h1>
+
+        <!-- Categoria e Status -->
+        <div class="flex items-center gap-2 mt-1">
+          <span class="text-xs text-gray-500 font-medium"
+            >Confeitaria Artesanal</span
+          >
+          <span class="text-gray-300">•</span>
+          <span
+            class="inline-flex items-center gap-1 text-[11px] font-medium text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200"
+          >
+            <span
+              class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"
+            ></span>
+            Aceitando Encomendas
+          </span>
+        </div>
+
+        <!-- Descrição Curta -->
+        <p
+          class="text-xs sm:text-sm text-gray-600 max-w-xs sm:max-w-md mt-2.5 leading-relaxed"
+        >
+          Doces gourmet feitos sob encomenda com ingredientes selecionados. Faça
+          seu pedido diretamente pelo WhatsApp!
+        </p>
+      </header>
+
+      <!-- BOTÃO DE AÇÃO RÁPIDA / ATENDIMENTO -->
+      <a
+        href="https://wa.me/5500000000000?text=Olá!%20Gostaria%20de%20fazer%20um%20pedido."
+        target="_blank"
+        rel="noopener noreferrer"
+        class="w-full bg-emerald-600 hover:bg-emerald-700 text-white p-3.5 rounded-2xl font-semibold text-sm flex items-center justify-center gap-2.5 shadow-sm transition-colors"
+      >
+        <i data-lucide="message-circle" class="w-5 h-5"></i>
+        Falar com Atendente no WhatsApp
+      </a>
+
+      <!-- TÍTULO DA VITRINE -->
+      <div
+        class="w-full flex items-center justify-between mt-2 border-b border-gray-200 pb-2"
+      >
+        <h2
+          class="text-sm font-bold text-gray-900 uppercase tracking-wider flex items-center gap-2"
+        >
+          <i data-lucide="shopping-bag" class="w-4 h-4 text-rose-500"></i>
+          Cardápio em Destaque
+        </h2>
+        <span class="text-xs text-gray-400">4 itens disponíveis</span>
+      </div>
+
+      <!-- GRID DE PRODUTOS -->
+      <section class="w-full grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <!-- PRODUTO 1 -->
+        <div
+          class="bg-white rounded-2xl border border-gray-100 overflow-hidden card-shadow flex flex-col justify-between group"
+        >
+          <div>
+            <!-- Imagem do Produto + Badge -->
+            <div class="relative h-44 w-full overflow-hidden bg-gray-100">
+              <img
+                src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&q=80&w=600"
+                alt="Bolo Red Velvet"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              <span
+                class="absolute top-2.5 left-2.5 bg-rose-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-md uppercase tracking-wider"
+              >
+                Mais Vendido
+              </span>
+            </div>
+
+            <!-- Detalhes -->
+            <div class="p-3.5">
+              <h3 class="font-bold text-gray-900 text-sm leading-snug">
+                Bolo Red Velvet Gourmet
+              </h3>
+              <p class="text-xs text-gray-500 mt-1 line-clamp-2">
+                Massa aveludada com recheio tradicional de cream cheese e frutas
+                vermelhas frescas.
+              </p>
+            </div>
+          </div>
+
+          <!-- Preço e Botão -->
+          <div
+            class="p-3.5 pt-0 flex items-center justify-between border-t border-gray-50 mt-2"
+          >
+            <div>
+              <span class="text-[10px] text-gray-400 block uppercase"
+                >A partir de</span
+              >
+              <span class="text-base font-bold text-gray-900">R$ 85,00</span>
+            </div>
+            <a
+              href="https://wa.me/5500000000000?text=Olá!%20Quero%20encomendar%20o%20Bolo%20Red%20Velvet."
+              target="_blank"
+              class="bg-rose-50 hover:bg-rose-100 text-rose-600 px-3 py-2 rounded-xl text-xs font-semibold flex items-center gap-1 transition-colors"
+            >
+              Pedir
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- PRODUTO 2 -->
+        <div
+          class="bg-white rounded-2xl border border-gray-100 overflow-hidden card-shadow flex flex-col justify-between group"
+        >
+          <div>
+            <!-- Imagem do Produto + Badge -->
+            <div class="relative h-44 w-full overflow-hidden bg-gray-100">
+              <img
+                src="https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?auto=format&fit=crop&q=80&w=600"
+                alt="Caixa de Brigadeiros"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+
+            <!-- Detalhes -->
+            <div class="p-3.5">
+              <h3 class="font-bold text-gray-900 text-sm leading-snug">
+                Caixa de Brigadeiros (12 un)
+              </h3>
+              <p class="text-xs text-gray-500 mt-1 line-clamp-2">
+                Sabores variados: Ao leite, Ninho com Nutella, Pistache e Meio
+                Amargo.
+              </p>
+            </div>
+          </div>
+
+          <!-- Preço e Botão -->
+          <div
+            class="p-3.5 pt-0 flex items-center justify-between border-t border-gray-50 mt-2"
+          >
+            <div>
+              <span class="text-[10px] text-gray-400 block uppercase"
+                >Preço fixo</span
+              >
+              <span class="text-base font-bold text-gray-900">R$ 42,00</span>
+            </div>
+            <a
+              href="https://wa.me/5500000000000?text=Olá!%20Quero%20encomendar%20a%20Caixa%20de%20Brigadeiros."
+              target="_blank"
+              class="bg-rose-50 hover:bg-rose-100 text-rose-600 px-3 py-2 rounded-xl text-xs font-semibold flex items-center gap-1 transition-colors"
+            >
+              Pedir
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- PRODUTO 3 -->
+        <div
+          class="bg-white rounded-2xl border border-gray-100 overflow-hidden card-shadow flex flex-col justify-between group"
+        >
+          <div>
+            <!-- Imagem do Produto + Badge -->
+            <div class="relative h-44 w-full overflow-hidden bg-gray-100">
+              <img
+                src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&q=80&w=600"
+                alt="Torta de Morango"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              <span
+                class="absolute top-2.5 left-2.5 bg-amber-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-md uppercase tracking-wider"
+              >
+                Novo
+              </span>
+            </div>
+
+            <!-- Detalhes -->
+            <div class="p-3.5">
+              <h3 class="font-bold text-gray-900 text-sm leading-snug">
+                Torta Especial de Morango
+              </h3>
+              <p class="text-xs text-gray-500 mt-1 line-clamp-2">
+                Base crocante com creme patissière e cobertura abundante de
+                morangos frescos.
+              </p>
+            </div>
+          </div>
+
+          <!-- Preço e Botão -->
+          <div
+            class="p-3.5 pt-0 flex items-center justify-between border-t border-gray-50 mt-2"
+          >
+            <div>
+              <span class="text-[10px] text-gray-400 block uppercase"
+                >Unidade (1.5kg)</span
+              >
+              <span class="text-base font-bold text-gray-900">R$ 95,00</span>
+            </div>
+            <a
+              href="https://wa.me/5500000000000?text=Olá!%20Quero%20encomendar%20a%20Torta%20de%20Morango."
+              target="_blank"
+              class="bg-rose-50 hover:bg-rose-100 text-rose-600 px-3 py-2 rounded-xl text-xs font-semibold flex items-center gap-1 transition-colors"
+            >
+              Pedir
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- PRODUTO 4 -->
+        <div
+          class="bg-white rounded-2xl border border-gray-100 overflow-hidden card-shadow flex flex-col justify-between group"
+        >
+          <div>
+            <!-- Imagem do Produto + Badge -->
+            <div class="relative h-44 w-full overflow-hidden bg-gray-100">
+              <img
+                src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=600"
+                alt="Kit Festa"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+
+            <!-- Detalhes -->
+            <div class="p-3.5">
+              <h3 class="font-bold text-gray-900 text-sm leading-snug">
+                Kit Festa Completo (10 pessoas)
+              </h3>
+              <p class="text-xs text-gray-500 mt-1 line-clamp-2">
+                Inclui 1 bolo P, 50 docinhos variados e 30 salgados artesanais
+                assados.
+              </p>
+            </div>
+          </div>
+
+          <!-- Preço e Botão -->
+          <div
+            class="p-3.5 pt-0 flex items-center justify-between border-t border-gray-50 mt-2"
+          >
+            <div>
+              <span class="text-[10px] text-gray-400 block uppercase"
+                >Promoção</span
+              >
+              <span class="text-base font-bold text-gray-900">R$ 180,00</span>
+            </div>
+            <a
+              href="https://wa.me/5500000000000?text=Olá!%20Quero%20saber%20mais%20sobre%20o%20Kit%20Festa."
+              target="_blank"
+              class="bg-rose-50 hover:bg-rose-100 text-rose-600 px-3 py-2 rounded-xl text-xs font-semibold flex items-center gap-1 transition-colors"
+            >
+              Pedir
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- INFORMAÇÕES DE ENTREGA E PAGAMENTO -->
+      <section
+        class="w-full bg-white rounded-2xl p-4 border border-gray-100 card-shadow flex flex-col sm:flex-row items-center justify-around gap-3 text-center sm:text-left mt-2"
+      >
+        <div class="flex items-center gap-3">
+          <div class="p-2.5 bg-rose-50 text-rose-500 rounded-xl">
+            <i data-lucide="truck" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h4 class="text-xs font-bold text-gray-900">Entrega via MOTOBOY</h4>
+            <p class="text-[11px] text-gray-500">
+              Consulte taxa para sua região
+            </p>
+          </div>
+        </div>
+        <div class="h-px sm:h-8 w-full sm:w-px bg-gray-100"></div>
+        <div class="flex items-center gap-3">
+          <div class="p-2.5 bg-rose-50 text-rose-500 rounded-xl">
+            <i data-lucide="credit-card" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h4 class="text-xs font-bold text-gray-900">Formas de Pagamento</h4>
+            <p class="text-[11px] text-gray-500">
+              Pix, Cartão de Crédito ou Débito
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- RODAPÉ E REDES SOCIAIS -->
+      <footer class="mt-4 flex flex-col items-center gap-3 pb-4">
+        <div class="flex items-center gap-4 text-gray-500">
+          <a
+            href="https://instagram.com"
+            target="_blank"
+            class="hover:text-rose-500 transition-colors"
+          >
+            <i data-lucide="instagram" class="w-5 h-5"></i>
+          </a>
+          <a
+            href="https://wa.me/5500000000000"
+            target="_blank"
+            class="hover:text-rose-500 transition-colors"
+          >
+            <i data-lucide="message-circle" class="w-5 h-5"></i>
+          </a>
+          <a
+            href="https://maps.google.com"
+            target="_blank"
+            class="hover:text-rose-500 transition-colors"
+          >
+            <i data-lucide="map-pin" class="w-5 h-5"></i>
+          </a>
+        </div>
+
+        <p class="text-[11px] text-gray-400">
+          @ateliedocesabor • São Paulo - SP
+        </p>
+      </footer>
+    </main>
+
+    <!-- Script para inicializar Lucide Icons -->
+    <script>
+      lucide.createIcons();
+    </script>
+  </body>
+</html>

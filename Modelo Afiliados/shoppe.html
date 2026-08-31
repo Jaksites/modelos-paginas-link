@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Achadinhos da Shopee | Catálogo Oficial</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background-color: #f8faf9;
+      }
+
+      /* Cor Oficial Laranja Shopee */
+      .bg-shopee {
+        background-color: #ee4d2d;
+      }
+
+      .text-shopee {
+        color: #ee4d2d;
+      }
+
+      .border-shopee {
+        border-color: #ee4d2d;
+      }
+
+      .hover-bg-shopee:hover {
+        background-color: #d73d1f;
+      }
+
+      /* Efeito de Card no Hover */
+      .card-product {
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+      .card-product:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 24px -8px rgba(238, 77, 45, 0.18);
+      }
+
+      /* Custom Scrollbar para categorias no mobile */
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
+  </head>
+  <body
+    class="min-h-screen flex flex-col items-center justify-between pb-12 text-gray-800"
+  >
+    <!-- CABEÇALHO / HERO BANNER -->
+    <header
+      class="w-full bg-shopee text-white pt-8 pb-12 px-4 flex flex-col items-center text-center relative overflow-hidden shadow-md"
+    >
+      <!-- Padrão Decorativo de Fundo -->
+      <div
+        class="absolute -top-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-2xl pointer-events-none"
+      ></div>
+      <div
+        class="absolute -bottom-10 -left-10 w-40 h-40 bg-amber-400/20 rounded-full blur-2xl pointer-events-none"
+      ></div>
+
+      <div class="max-w-md w-full flex flex-col items-center relative z-10">
+        <!-- Avatar com Borda Destacada -->
+        <div class="relative mb-3">
+          <div
+            class="w-24 h-24 sm:w-28 sm:h-28 rounded-full p-1 bg-white shadow-lg"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=300"
+              alt="Achadinhos da Bia"
+              class="w-full h-full object-cover rounded-full"
+            />
+          </div>
+          <span
+            class="absolute bottom-0 right-0 bg-amber-400 text-gray-900 text-[10px] font-extrabold px-2 py-0.5 rounded-full shadow border-2 border-white flex items-center gap-1"
+          >
+            <i data-lucide="shopping-bag" class="w-3 h-3"></i> SHOPEE
+          </span>
+        </div>
+
+        <!-- Nome e Bio -->
+        <h1
+          class="text-2xl sm:text-3xl font-extrabold tracking-tight flex items-center gap-2"
+        >
+          Achadinhos da Bia 🔥
+        </h1>
+        <p class="text-xs sm:text-sm text-orange-100 max-w-xs mt-1 font-medium">
+          Os melhores achados e promoções testados e aprovados na Shopee! 🛍️✨
+        </p>
+
+        <!-- Alerta de Grupo VIP / Descontos -->
+        <a
+          href="https://t.me"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mt-4 w-full bg-white text-shopee rounded-2xl p-3 font-bold text-xs sm:text-sm flex items-center justify-between shadow-lg hover:bg-orange-50 transition-all"
+        >
+          <div class="flex items-center gap-2.5">
+            <span class="relative flex h-3 w-3">
+              <span
+                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"
+              ></span>
+              <span
+                class="relative inline-flex rounded-full h-3 w-3 bg-shopee"
+              ></span>
+            </span>
+            <span class="text-left font-extrabold text-gray-900"
+              >Grupo VIP de Cupons Secretos</span
+            >
+          </div>
+          <span
+            class="bg-shopee text-white px-2.5 py-1 rounded-xl text-[10px] font-extrabold flex items-center gap-1"
+          >
+            ENTRAR <i data-lucide="chevron-right" class="w-3 h-3"></i>
+          </span>
+        </a>
+      </div>
+    </header>
+
+    <!-- CONTAINER PRINCIPAL DO CATÁLOGO -->
+    <main
+      class="w-full max-w-md sm:max-w-lg px-4 -mt-6 z-20 flex flex-col gap-5"
+    >
+      <!-- BARRA DE PESQUISA INTELIGENTE (Filtra por número do produto ou nome) -->
+      <div
+        class="w-full bg-white rounded-2xl p-2.5 shadow-lg border border-gray-100 flex items-center gap-2"
+      >
+        <i data-lucide="search" class="w-5 h-5 text-gray-400 ml-2"></i>
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Busque pelo número (#01) ou nome do produto..."
+          class="w-full text-xs sm:text-sm text-gray-800 placeholder-gray-400 bg-transparent focus:outline-none font-medium"
+          onkeyup="filterProducts()"
+        />
+        <button
+          class="bg-gray-100 hover:bg-gray-200 p-2 rounded-xl text-gray-500 transition-colors"
+          title="Limpar"
+          onclick="clearSearch()"
+        >
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- FILTRO DE CATEGORIAS (Scroll Horizontal) -->
+      <div
+        class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 text-xs font-bold"
+      >
+        <button
+          onclick="filterCategory('todos')"
+          class="category-btn active px-4 py-2 rounded-xl bg-shopee text-white shadow-sm whitespace-nowrap transition-all"
+        >
+          🔥 Todos (#All)
+        </button>
+        <button
+          onclick="filterCategory('casa')"
+          class="category-btn px-4 py-2 rounded-xl bg-white text-gray-600 border border-gray-200 hover:border-shopee whitespace-nowrap transition-all"
+        >
+          🏠 Casa & Cozinha
+        </button>
+        <button
+          onclick="filterCategory('beleza')"
+          class="category-btn px-4 py-2 rounded-xl bg-white text-gray-600 border border-gray-200 hover:border-shopee whitespace-nowrap transition-all"
+        >
+          💄 Beleza & Maquiagem
+        </button>
+        <button
+          onclick="filterCategory('tech')"
+          class="category-btn px-4 py-2 rounded-xl bg-white text-gray-600 border border-gray-200 hover:border-shopee whitespace-nowrap transition-all"
+        >
+          📱 Tech & Gadgets
+        </button>
+        <button
+          onclick="filterCategory('moda')"
+          class="category-btn px-4 py-2 rounded-xl bg-white text-gray-600 border border-gray-200 hover:border-shopee whitespace-nowrap transition-all"
+        >
+          👗 Moda & Acessórios
+        </button>
+      </div>
+
+      <!-- LISTA DE PRODUTOS (VITRINE) -->
+      <section id="productList" class="flex flex-col gap-4">
+        <!-- CARD PRODUTO 1 -->
+        <article
+          class="product-item card-product bg-white rounded-2xl p-3.5 border border-gray-100 shadow-sm flex gap-3.5 items-center relative"
+          data-category="casa"
+          data-code="01"
+          data-title="Mini Processador Elétrico de Alimentos Sem Fio"
+        >
+          <span
+            class="absolute top-3 left-3 bg-shopee text-white text-[10px] font-black px-2 py-0.5 rounded-lg shadow-sm"
+          >
+            #01
+          </span>
+
+          <div
+            class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl bg-gray-100 flex-shrink-0 overflow-hidden relative border border-gray-100"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1584269600464-37b1b58a9fe7?auto=format&fit=crop&q=80&w=300"
+              alt="Mini Processador"
+              class="w-full h-full object-cover"
+            />
+          </div>
+
+          <div class="flex flex-col justify-between h-full flex-grow">
+            <div>
+              <span
+                class="text-[10px] font-bold text-gray-400 uppercase tracking-wider"
+                >Casa & Cozinha</span
+              >
+              <h2
+                class="text-xs sm:text-sm font-extrabold text-gray-900 leading-snug line-clamp-2 mt-0.5"
+              >
+                Mini Processador Elétrico de Alimentos USB Rechargeable
+              </h2>
+            </div>
+
+            <div class="mt-2 flex items-end justify-between gap-2">
+              <div>
+                <span class="text-[10px] text-gray-400 line-through block"
+                  >R$ 59,90</span
+                >
+                <span class="text-sm sm:text-base font-black text-shopee"
+                  >R$ 24,90</span
+                >
+              </div>
+              <a
+                href="https://shope.ee/exemplo1"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="bg-shopee hover-bg-shopee text-white text-xs font-bold px-3 py-2 rounded-xl flex items-center gap-1.5 shadow-sm transition-colors"
+              >
+                <span>VER NA SHOPEE</span>
+                <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD PRODUTO 2 -->
+        <article
+          class="product-item card-product bg-white rounded-2xl p-3.5 border border-gray-100 shadow-sm flex gap-3.5 items-center relative"
+          data-category="beleza"
+          data-code="02"
+          data-title="Kit Escova Chocadeira Modeladora 5 em 1"
+        >
+          <span
+            class="absolute top-3 left-3 bg-shopee text-white text-[10px] font-black px-2 py-0.5 rounded-lg shadow-sm"
+          >
+            #02
+          </span>
+          <div
+            class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl bg-gray-100 flex-shrink-0 overflow-hidden relative border border-gray-100"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&q=80&w=300"
+              alt="Kit Escova"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="flex flex-col justify-between h-full flex-grow">
+            <div>
+              <span
+                class="text-[10px] font-bold text-gray-400 uppercase tracking-wider"
+                >Beleza</span
+              >
+              <h2
+                class="text-xs sm:text-sm font-extrabold text-gray-900 leading-snug line-clamp-2 mt-0.5"
+              >
+                Escova Secadora Modeladora Multifuncional 5 em 1
+              </h2>
+            </div>
+            <div class="mt-2 flex items-end justify-between gap-2">
+              <div>
+                <span class="text-[10px] text-gray-400 line-through block"
+                  >R$ 149,00</span
+                >
+                <span class="text-sm sm:text-base font-black text-shopee"
+                  >R$ 69,90</span
+                >
+              </div>
+              <a
+                href="https://shope.ee/exemplo2"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="bg-shopee hover-bg-shopee text-white text-xs font-bold px-3 py-2 rounded-xl flex items-center gap-1.5 shadow-sm transition-colors"
+              >
+                <span>VER NA SHOPEE</span>
+                <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+              </a>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- MENSAGEM SE NENHUM PRODUTO FOR ENCONTRADO -->
+      <div
+        id="noResults"
+        class="hidden text-center py-12 bg-white rounded-2xl border border-gray-100 shadow-sm"
+      >
+        <i
+          data-lucide="package-x"
+          class="w-12 h-12 text-gray-300 mx-auto mb-2"
+        ></i>
+        <p class="text-sm font-bold text-gray-700">
+          Nenhum achadinho encontrado!
+        </p>
+        <p class="text-xs text-gray-400 mt-0.5">
+          Tente buscar por outro número ou palavra-chave.
+        </p>
+      </div>
+    </main>
+
+    <!-- RODAPÉ DA PÁGINA -->
+    <footer class="mt-10 flex flex-col items-center gap-3 text-center px-4">
+      <div class="flex items-center gap-3">
+        <a
+          href="https://instagram.com"
+          target="_blank"
+          class="p-2.5 rounded-full bg-white border border-gray-200 text-gray-600 hover:text-shopee hover:border-shopee transition-all shadow-sm"
+        >
+          <i data-lucide="instagram" class="w-4 h-4"></i>
+        </a>
+        <a
+          href="https://tiktok.com"
+          target="_blank"
+          class="p-2.5 rounded-full bg-white border border-gray-200 text-gray-600 hover:text-shopee hover:border-shopee transition-all shadow-sm"
+        >
+          <i data-lucide="video" class="w-4 h-4"></i>
+        </a>
+        <a
+          href="https://t.me"
+          target="_blank"
+          class="p-2.5 rounded-full bg-white border border-gray-200 text-gray-600 hover:text-shopee hover:border-shopee transition-all shadow-sm"
+        >
+          <i data-lucide="send" class="w-4 h-4"></i>
+        </a>
+      </div>
+      <p class="text-xs font-semibold text-gray-400">
+        © Achadinhos da Bia • Links de Afiliado Shopee
+      </p>
+    </footer>
+
+    <!-- SCRIPT DE FILTRAGEM E INTERATIVIDADE -->
+    <script>
+      lucide.createIcons();
+
+      // Função de Pesquisa por Nome ou Número (#01, #02, etc)
+      function filterProducts() {
+        const input = document
+          .getElementById("searchInput")
+          .value.toLowerCase()
+          .trim();
+        const products = document.querySelectorAll(".product-item");
+        let hasResult = false;
+
+        products.forEach((product) => {
+          const title = product.getAttribute("data-title").toLowerCase();
+          const code = product.getAttribute("data-code").toLowerCase();
+          const codeHash = "#" + code;
+
+          if (
+            title.includes(input) ||
+            code.includes(input) ||
+            codeHash.includes(input)
+          ) {
+            product.style.display = "flex";
+            hasResult = true;
+          } else {
+            product.style.display = "none";
+          }
+        });
+
+        toggleNoResults(!hasResult);
+      }
+
+      // Limpar Pesquisa
+      function clearSearch() {
+        document.getElementById("searchInput").value = "";
+        filterProducts();
+      }
+
+      // Filtro por Categorias
+      function filterCategory(category) {
+        const products = document.querySelectorAll(".product-item");
+        const categoryBtns = document.querySelectorAll(".category-btn");
+        let hasResult = false;
+
+        // Atualiza botões
+        categoryBtns.forEach((btn) => {
+          btn.classList.remove("bg-shopee", "text-white");
+          btn.classList.add("bg-white", "text-gray-600");
+        });
+        event.currentTarget.classList.remove("bg-white", "text-gray-600");
+        event.currentTarget.classList.add("bg-shopee", "text-white");
+
+        // Limpa barra de busca ao trocar categoria
+        document.getElementById("searchInput").value = "";
+
+        products.forEach((product) => {
+          if (
+            category === "todos" ||
+            product.getAttribute("data-category") === category
+          ) {
+            product.style.display = "flex";
+            hasResult = true;
+          } else {
+            product.style.display = "none";
+          }
+        });
+
+        toggleNoResults(!hasResult);
+      }
+
+      function toggleNoResults(show) {
+        const noResults = document.getElementById("noResults");
+        if (show) {
+          noResults.classList.remove("hidden");
+        } else {
+          noResults.classList.add("hidden");
+        }
+      }
+    </script>
+  </body>
+</html>

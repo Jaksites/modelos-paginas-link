@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dr. Roberto Fonseca | Advocacia & Consultoria Jurídica</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Google Fonts: Playfair Display (Elegância/Serifa) + Plus Jakarta Sans (Moderna/Sem Serifa) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background-color: #0b0f17;
+      }
+
+      .font-serif-title {
+        font-family: "Playfair Display", serif;
+      }
+
+      /* Gradiente Dourado Muted Premium */
+      .gold-gradient-text {
+        background: linear-gradient(
+          135deg,
+          #f3e7e4 0%,
+          #e0c3fc 0%,
+          #d4af37 0%,
+          #f3e5ab 50%,
+          #aa771c 100%
+        );
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .gold-gradient-bg {
+        background: linear-gradient(
+          135deg,
+          #c5a059 0%,
+          #d4af37 50%,
+          #99782d 100%
+        );
+      }
+
+      .gold-border {
+        border-color: rgba(212, 175, 55, 0.25);
+      }
+
+      .gold-border-hover:hover {
+        border-color: rgba(212, 175, 55, 0.7);
+      }
+
+      /* Efeito de Vidro Escuro (Dark Glassmorphism) */
+      .dark-glass {
+        background: rgba(18, 24, 38, 0.75);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .dark-glass-card {
+        background: rgba(15, 20, 31, 0.85);
+        backdrop-filter: blur(16px);
+        border: 1px solid rgba(212, 175, 55, 0.2);
+      }
+
+      /* Iluminação Suave de Fundo */
+      .bg-glow {
+        position: absolute;
+        top: -100px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 350px;
+        height: 350px;
+        background: radial-gradient(
+          circle,
+          rgba(212, 175, 55, 0.12) 0%,
+          rgba(11, 15, 23, 0) 70%
+        );
+        pointer-events: none;
+        z-index: 0;
+      }
+    </style>
+  </head>
+  <body
+    class="min-h-screen flex flex-col items-center justify-between p-4 sm:p-6 text-gray-200 relative overflow-x-hidden selection:bg-amber-900 selection:text-amber-100"
+  >
+    <!-- Bright/Glow Effect no topo -->
+    <div class="bg-glow"></div>
+
+    <!-- Container Principal -->
+    <main
+      class="w-full max-w-lg md:max-w-xl flex flex-col items-center gap-6 my-4 sm:my-8 z-10"
+    >
+      <!-- CARD PRINCIPAL DE PERFIL -->
+      <header
+        class="w-full dark-glass-card rounded-3xl p-6 sm:p-8 flex flex-col items-center text-center shadow-2xl relative"
+      >
+        <!-- Foto com Moldura Dourada -->
+        <div class="relative mb-5">
+          <div
+            class="w-28 h-28 sm:w-32 sm:h-32 rounded-full p-1 gold-gradient-bg shadow-xl"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400"
+              alt="Foto Dr. Roberto Fonseca"
+              class="w-full h-full object-cover rounded-full border-2 border-slate-900"
+            />
+          </div>
+          <!-- Seal / Símbolo de Autoridade -->
+          <span
+            class="absolute bottom-1 right-1 bg-amber-500 text-slate-950 p-1.5 rounded-full shadow-lg border-2 border-slate-900"
+            title="Inscrição OAB Ativa"
+          >
+            <i data-lucide="scale" class="w-4 h-4"></i>
+          </span>
+        </div>
+
+        <!-- Nome e Cargo -->
+        <h1
+          class="text-2xl sm:text-3xl font-bold font-serif-title text-white tracking-wide"
+        >
+          Dr. Roberto Fonseca
+        </h1>
+        <p
+          class="text-xs sm:text-sm font-semibold tracking-widest text-amber-400 uppercase mt-1"
+        >
+          OAB/SP 458.912 • Direito Empresarial & Tributário
+        </p>
+
+        <!-- Resumo Institucional -->
+        <p
+          class="text-xs sm:text-sm text-gray-400 max-w-xs sm:max-w-sm leading-relaxed mt-3 font-normal"
+        >
+          Assessoria jurídica de alta complexidade para empresas, sócios e
+          investidores. Proteção patrimonial e gestão de riscos.
+        </p>
+
+        <!-- Métricas / Credenciais -->
+        <div
+          class="grid grid-cols-3 gap-3 w-full mt-6 pt-5 border-t border-slate-800 text-center"
+        >
+          <div class="px-1">
+            <span
+              class="block text-base sm:text-lg font-bold font-serif-title text-amber-300"
+              >+12 anos</span
+            >
+            <span
+              class="text-[10px] uppercase tracking-wider font-medium text-gray-400"
+              >Atuação</span
+            >
+          </div>
+          <div class="px-1 border-x border-slate-800">
+            <span
+              class="block text-base sm:text-lg font-bold font-serif-title text-amber-300"
+              >+R$ 50M</span
+            >
+            <span
+              class="text-[10px] uppercase tracking-wider font-medium text-gray-400"
+              >Defendidos</span
+            >
+          </div>
+          <div class="px-1">
+            <span
+              class="block text-base sm:text-lg font-bold font-serif-title text-amber-300"
+              >98%</span
+            >
+            <span
+              class="text-[10px] uppercase tracking-wider font-medium text-gray-400"
+              >Sucesso</span
+            >
+          </div>
+        </div>
+      </header>
+
+      <!-- SEÇÃO DE LINKS E ATENDIMENTO -->
+      <section class="w-full flex flex-col gap-3.5">
+        <!-- LINK 1: Destaque WhatsApp / Agendamento Direto -->
+        <a
+          href="https://wa.me/5500000000000?text=Olá!%20Gostaria%20de%20agendar%20uma%20consulta%20jurídica."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group relative w-full p-4 rounded-2xl gold-gradient-bg text-slate-950 font-bold transition-all duration-300 shadow-lg shadow-amber-500/10 hover:shadow-amber-500/25 flex items-center justify-between hover:scale-[1.01]"
+        >
+          <div class="flex items-center gap-3.5">
+            <div class="p-2.5 rounded-xl bg-slate-950/15 text-slate-950">
+              <i data-lucide="message-square-text" class="w-5 h-5"></i>
+            </div>
+            <div class="text-left">
+              <h2 class="text-sm sm:text-base font-bold leading-snug">
+                Agendar Consulta Prioritária
+              </h2>
+              <p class="text-[11px] font-medium text-slate-900/80">
+                Atendimento via WhatsApp / Presencial
+              </p>
+            </div>
+          </div>
+          <div
+            class="p-1.5 rounded-full bg-slate-950/10 group-hover:bg-slate-950 group-hover:text-amber-400 transition-colors"
+          >
+            <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+          </div>
+        </a>
+
+        <!-- LINK 2: Áreas de Atuação -->
+        <a
+          href="#areas"
+          class="group relative w-full p-4 rounded-2xl dark-glass text-gray-200 gold-border gold-border-hover transition-all duration-300 flex items-center justify-between"
+        >
+          <div class="flex items-center gap-3.5">
+            <div
+              class="p-2.5 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20"
+            >
+              <i data-lucide="shield-check" class="w-5 h-5"></i>
+            </div>
+            <div class="text-left">
+              <h2
+                class="text-sm sm:text-base font-semibold text-white leading-snug"
+              >
+                Áreas de Especialização
+              </h2>
+              <p class="text-[11px] font-normal text-gray-400">
+                Empresarial, Tributário e Reestruturação
+              </p>
+            </div>
+          </div>
+          <i
+            data-lucide="chevron-right"
+            class="w-5 h-5 text-gray-500 group-hover:text-amber-400 group-hover:translate-x-1 transition-all"
+          ></i>
+        </a>
+
+        <!-- LINK 3: Site Institucional / Escritório -->
+        <a
+          href="https://google.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group relative w-full p-4 rounded-2xl dark-glass text-gray-200 gold-border gold-border-hover transition-all duration-300 flex items-center justify-between"
+        >
+          <div class="flex items-center gap-3.5">
+            <div
+              class="p-2.5 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20"
+            >
+              <i data-lucide="building-2" class="w-5 h-5"></i>
+            </div>
+            <div class="text-left">
+              <h2
+                class="text-sm sm:text-base font-semibold text-white leading-snug"
+              >
+                Conheça Nosso Escritório
+              </h2>
+              <p class="text-[11px] font-normal text-gray-400">
+                Estrutura física e corpo jurídico completo
+              </p>
+            </div>
+          </div>
+          <i
+            data-lucide="external-link"
+            class="w-4 h-4 text-gray-500 group-hover:text-amber-400 transition-colors"
+          ></i>
+        </a>
+
+        <!-- LINK 4: Artigos / Pareceres Técnicos -->
+        <a
+          href="https://linkedin.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group relative w-full p-4 rounded-2xl dark-glass text-gray-200 gold-border gold-border-hover transition-all duration-300 flex items-center justify-between"
+        >
+          <div class="flex items-center gap-3.5">
+            <div
+              class="p-2.5 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20"
+            >
+              <i data-lucide="file-text" class="w-5 h-5"></i>
+            </div>
+            <div class="text-left">
+              <h2
+                class="text-sm sm:text-base font-semibold text-white leading-snug"
+              >
+                Artigos & Análises Jurídicas
+              </h2>
+              <p class="text-[11px] font-normal text-gray-400">
+                Publicações no LinkedIn e portais jurídicos
+              </p>
+            </div>
+          </div>
+          <i
+            data-lucide="chevron-right"
+            class="w-5 h-5 text-gray-500 group-hover:text-amber-400 group-hover:translate-x-1 transition-all"
+          ></i>
+        </a>
+      </section>
+
+      <!-- CARD SECUNDÁRIO: LOCALIZAÇÃO E HORÁRIO -->
+      <div
+        class="w-full dark-glass rounded-2xl p-4 border border-slate-800 flex items-center justify-between gap-4 text-xs text-gray-400"
+      >
+        <div class="flex items-center gap-2.5">
+          <i data-lucide="map-pin" class="w-4 h-4 text-amber-400 shrink-0"></i>
+          <span>Av. Faria Lima, 1500 — São Paulo/SP</span>
+        </div>
+        <div
+          class="flex items-center gap-1.5 text-[11px] text-emerald-400 font-medium shrink-0"
+        >
+          <span
+            class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"
+          ></span>
+          Aberto hoje
+        </div>
+      </div>
+
+      <!-- RODAPÉ E CONTATO OFICIAL -->
+      <footer class="mt-2 flex flex-col items-center gap-4">
+        <!-- Redes Sociais Executivas -->
+        <div
+          class="flex items-center gap-3 p-1.5 rounded-2xl dark-glass border border-slate-800"
+        >
+          <a
+            href="https://linkedin.com"
+            target="_blank"
+            class="p-2.5 rounded-xl text-gray-400 hover:text-amber-400 hover:bg-slate-800/60 transition-all"
+          >
+            <i data-lucide="linkedin" class="w-5 h-5"></i>
+          </a>
+          <a
+            href="https://instagram.com"
+            target="_blank"
+            class="p-2.5 rounded-xl text-gray-400 hover:text-amber-400 hover:bg-slate-800/60 transition-all"
+          >
+            <i data-lucide="instagram" class="w-5 h-5"></i>
+          </a>
+          <a
+            href="mailto:contato@fonsecagabinete.adv.br"
+            class="p-2.5 rounded-xl text-gray-400 hover:text-amber-400 hover:bg-slate-800/60 transition-all"
+          >
+            <i data-lucide="mail" class="w-5 h-5"></i>
+          </a>
+        </div>
+
+        <p
+          class="text-[11px] font-medium text-gray-500 tracking-wider text-center"
+        >
+          © 2026 Fonseca Advocacia & Consultoria • Todos os direitos reservados.
+        </p>
+      </footer>
+    </main>
+
+    <!-- Inicializar Ícones Lucide -->
+    <script>
+      lucide.createIcons();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dra. Camila Alves | Psicologia Clínica</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      .font-serif-clean {
+        font-family: "Newsreader", serif;
+      }
+      .font-sans-clean {
+        font-family: "Inter", sans-serif;
+      }
+      /* Soft Shadow Customizada */
+      .card-shadow {
+        box-shadow:
+          0 4px 20px -2px rgba(0, 0, 0, 0.03),
+          0 2px 6px -1px rgba(0, 0, 0, 0.02);
+      }
+      .card-shadow-hover:hover {
+        box-shadow:
+          0 10px 25px -3px rgba(45, 90, 78, 0.08),
+          0 4px 10px -2px rgba(0, 0, 0, 0.03);
+      }
+    </style>
+  </head>
+  <body
+    class="bg-[#F8F9F8] text-[#2C3531] font-sans-clean min-h-screen flex flex-col items-center justify-between p-4 sm:p-6 selection:bg-[#E2ECE9] selection:text-[#1B3B32]"
+  >
+    <!-- Container Principal (Ajustado para legibilidade perfeita no Desktop e Mobile) -->
+    <main
+      class="w-full max-w-lg md:max-w-xl flex flex-col items-center gap-6 my-4 sm:my-8"
+    >
+      <!-- HEADER DA PÁGINA -->
+      <header class="flex flex-col items-center text-center">
+        <!-- Foto de Perfil com Anel Suave -->
+        <div class="relative mb-4">
+          <div
+            class="w-28 h-28 sm:w-32 sm:h-32 rounded-full p-1.5 bg-white shadow-sm ring-1 ring-[#D0DDD8]"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1594824813572-9ed29213326f?auto=format&fit=crop&q=80&w=400"
+              alt="Foto Dra. Camila Alves"
+              class="w-full h-full object-cover rounded-full"
+            />
+          </div>
+        </div>
+
+        <!-- Nome e Registro Profissional -->
+        <h1
+          class="font-serif-clean text-2xl sm:text-3xl text-[#1B3B32] font-normal tracking-tight"
+        >
+          Dra. Camila Alves
+        </h1>
+        <p
+          class="text-xs sm:text-sm text-[#4E6158] font-medium tracking-wide mt-1"
+        >
+          Psicóloga Clínica • CRP 06/123456
+        </p>
+
+        <!-- Bio Curta / Propósito -->
+        <p
+          class="text-xs sm:text-sm text-[#61756C] max-w-xs sm:max-w-sm leading-relaxed mt-3"
+        >
+          Um espaço seguro e acolhedor para cuidar da sua saúde mental e
+          autoconhecimento.
+        </p>
+      </header>
+
+      <!-- SEÇÃO DE LINKS E ATENDIMENTOS -->
+      <section class="w-full flex flex-col gap-3.5 mt-2">
+        <!-- LINK 1: Agendamento Principal (Destaque Verde Sálvia) -->
+        <a
+          href="https://wa.me/5500000000000?text=Olá!%20Gostaria%20de%20agendar%20uma%20consulta."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group relative w-full p-4 rounded-2xl bg-[#3B5E53] hover:bg-[#2D4A41] text-white transition-all duration-300 card-shadow card-shadow-hover flex items-center justify-between"
+        >
+          <div class="flex items-center gap-3.5">
+            <div class="p-2.5 rounded-xl bg-white/10 text-white">
+              <i data-lucide="calendar" class="w-5 h-5"></i>
+            </div>
+            <div class="text-left">
+              <h2 class="text-sm sm:text-base font-medium leading-snug">
+                Agendar Consulta Individual
+              </h2>
+              <p class="text-[11px] sm:text-xs text-[#C2D6CF]">
+                Atendimento online ou presencial
+              </p>
+            </div>
+          </div>
+          <i
+            data-lucide="arrow-right"
+            class="w-5 h-5 text-[#C2D6CF] group-hover:translate-x-1 transition-transform"
+          ></i>
+        </a>
+
+        <!-- LINK 2: Terapia Online -->
+        <a
+          href="https://wa.me/5500000000000?text=Quero%20saber%20mais%20sobre%20a%20Terapia%20Online."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group relative w-full p-4 rounded-2xl bg-white hover:bg-[#F2F6F4] text-[#2C3531] border border-[#E1E8E4] transition-all duration-300 card-shadow card-shadow-hover flex items-center justify-between"
+        >
+          <div class="flex items-center gap-3.5">
+            <div class="p-2.5 rounded-xl bg-[#EFEFA] text-[#3B5E53]">
+              <i data-lucide="video" class="w-5 h-5"></i>
+            </div>
+            <div class="text-left">
+              <h2
+                class="text-sm sm:text-base font-medium text-[#1B3B32] leading-snug"
+              >
+                Como funciona a Terapia Online?
+              </h2>
+              <p class="text-[11px] sm:text-xs text-[#61756C]">
+                Sessões no conforto da sua casa
+              </p>
+            </div>
+          </div>
+          <i
+            data-lucide="chevron-right"
+            class="w-5 h-5 text-[#889B92] group-hover:translate-x-1 transition-transform"
+          ></i>
+        </a>
+
+        <!-- LINK 3: Localização do Consultório -->
+        <a
+          href="https://maps.google.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group relative w-full p-4 rounded-2xl bg-white hover:bg-[#F2F6F4] text-[#2C3531] border border-[#E1E8E4] transition-all duration-300 card-shadow card-shadow-hover flex items-center justify-between"
+        >
+          <div class="flex items-center gap-3.5">
+            <div class="p-2.5 rounded-xl bg-[#EFEFA] text-[#3B5E53]">
+              <i data-lucide="map-pin" class="w-5 h-5"></i>
+            </div>
+            <div class="text-left">
+              <h2
+                class="text-sm sm:text-base font-medium text-[#1B3B32] leading-snug"
+              >
+                Consultório Presencial
+              </h2>
+              <p class="text-[11px] sm:text-xs text-[#61756C]">
+                Av. Paulista, 1000 - São Paulo, SP
+              </p>
+            </div>
+          </div>
+          <i
+            data-lucide="chevron-right"
+            class="w-5 h-5 text-[#889B92] group-hover:translate-x-1 transition-transform"
+          ></i>
+        </a>
+
+        <!-- LINK 4: Artigos / Blog / Dúvidas Frequentes -->
+        <a
+          href="#faq"
+          onclick="toggleFaqModal()"
+          class="group relative w-full p-4 rounded-2xl bg-white hover:bg-[#F2F6F4] text-[#2C3531] border border-[#E1E8E4] transition-all duration-300 card-shadow card-shadow-hover flex items-center justify-between cursor-pointer"
+        >
+          <div class="flex items-center gap-3.5">
+            <div class="p-2.5 rounded-xl bg-[#EFEFA] text-[#3B5E53]">
+              <i data-lucide="help-circle" class="w-5 h-5"></i>
+            </div>
+            <div class="text-left">
+              <h2
+                class="text-sm sm:text-base font-medium text-[#1B3B32] leading-snug"
+              >
+                Dúvidas Frequentes
+              </h2>
+              <p class="text-[11px] sm:text-xs text-[#61756C]">
+                Valores, duração da sessão e convênios
+              </p>
+            </div>
+          </div>
+          <i
+            data-lucide="chevron-right"
+            class="w-5 h-5 text-[#889B92] group-hover:translate-x-1 transition-transform"
+          ></i>
+        </a>
+      </section>
+
+      <!-- RODAPÉ E REDES SOCIAIS -->
+      <footer class="mt-6 flex flex-col items-center gap-4">
+        <div class="flex items-center gap-4">
+          <a
+            href="https://instagram.com"
+            target="_blank"
+            class="p-2.5 rounded-full bg-white border border-[#E1E8E4] text-[#4E6158] hover:text-[#1B3B32] hover:bg-[#EFEFA] transition-all card-shadow"
+          >
+            <i data-lucide="instagram" class="w-4 h-4"></i>
+          </a>
+          <a
+            href="https://wa.me/5500000000000"
+            target="_blank"
+            class="p-2.5 rounded-full bg-white border border-[#E1E8E4] text-[#4E6158] hover:text-[#1B3B32] hover:bg-[#EFEFA] transition-all card-shadow"
+          >
+            <i data-lucide="message-circle" class="w-4 h-4"></i>
+          </a>
+          <a
+            href="mailto:contato@dracamila.com.br"
+            class="p-2.5 rounded-full bg-white border border-[#E1E8E4] text-[#4E6158] hover:text-[#1B3B32] hover:bg-[#EFEFA] transition-all card-shadow"
+          >
+            <i data-lucide="mail" class="w-4 h-4"></i>
+          </a>
+        </div>
+
+        <p class="text-[11px] text-[#889B92] tracking-wider">
+          © Dra. Camila Alves. Todos os direitos reservados.
+        </p>
+      </footer>
+    </main>
+
+    <!-- MODAL DE DÚVIDAS FREQUENTES (Incluso nativamente) -->
+    <div
+      id="faqModal"
+      class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4"
+    >
+      <div
+        class="bg-white w-full max-w-md rounded-2xl p-6 shadow-xl border border-[#E1E8E4] relative animate-fade-in"
+      >
+        <button
+          onclick="toggleFaqModal()"
+          class="absolute top-4 right-4 text-[#889B92] hover:text-[#1B3B32]"
+        >
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+
+        <h3 class="font-serif-clean text-xl text-[#1B3B32] font-medium mb-4">
+          Informações Importantes
+        </h3>
+
+        <div class="space-y-4 text-xs sm:text-sm text-[#4E6158]">
+          <div>
+            <strong class="text-[#1B3B32] block mb-1"
+              >Qual o tempo de duração das sessões?</strong
+            >
+            <p>
+              As sessões de psicoterapia têm duração aproximada de 50 minutos.
+            </p>
+          </div>
+          <div>
+            <strong class="text-[#1B3B32] block mb-1"
+              >Atende por convênio médico?</strong
+            >
+            <p>
+              Os atendimentos são particulares. Emitimos recibo oficial para
+              solicitação de reembolso no seu plano de saúde.
+            </p>
+          </div>
+        </div>
+
+        <button
+          onclick="toggleFaqModal()"
+          class="w-full mt-6 py-2.5 bg-[#3B5E53] text-white rounded-xl text-xs font-medium hover:bg-[#2D4A41] transition-colors"
+        >
+          Entendi
+        </button>
+      </div>
+    </div>
+
+    <!-- Scripts de Inicialização -->
+    <script>
+      lucide.createIcons();
+
+      function toggleFaqModal() {
+        const modal = document.getElementById("faqModal");
+        modal.classList.toggle("hidden");
+      }
+    </script>
+  </body>
+</html>

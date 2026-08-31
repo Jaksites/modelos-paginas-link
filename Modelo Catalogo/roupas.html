@@ -1,0 +1,878 @@
+html_content = '''<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AURA Studio | Catálogo & Loja Virtual</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+      }
+
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #d1d5db;
+        border-radius: 9999px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #9ca3af;
+      }
+
+      /* Glassmorphism elements */
+      .glass-header {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+
+      .badge-pulse {
+        animation: pulse-animation 2s infinite;
+      }
+
+      @keyframes pulse-animation {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+    </style>
+  </head>
+  <body
+    class="bg-gray-50 text-gray-800 min-h-screen flex flex-col justify-between selection:bg-rose-100 selection:text-rose-900"
+  >
+    <!-- HEADER / BARRA NAVEGAÇÃO SUPERIOR -->
+    <header
+      class="sticky top-0 z-30 w-full glass-header border-b border-gray-200/80 transition-all"
+    >
+      <div
+        class="max-w-6xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between"
+      >
+        <!-- Logo / Nome da Loja -->
+        <div class="flex items-center gap-3">
+          <div
+            class="w-10 h-10 rounded-full bg-slate-900 text-white flex items-center justify-center font-extrabold text-lg tracking-wider"
+          >
+            A
+          </div>
+          <div>
+            <h1
+              class="text-lg sm:text-xl font-extrabold tracking-tight text-gray-900 leading-none"
+            >
+              AURA <span class="text-rose-500">STUDIO</span>
+            </h1>
+            <p class="text-[11px] text-gray-500 font-medium">
+              Moda Feminina & Minimalista
+            </p>
+          </div>
+        </div>
+
+        <!-- Botão do Carrinho -->
+        <button
+          onclick="toggleCartModal(true)"
+          class="relative p-2.5 sm:px-4 sm:py-2.5 bg-gray-900 hover:bg-rose-600 text-white rounded-2xl flex items-center gap-2.5 transition-all shadow-md active:scale-95"
+        >
+          <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+          <span class="hidden sm:inline font-semibold text-sm"
+            >Meu Carrinho</span
+          >
+
+          <!-- Badge de Contador -->
+          <span
+            id="cart-badge"
+            class="hidden bg-rose-500 text-white text-xs font-black px-2 py-0.5 rounded-full border-2 border-gray-900 badge-pulse"
+          >
+            0
+          </span>
+        </button>
+      </div>
+    </header>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-10 w-full flex-grow">
+      <!-- BANNER DE DESTAQUE / PROMO -->
+      <section
+        class="relative w-full rounded-3xl overflow-hidden bg-gradient-to-r from-slate-900 via-purple-950 to-slate-900 text-white p-6 sm:p-10 mb-8 shadow-xl"
+      >
+        <div
+          class="absolute -right-10 -bottom-10 w-64 h-64 bg-rose-500/20 rounded-full blur-3xl pointer-events-none"
+        ></div>
+        <div class="relative z-10 max-w-lg">
+          <span
+            class="inline-block px-3 py-1 bg-white/10 text-rose-300 backdrop-blur-md rounded-full text-xs font-bold tracking-wider uppercase mb-3"
+          >
+            Coleção Outono / Inverno 2026 ❄️
+          </span>
+          <h2
+            class="text-2xl sm:text-4xl font-extrabold leading-tight tracking-tight"
+          >
+            Elegância e conforto em cada detalhe.
+          </h2>
+          <p class="text-sm sm:text-base text-gray-300 mt-2 font-normal">
+            Selecione suas peças favoritas, consulte o frete e envie o pedido
+            diretamente pelo WhatsApp.
+          </p>
+        </div>
+      </section>
+
+      <!-- FILTROS POR CATEGORIA -->
+      <section class="mb-8">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-lg font-bold text-gray-900 flex items-center gap-2">
+            <i
+              data-lucide="sliders-horizontal"
+              class="w-4 h-4 text-rose-500"
+            ></i>
+            Categorias
+          </h3>
+          <span
+            id="product-count"
+            class="text-xs font-semibold text-gray-500 bg-gray-200/60 px-2.5 py-1 rounded-full"
+          >
+            Exibindo produtos
+          </span>
+        </div>
+
+        <!-- Scroll horizontal de categorias -->
+        <div
+          class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none"
+          id="category-filters"
+        >
+          <!-- Injetado dinamicamente via JS -->
+        </div>
+      </section>
+
+      <!-- GRADE DE PRODUTOS -->
+      <section
+        class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6"
+        id="product-grid"
+      >
+        <!-- Cards de produtos serão renderizados aqui pelo Javascript -->
+      </section>
+    </main>
+
+    <!-- RODAPÉ DA LOJA -->
+    <footer class="bg-white border-t border-gray-200 mt-16 py-8">
+      <div
+        class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left"
+      >
+        <div>
+          <p class="text-sm font-bold text-gray-900">
+            AURA Studio • Moda & Estilo
+          </p>
+          <p class="text-xs text-gray-500 mt-0.5">
+            Entregamos para todo o Brasil • Envio rápido via Correios / Sedex
+          </p>
+        </div>
+        <div class="flex items-center gap-4 text-gray-500">
+          <a
+            href="https://instagram.com"
+            target="_blank"
+            class="hover:text-rose-500 transition-colors p-2"
+            ><i data-lucide="instagram" class="w-5 h-5"></i
+          ></a>
+          <a
+            href="https://wa.me/5511999999999"
+            target="_blank"
+            class="hover:text-green-600 transition-colors p-2"
+            ><i data-lucide="message-circle" class="w-5 h-5"></i
+          ></a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ========================================== -->
+    <!-- MODAL / DRAWER DO CARRINHO DE COMPRAS     -->
+    <!-- ========================================== -->
+    <div
+      id="cart-modal"
+      class="fixed inset-0 z-50 invisible pointer-events-none transition-all duration-300"
+    >
+      <!-- Overlay escuro -->
+      <div
+        id="cart-backdrop"
+        onclick="toggleCartModal(false)"
+        class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm opacity-0 transition-opacity duration-300"
+      ></div>
+
+      <!-- Painel Lateral / Drawer -->
+      <div
+        id="cart-panel"
+        class="absolute right-0 top-0 bottom-0 w-full max-w-md bg-white shadow-2xl flex flex-col justify-between transform translate-x-full transition-transform duration-300 ease-out"
+      >
+        <!-- Header do Carrinho -->
+        <div
+          class="p-5 border-b border-gray-100 flex items-center justify-between bg-gray-50"
+        >
+          <div class="flex items-center gap-2">
+            <i data-lucide="shopping-cart" class="w-5 h-5 text-rose-500"></i>
+            <h3 class="text-lg font-bold text-gray-900">Seu Carrinho</h3>
+          </div>
+          <button
+            onclick="toggleCartModal(false)"
+            class="p-2 text-gray-400 hover:text-gray-700 hover:bg-gray-200/50 rounded-full transition-colors"
+          >
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+
+        <!-- Lista de Itens do Carrinho -->
+        <div
+          id="cart-items"
+          class="p-5 flex-grow overflow-y-auto flex flex-col gap-4"
+        >
+          <!-- Injetado dinamicamente via JS -->
+        </div>
+
+        <!-- Footer do Carrinho (Resumo + Botão Avançar) -->
+        <div
+          class="p-5 border-t border-gray-100 bg-gray-50/80 flex flex-col gap-3"
+        >
+          <div class="flex items-center justify-between text-sm text-gray-600">
+            <span>Subtotal:</span>
+            <span id="cart-subtotal" class="font-semibold text-gray-900"
+              >R$ 0,00</span
+            >
+          </div>
+          <div
+            class="flex items-center justify-between text-base font-extrabold text-gray-900 pt-2 border-t border-gray-200"
+          >
+            <span>Total Estimado:</span>
+            <span id="cart-total" class="text-rose-600 text-xl">R$ 0,00</span>
+          </div>
+
+          <button
+            id="btn-to-checkout"
+            onclick="openCheckoutModal()"
+            disabled
+            class="w-full mt-2 py-3.5 px-4 bg-rose-600 hover:bg-rose-700 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-bold rounded-2xl flex items-center justify-center gap-2 transition-all shadow-md active:scale-[0.99]"
+          >
+            <span>Finalizar Pedido</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- MODAL DE CHECKOUT (FORMULÁRIO DE ENVIO)    -->
+    <!-- ========================================== -->
+    <div
+      id="checkout-modal"
+      class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-6"
+    >
+      <!-- Backdrop -->
+      <div
+        onclick="closeCheckoutModal()"
+        class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"
+      ></div>
+
+      <!-- Conteúdo do Modal -->
+      <div
+        class="relative bg-white w-full max-w-lg rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]"
+      >
+        <!-- Header do Modal -->
+        <div
+          class="p-5 bg-gradient-to-r from-gray-900 to-slate-800 text-white flex items-center justify-between"
+        >
+          <div>
+            <h3 class="text-lg font-bold">Dados para Entrega</h3>
+            <p class="text-xs text-gray-300">
+              Preencha para gerar o pedido no WhatsApp
+            </p>
+          </div>
+          <button
+            onclick="closeCheckoutModal()"
+            class="p-1.5 text-gray-300 hover:text-white rounded-full transition-colors"
+          >
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+
+        <!-- Formulário -->
+        <form
+          id="checkout-form"
+          onsubmit="handleSendWhatsApp(event)"
+          class="p-5 sm:p-6 overflow-y-auto flex flex-col gap-4 text-sm"
+        >
+          <!-- Nome Completo -->
+          <div>
+            <label class="block font-semibold text-gray-700 mb-1"
+              >Seu Nome Completo *</label
+            >
+            <input
+              type="text"
+              id="cust-name"
+              required
+              placeholder="Ex: Maria Silva"
+              class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-rose-500 focus:border-rose-500 outline-none transition-all"
+            />
+          </div>
+
+          <!-- Telefone / WhatsApp -->
+          <div>
+            <label class="block font-semibold text-gray-700 mb-1"
+              >Seu WhatsApp de Contato *</label
+            >
+            <input
+              type="tel"
+              id="cust-phone"
+              required
+              placeholder="Ex: (11) 99999-8888"
+              class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-rose-500 focus:border-rose-500 outline-none transition-all"
+            />
+          </div>
+
+          <!-- Endereço Completo -->
+          <div>
+            <label class="block font-semibold text-gray-700 mb-1"
+              >Endereço de Entrega *</label
+            >
+            <input
+              type="text"
+              id="cust-address"
+              required
+              placeholder="Rua, número, complemento e bairro"
+              class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-rose-500 focus:border-rose-500 outline-none transition-all"
+            />
+          </div>
+
+          <!-- Cidade e Estado -->
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block font-semibold text-gray-700 mb-1"
+                >Cidade *</label
+              >
+              <input
+                type="text"
+                id="cust-city"
+                required
+                placeholder="Ex: São Paulo"
+                class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-rose-500 focus:border-rose-500 outline-none transition-all"
+              />
+            </div>
+            <div>
+              <label class="block font-semibold text-gray-700 mb-1"
+                >Estado (UF) *</label
+              >
+              <input
+                type="text"
+                id="cust-uf"
+                required
+                maxlength="2"
+                placeholder="Ex: SP"
+                class="uppercase w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-rose-500 focus:border-rose-500 outline-none transition-all"
+              />
+            </div>
+          </div>
+
+          <!-- Forma de Pagamento -->
+          <div>
+            <label class="block font-semibold text-gray-700 mb-1"
+              >Forma de Pagamento Preferida *</label
+            >
+            <select
+              id="cust-payment"
+              required
+              class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-rose-500 focus:border-rose-500 outline-none transition-all bg-white"
+            >
+              <option value="Pix (5% de desconto)">
+                Pix (Aprovação Imediata)
+              </option>
+              <option value="Cartão de Crédito">
+                Cartão de Crédito (Link de Pagamento)
+              </option>
+              <option value="Boleto Bancário">Boleto Bancário</option>
+            </select>
+          </div>
+
+          <!-- Observações -->
+          <div>
+            <label class="block font-semibold text-gray-700 mb-1"
+              >Observações ou Tamanho Especial</label
+            >
+            <textarea
+              id="cust-obs"
+              rows="2"
+              placeholder="Ex: Preferência de tamanho M nas blusas..."
+              class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-rose-500 focus:border-rose-500 outline-none transition-all"
+            ></textarea>
+          </div>
+
+          <!-- Botão Enviar Pedido -->
+          <button
+            type="submit"
+            class="w-full mt-2 py-3.5 bg-green-600 hover:bg-green-700 text-white font-bold rounded-2xl flex items-center justify-center gap-2 transition-all shadow-lg shadow-green-600/20 active:scale-[0.99]"
+          >
+            <i data-lucide="message-square" class="w-5 h-5"></i>
+            <span>Enviar Pedido pelo WhatsApp</span>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- JAVASCRIPT: DADOS, CARRINHO E WHATSAPP    -->
+    <!-- ========================================== -->
+    <script>
+      // CONFIGURAÇÃO DA LOJA
+      const WHATSAPP_NUMBER = "5511999999999"; // Substitua pelo número real da loja (com DDD)
+
+      // BASE DE DADOS DOS PRODUTOS
+      const PRODUCTS = [
+        {
+          id: 1,
+          name: "Blazer Tailored Oversized",
+          category: "Casacos",
+          price: 289.9,
+          oldPrice: 349.9,
+          sizes: ["P", "M", "G"],
+          image:
+            "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&q=80&w=600",
+          badge: "Mais Vendido",
+        },
+        {
+          id: 2,
+          name: "Vestido Midi Canelado Elegance",
+          category: "Vestidos",
+          price: 189.0,
+          sizes: ["P", "M", "G"],
+          image:
+            "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?auto=format&fit=crop&q=80&w=600",
+          badge: "Novo",
+        },
+        {
+          id: 3,
+          name: "Calça Wide Leg Alfaiataria",
+          category: "Calças",
+          price: 219.9,
+          sizes: ["36", "38", "40", "42"],
+          image:
+            "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&q=80&w=600",
+        },
+        {
+          id: 4,
+          name: "Camisa Linho Pure Pureness",
+          category: "Blusas",
+          price: 159.9,
+          oldPrice: 199.9,
+          sizes: ["P", "M", "G", "GG"],
+          image:
+            "https://images.unsplash.com/photo-1598554747436-c9293d6a588f?auto=format&fit=crop&q=80&w=600",
+        },
+        {
+          id: 5,
+          name: "Trench Coat Beje Premium",
+          category: "Casacos",
+          price: 399.0,
+          sizes: ["M", "G"],
+          image:
+            "https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&q=80&w=600",
+        },
+        {
+          id: 6,
+          name: "Cropped Tricot Texture",
+          category: "Blusas",
+          price: 119.9,
+          sizes: ["Único"],
+          image:
+            "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&q=80&w=600",
+        },
+        {
+          id: 7,
+          name: "Vestido Esculpido Satin Glow",
+          category: "Vestidos",
+          price: 259.9,
+          sizes: ["P", "M"],
+          image:
+            "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&q=80&w=600",
+        },
+        {
+          id: 8,
+          name: "Bolsa Minimalista Leather",
+          category: "Acessórios",
+          price: 149.9,
+          sizes: ["Único"],
+          image:
+            "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&q=80&w=600",
+          badge: "Destaque",
+        },
+      ];
+
+      // ESTADO DA APLICAÇÃO
+      let currentCategory = "Todos";
+      let cart = []; // Array de itens { product, selectedSize, quantity }
+
+      // EXECUTADO AO CARREGAR A PÁGINA
+      document.addEventListener("DOMContentLoaded", () => {
+        renderCategoryFilters();
+        renderProducts();
+        updateCartUI();
+        lucide.createIcons();
+      });
+
+      // 1. RENDERIZAR BOTOES DE FILTRO DE CATEGORIA
+      function renderCategoryFilters() {
+        const categories = [
+          "Todos",
+          ...new Set(PRODUCTS.map((p) => p.category)),
+        ];
+        const container = document.getElementById("category-filters");
+
+        container.innerHTML = categories
+          .map(
+            (cat) => `
+                <button 
+                    onclick="filterCategory('${cat}')"
+                    class="px-4 py-2 rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all ${
+                      currentCategory === cat
+                        ? "bg-slate-900 text-white shadow-md"
+                        : "bg-white text-gray-600 hover:bg-gray-100 border border-gray-200"
+                    }"
+                >
+                    ${cat}
+                </button>
+            `,
+          )
+          .join("");
+      }
+
+      // 2. FILTRAR POR CATEGORIA
+      function filterCategory(category) {
+        currentCategory = category;
+        renderCategoryFilters();
+        renderProducts();
+      }
+
+      // 3. RENDERIZAR GRADE DE PRODUTOS
+      function renderProducts() {
+        const grid = document.getElementById("product-grid");
+        const countLabel = document.getElementById("product-count");
+
+        const filtered =
+          currentCategory === "Todos"
+            ? PRODUCTS
+            : PRODUCTS.filter((p) => p.category === currentCategory);
+
+        countLabel.textContent = `${filtered.length} produto(s) encontrado(s)`;
+
+        if (filtered.length === 0) {
+          grid.innerHTML = `
+                    <div class="col-span-full py-12 text-center text-gray-500">
+                        Nenhum produto encontrado nesta categoria.
+                    </div>
+                `;
+          return;
+        }
+
+        grid.innerHTML = filtered
+          .map((product) => {
+            const sizeOptionsHtml = product.sizes
+              .map(
+                (size, idx) => `
+                    <option value="${size}">${size}</option>
+                `,
+              )
+              .join("");
+
+            return `
+                    <div class="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+                        
+                        <!-- Imagem do Produto -->
+                        <div class="relative w-full aspect-[3/4] overflow-hidden bg-gray-100">
+                            <img 
+                                src="${product.image}" 
+                                alt="${product.name}" 
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                loading="lazy"
+                            />
+                            ${
+                              product.badge
+                                ? `
+                                <span class="absolute top-3 left-3 bg-rose-500 text-white text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-full shadow-md">
+                                    ${product.badge}
+                                </span>
+                            `
+                                : ""
+                            }
+                        </div>
+
+                        <!-- Detalhes do Produto -->
+                        <div class="p-4 flex flex-col flex-grow justify-between gap-3">
+                            <div>
+                                <span class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">${product.category}</span>
+                                <h4 class="font-bold text-gray-900 text-sm sm:text-base leading-snug line-clamp-2 mt-0.5">
+                                    ${product.name}
+                                </h4>
+                            </div>
+
+                            <div>
+                                <!-- Preços -->
+                                <div class="flex items-baseline gap-2 mb-3">
+                                    <span class="text-base sm:text-lg font-black text-gray-900">
+                                        R$ ${product.price.toFixed(2).replace(".", ",")}
+                                    </span>
+                                    ${
+                                      product.oldPrice
+                                        ? `
+                                        <span class="text-xs text-gray-400 line-through">
+                                            R$ ${product.oldPrice.toFixed(2).replace(".", ",")}
+                                        </span>
+                                    `
+                                        : ""
+                                    }
+                                </div>
+
+                                <!-- Seleção de Tamanho & Botão Adicionar -->
+                                <div class="flex items-center gap-2">
+                                    <select id="size-select-${product.id}" class="bg-gray-100 text-xs font-semibold text-gray-700 py-2 px-2.5 rounded-xl border-none outline-none focus:ring-1 focus:ring-rose-500">
+                                        ${sizeOptionsHtml}
+                                    </select>
+                                    
+                                    <button 
+                                        onclick="addToCart(${product.id})"
+                                        class="flex-grow py-2 px-3 bg-gray-900 hover:bg-rose-600 text-white font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 transition-colors shadow-sm active:scale-95"
+                                    >
+                                        <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                                        <span>Adicionar</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                `;
+          })
+          .join("");
+
+        lucide.createIcons();
+      }
+
+      // 4. ADICIONAR AO CARRINHO
+      function addToCart(productId) {
+        const product = PRODUCTS.find((p) => p.id === productId);
+        const sizeSelect = document.getElementById(`size-select-${productId}`);
+        const selectedSize = sizeSelect ? sizeSelect.value : product.sizes[0];
+
+        // Verifica se o mesmo item com mesmo tamanho já existe no carrinho
+        const existingIndex = cart.findIndex(
+          (item) =>
+            item.product.id === productId && item.selectedSize === selectedSize,
+        );
+
+        if (existingIndex > -1) {
+          cart[existingIndex].quantity += 1;
+        } else {
+          cart.push({
+            product,
+            selectedSize,
+            quantity: 1,
+          });
+        }
+
+        updateCartUI();
+        toggleCartModal(true); // Abre a gaveta do carrinho
+      }
+
+      // 5. ALTERAR QUANTIDADE NO CARRINHO
+      function changeQuantity(index, delta) {
+        cart[index].quantity += delta;
+        if (cart[index].quantity <= 0) {
+          cart.splice(index, 1);
+        }
+        updateCartUI();
+      }
+
+      // 6. ATUALIZAR INTERFACE DO CARRINHO
+      function updateCartUI() {
+        const cartItemsContainer = document.getElementById("cart-items");
+        const cartBadge = document.getElementById("cart-badge");
+        const subtotalEl = document.getElementById("cart-subtotal");
+        const totalEl = document.getElementById("cart-total");
+        const btnCheckout = document.getElementById("btn-to-checkout");
+
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        const totalPrice = cart.reduce(
+          (sum, item) => sum + item.product.price * item.quantity,
+          0,
+        );
+
+        // Atualiza Badge do Header
+        if (totalItems > 0) {
+          cartBadge.textContent = totalItems;
+          cartBadge.classList.remove("hidden");
+          btnCheckout.removeAttribute("disabled");
+        } else {
+          cartBadge.classList.add("hidden");
+          btnCheckout.setAttribute("disabled", "true");
+        }
+
+        // Atualiza Valores
+        subtotalEl.textContent = `R$ ${totalPrice.toFixed(2).replace(".", ",")}`;
+        totalEl.textContent = `R$ ${totalPrice.toFixed(2).replace(".", ",")}`;
+
+        // Renderiza Lista de Itens no Carrinho
+        if (cart.length === 0) {
+          cartItemsContainer.innerHTML = `
+                    <div class="flex flex-col items-center justify-center h-full text-center text-gray-400 gap-3 py-10">
+                        <i data-lucide="shopping-bag" class="w-12 h-12 stroke-1"></i>
+                        <p class="text-sm font-medium">Seu carrinho está vazio.</p>
+                        <button onclick="toggleCartModal(false)" class="text-xs font-bold text-rose-600 hover:underline">
+                            Explorar produtos
+                        </button>
+                    </div>
+                `;
+        } else {
+          cartItemsContainer.innerHTML = cart
+            .map(
+              (item, index) => `
+                    <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-2xl border border-gray-100">
+                        <img src="${item.product.image}" alt="${item.product.name}" class="w-16 h-20 object-cover rounded-xl bg-gray-200">
+                        
+                        <div class="flex-grow min-w-0">
+                            <h4 class="font-bold text-xs sm:text-sm text-gray-900 truncate">${item.product.name}</h4>
+                            <p class="text-[11px] text-gray-500 font-medium mt-0.5">Tamanho: <span class="text-gray-900 font-bold">${item.selectedSize}</span></p>
+                            <p class="text-xs font-extrabold text-gray-900 mt-1">R$ ${(item.product.price * item.quantity).toFixed(2).replace(".", ",")}</p>
+                        </div>
+
+                        <!-- Controle de Quantidade -->
+                        <div class="flex items-center gap-1.5 bg-white border border-gray-200 rounded-xl p-1">
+                            <button onclick="changeQuantity(${index}, -1)" class="w-6 h-6 flex items-center justify-center text-gray-500 hover:bg-gray-100 rounded-lg">
+                                <i data-lucide="minus" class="w-3 h-3"></i>
+                            </button>
+                            <span class="text-xs font-bold w-5 text-center">${item.quantity}</span>
+                            <button onclick="changeQuantity(${index}, 1)" class="w-6 h-6 flex items-center justify-center text-gray-500 hover:bg-gray-100 rounded-lg">
+                                <i data-lucide="plus" class="w-3 h-3"></i>
+                            </button>
+                        </div>
+                    </div>
+                `,
+            )
+            .join("");
+        }
+
+        lucide.createIcons();
+      }
+
+      // 7. ABRIR / FECHAR MODAL DO CARRINHO
+      function toggleCartModal(open) {
+        const modal = document.getElementById("cart-modal");
+        const backdrop = document.getElementById("cart-backdrop");
+        const panel = document.getElementById("cart-panel");
+
+        if (open) {
+          modal.classList.remove("invisible", "pointer-events-none");
+          setTimeout(() => {
+            backdrop.classList.add("opacity-100");
+            panel.classList.remove("translate-x-full");
+          }, 10);
+        } else {
+          backdrop.classList.remove("opacity-100");
+          panel.classList.add("translate-x-full");
+          setTimeout(() => {
+            modal.classList.add("invisible", "pointer-events-none");
+          }, 300);
+        }
+      }
+
+      // 8. MODAL DE CHECKOUT
+      function openCheckoutModal() {
+        toggleCartModal(false);
+        const modal = document.getElementById("checkout-modal");
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+      }
+
+      function closeCheckoutModal() {
+        const modal = document.getElementById("checkout-modal");
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+      }
+
+      // 9. ENVIAR PEDIDO PARA O WHATSAPP FORMATADO
+      function handleSendWhatsApp(event) {
+        event.preventDefault();
+
+        const name = document.getElementById("cust-name").value.trim();
+        const phone = document.getElementById("cust-phone").value.trim();
+        const address = document.getElementById("cust-address").value.trim();
+        const city = document.getElementById("cust-city").value.trim();
+        const uf = document
+          .getElementById("cust-uf")
+          .value.trim()
+          .toUpperCase();
+        const payment = document.getElementById("cust-payment").value;
+        const obs = document.getElementById("cust-obs").value.trim();
+
+        const totalPrice = cart.reduce(
+          (sum, item) => sum + item.product.price * item.quantity,
+          0,
+        );
+
+        // Montagem da mensagem formatada
+        let msg = `🛍️ *NOVO PEDIDO - AURA STUDIO*\n`;
+        msg += `-------------------------------------------\n\n`;
+
+        msg += `👤 *DADOS DO CLIENTE:*\n`;
+        msg += `• *Nome:* ${name}\n`;
+        msg += `• *WhatsApp:* ${phone}\n`;
+        msg += `• *Endereço:* ${address}\n`;
+        msg += `• *Cidade/UF:* ${city} / ${uf}\n\n`;
+
+        msg += `📦 *ITENS DO PEDIDO:*\n`;
+        cart.forEach((item, i) => {
+          const sub = (item.product.price * item.quantity)
+            .toFixed(2)
+            .replace(".", ",");
+          msg += `${i + 1}. *${item.product.name}*\n`;
+          msg += `   └ Tam: ${item.selectedSize} | Qtd: ${item.quantity}x | R$ ${sub}\n`;
+        });
+
+        msg += `\n💰 *RESUMO FINANCEIRO:*\n`;
+        msg += `• *Total dos Produtos:* R$ ${totalPrice.toFixed(2).replace(".", ",")}\n`;
+        msg += `• *Forma de Pagamento:* ${payment}\n`;
+
+        if (obs) {
+          msg += `\n📝 *OBSERVAÇÕES:*\n${obs}\n`;
+        }
+
+        msg += `\n-------------------------------------------\n`;
+        msg += `Aguardando confirmação de estoque e valor do frete! ✨`;
+
+        // Encodar URI e redirecionar para o WhatsApp
+        const encodedMsg = encodeURIComponent(msg);
+        const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMsg}`;
+
+        window.open(whatsappUrl, "_blank");
+      }
+    </script>
+  </body>
+</html>
+''' with open("index.html", "w", encoding="utf-8") as f: f.write(html_content)
+print("Arquivo index.html gerado com sucesso.")

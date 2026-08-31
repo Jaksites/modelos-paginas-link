@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ana Paula | Links Úteis</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* Tipografias personalizadas para o visual de luxo */
+      .font-serif-title {
+        font-family: "Playfair Display", serif;
+      }
+      .font-script {
+        font-family: "Great Vibes", cursive;
+      }
+      .font-sans-clean {
+        font-family: "Inter", sans-serif;
+      }
+
+      /* Gradientes e bordas no tom dourado refinado */
+      .gold-border {
+        border: 1px solid rgba(212, 175, 55, 0.35);
+      }
+      .gold-border-glow:hover {
+        border-color: rgba(212, 175, 55, 0.75);
+        box-shadow: 0 0 15px rgba(212, 175, 55, 0.15);
+      }
+      .gold-text {
+        color: #d4af37;
+      }
+      .card-bg {
+        background: linear-gradient(135deg, #2a2c2e 0%, #17181a 100%);
+      }
+    </style>
+  </head>
+  <body
+    class="bg-[#121314] text-gray-200 font-sans-clean min-h-screen flex flex-col items-center justify-between p-4 sm:p-6 selection:bg-[#d4af37] selection:text-black"
+  >
+    <!-- Container Principal -->
+    <main class="w-full max-w-xl flex flex-col items-center gap-6 my-6">
+      <!-- HEADER DA PÁGINA -->
+      <header class="flex flex-col items-center text-center">
+        <!-- Foto de Perfil com Borda Dourada Circular -->
+        <div class="relative mb-4">
+          <div
+            class="w-28 h-28 rounded-full gold-border p-1 bg-gradient-to-b from-[#d4af37]/40 to-transparent"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400"
+              alt="Foto de Perfil - Ana Paula"
+              class="w-full h-full object-cover rounded-full"
+            />
+          </div>
+        </div>
+
+        <!-- Tag de Nome / Status -->
+        <div
+          class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/60 gold-border text-[11px] tracking-[0.2em] font-medium text-gray-300 mb-3"
+        >
+          <span class="w-2 h-2 rounded-full bg-[#d4af37]"></span>
+          ANA PAULA
+        </div>
+
+        <!-- Subtítulo / Bio -->
+        <p
+          class="text-xs sm:text-sm text-gray-400 max-w-xs sm:max-w-sm leading-relaxed mb-6"
+        >
+          Estratégias personalizadas para elevar<br />
+          o nível do seu negócio.
+        </p>
+
+        <!-- Título da Seção -->
+        <h1
+          class="font-serif-title text-xl sm:text-2xl tracking-[0.25em] text-gray-200 font-normal uppercase"
+        >
+          Links Úteis
+        </h1>
+      </header>
+
+      <!-- SEÇÃO DE CARDS DE LINK -->
+      <section class="w-full flex flex-col gap-6">
+        <!-- CARD 1: Foto à Esquerda -->
+        <a
+          href="https://wa.me/seu-numero"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group relative card-bg rounded-xl gold-border gold-border-glow overflow-hidden transition-all duration-300 flex items-stretch h-44 sm:h-48"
+        >
+          <!-- Imagem -->
+          <div class="w-2/5 sm:w-1/2 relative overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600"
+              alt="Mentoria VIP"
+              class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-r from-transparent via-[#2a2c2e]/40 to-[#2a2c2e]"
+            ></div>
+          </div>
+
+          <!-- Conteúdo -->
+          <div
+            class="w-3/5 sm:w-1/2 p-4 flex flex-col justify-center items-start pr-4 sm:pr-6"
+          >
+            <span
+              class="text-[10px] sm:text-xs tracking-[0.2em] uppercase text-gray-400 font-medium"
+            >
+              Mentoria VIP
+            </span>
+            <h2
+              class="font-script text-2xl sm:text-3xl gold-text my-1 leading-tight"
+            >
+              Agende sua Sessão
+            </h2>
+            <span
+              class="mt-2 inline-flex items-center gap-1.5 text-[9px] sm:text-[10px] tracking-widest uppercase border border-[#d4af37]/60 px-3 py-1.5 rounded bg-black/40 text-gray-200 group-hover:bg-[#d4af37] group-hover:text-black transition-colors"
+            >
+              Entrar em Contato
+            </span>
+          </div>
+        </a>
+
+        <!-- CARD 2: Foto à Direita -->
+        <a
+          href="https://wa.me/seu-numero"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group relative card-bg rounded-xl gold-border gold-border-glow overflow-hidden transition-all duration-300 flex items-stretch h-44 sm:h-48"
+        >
+          <!-- Conteúdo -->
+          <div
+            class="w-3/5 sm:w-1/2 p-4 flex flex-col justify-center items-start pl-4 sm:pl-6"
+          >
+            <span
+              class="text-[10px] sm:text-xs tracking-[0.2em] uppercase text-gray-400 font-medium"
+            >
+              Atendimento Presencial
+            </span>
+            <h2
+              class="font-script text-2xl sm:text-3xl gold-text my-1 leading-tight"
+            >
+              Saiba como funciona
+            </h2>
+            <span
+              class="mt-2 inline-flex items-center gap-1.5 text-[9px] sm:text-[10px] tracking-widest uppercase border border-[#d4af37]/60 px-3 py-1.5 rounded bg-black/40 text-gray-200 group-hover:bg-[#d4af37] group-hover:text-black transition-colors"
+            >
+              Entrar em Contato
+            </span>
+          </div>
+
+          <!-- Imagem -->
+          <div class="w-2/5 sm:w-1/2 relative overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600"
+              alt="Atendimento Presencial"
+              class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-l from-transparent via-[#2a2c2e]/40 to-[#2a2c2e]"
+            ></div>
+          </div>
+        </a>
+
+        <!-- CARD 3: Foto à Esquerda -->
+        <a
+          href="https://seu-site.com/cursos"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group relative card-bg rounded-xl gold-border gold-border-glow overflow-hidden transition-all duration-300 flex items-stretch h-44 sm:h-48"
+        >
+          <!-- Imagem -->
+          <div class="w-2/5 sm:w-1/2 relative overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600"
+              alt="Metodologia"
+              class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-r from-transparent via-[#2a2c2e]/40 to-[#2a2c2e]"
+            ></div>
+          </div>
+
+          <!-- Conteúdo -->
+          <div
+            class="w-3/5 sm:w-1/2 p-4 flex flex-col justify-center items-start pr-4 sm:pr-6"
+          >
+            <span
+              class="text-[10px] sm:text-xs tracking-[0.2em] uppercase text-gray-400 font-medium"
+            >
+              Metodologia
+            </span>
+            <h2
+              class="font-script text-2xl sm:text-3xl gold-text my-1 leading-tight"
+            >
+              Ver catálogo de cursos
+            </h2>
+            <span
+              class="mt-2 inline-flex items-center gap-1.5 text-[9px] sm:text-[10px] tracking-widest uppercase border border-[#d4af37]/60 px-3 py-1.5 rounded bg-black/40 text-gray-200 group-hover:bg-[#d4af37] group-hover:text-black transition-colors"
+            >
+              Entrar em Contato
+            </span>
+          </div>
+        </a>
+      </section>
+
+      <!-- ÍCONES SOCIAIS (Utilizando Lucide Icons) -->
+      <footer class="mt-8 flex flex-col items-center gap-4">
+        <div class="flex items-center gap-5 text-gray-400">
+          <a
+            href="https://instagram.com"
+            target="_blank"
+            class="hover:text-[#d4af37] transition-colors"
+          >
+            <i data-lucide="instagram" class="w-5 h-5"></i>
+          </a>
+          <a
+            href="https://wa.me/seu-numero"
+            target="_blank"
+            class="hover:text-[#d4af37] transition-colors"
+          >
+            <i data-lucide="message-circle" class="w-5 h-5"></i>
+          </a>
+          <a
+            href="mailto:seu-email@dominio.com"
+            class="hover:text-[#d4af37] transition-colors"
+          >
+            <i data-lucide="mail" class="w-5 h-5"></i>
+          </a>
+        </div>
+
+        <!-- Rodapé / User Handle -->
+        <p class="text-[11px] text-gray-500 tracking-widest lowercase">
+          @anapaula
+        </p>
+      </footer>
+    </main>
+
+    <!-- Script para inicializar Lucide Icons -->
+    <script>
+      lucide.createIcons();
+    </script>
+  </body>
+</html>
