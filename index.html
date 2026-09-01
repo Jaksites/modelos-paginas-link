@@ -2,66 +2,551 @@
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Catálogo de Modelos</title>
     <style>
+      :root {
+        --bg-color: #0f0b16;
+        --card-bg: #181224;
+        --purple-dark: #3a0170;
+        --primary: #8343c3;
+        --highlight: #9a46f2;
+        --dark-text: #212121;
+        --light-text: #f1f1f1;
+        --muted-text: #a0a0b0;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
       body {
-        font-family: sans-serif;
-        max-width: 600px;
-        margin: 40px auto;
+        font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: var(--bg-color);
+        color: var(--light-text);
+        padding: 40px 20px;
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      header {
+        text-align: center;
+        margin-bottom: 30px;
+        padding: 30px 20px;
+        background: linear-gradient(135deg, var(--purple-dark), var(--card-bg));
+        border-radius: 16px;
+        border: 1px solid rgba(154, 70, 242, 0.2);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      }
+
+      header h1 {
+        font-size: 2.5rem;
+        color: var(--light-text);
+        margin-bottom: 10px;
+      }
+
+      header p {
+        color: var(--muted-text);
+        font-size: 1.1rem;
+      }
+
+      /* Barra de Categorias */
+      .category-bar {
+        position: sticky;
+        top: 20px;
+        z-index: 100;
+        background-color: rgba(24, 18, 36, 0.85);
+        backdrop-filter: blur(12px);
+        padding: 12px 16px;
+        border-radius: 50px;
+        border: 1px solid rgba(154, 70, 242, 0.3);
+        margin-bottom: 50px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        display: flex;
+        gap: 10px;
+        overflow-x: auto;
+        white-space: nowrap;
+        scrollbar-width: none; /* Firefox */
+      }
+
+      .category-bar::-webkit-scrollbar {
+        display: none; /* Chrome/Safari */
+      }
+
+      .category-btn {
+        color: var(--light-text);
+        text-decoration: none;
+        padding: 8px 18px;
+        border-radius: 20px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        background-color: rgba(58, 1, 112, 0.4);
+        border: 1px solid rgba(131, 67, 195, 0.3);
+        transition: all 0.3s ease;
+      }
+
+      .category-btn:hover {
+        background-color: var(--primary);
+        border-color: var(--highlight);
+        color: #ffffff;
+        box-shadow: 0 0 12px rgba(154, 70, 242, 0.4);
+      }
+
+      .category-section {
+        margin-bottom: 60px;
+        scroll-margin-top: 100px; /* Offset para a barra fixa não cobrir o título ao rolar */
+      }
+
+      .category-title {
+        font-size: 1.8rem;
+        color: var(--highlight);
+        margin-bottom: 24px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid var(--purple-dark);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 24px;
+      }
+
+      .card {
+        background-color: var(--card-bg);
+        border: 1px solid rgba(131, 67, 195, 0.2);
+        border-radius: 12px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease,
+          border-color 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        border-color: var(--highlight);
+        box-shadow: 0 8px 25px rgba(154, 70, 242, 0.25);
+      }
+
+      .card-img-placeholder {
+        width: 100%;
+        height: 180px;
+        background: linear-gradient(135deg, var(--purple-dark), #1d033a);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--muted-text);
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .card-img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+      }
+
+      .card-body {
         padding: 20px;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        justify-content: space-between;
       }
-      h1 {
-        color: #333;
+
+      .card-title {
+        font-size: 1.2rem;
+        color: var(--light-text);
+        margin-bottom: 16px;
+        font-weight: 600;
       }
-      ul {
-        line-height: 2;
-      }
-      a {
-        color: #0066cc;
+
+      .btn-view {
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+        background-color: var(--primary);
+        color: #ffffff;
+        padding: 10px 16px;
+        border-radius: 8px;
         text-decoration: none;
         font-weight: bold;
+        transition:
+          background-color 0.2s ease,
+          transform 0.1s ease;
       }
-      a:hover {
-        text-decoration: underline;
+
+      .btn-view:hover {
+        background-color: var(--highlight);
+      }
+
+      .btn-view:active {
+        transform: scale(0.98);
+      }
+
+      @media (max-width: 600px) {
+        header h1 {
+          font-size: 1.8rem;
+        }
+        .category-title {
+          font-size: 1.4rem;
+        }
+        .category-bar {
+          top: 10px;
+          border-radius: 12px;
+        }
       }
     </style>
   </head>
   <body>
-    <h1>Catálogo de Templates</h1>
+    <div class="container">
+      <header>
+        <h1>Catálogo de Templates</h1>
+        <p>
+          Escolha um modelo abaixo para visualizar a demonstração em tempo real.
+        </p>
+      </header>
 
-    <h2>Advogados</h2>
-    <ul>
-      <li>
-        <a href="modelos-pagina-de-links/modelos-advogados/modelo1.html"
-          >Modelo Advogado 1</a
-        >
-      </li>
-      <li>
-        <a href="modelos-pagina-de-links/modelos-advogados/modelo2.html"
-          >Modelo Advogado 2</a
-        >
-      </li>
-    </ul>
+      <!-- Barra de Navegação por Categorias -->
+      <nav class="category-bar">
+        <a href="#advogados" class="category-btn">Advogados</a>
+        <a href="#afiliados" class="category-btn">Afiliados</a>
+        <a href="#artesanato" class="category-btn">Artesanato</a>
+        <a href="#catalogo" class="category-btn">Catálogo</a>
+        <a href="#comida" class="category-btn">Comida</a>
+        <a href="#premium" class="category-btn">Premium</a>
+        <a href="#saude" class="category-btn">Saúde</a>
+      </nav>
 
-    <h2>Saúde</h2>
-    <ul>
-      <li>
-        <a href="./template-paginas-link/modelo saude/psicologa.html"
-          >Psicólogo</a
-        >
-      </li>
-      <li>
-        <a href="./template-paginas-link/modelo-saude/medico.html">Médico</a>
-      </li>
-    </ul>
+      <!-- Categoria: Advogados -->
+      <section id="advogados" class="category-section">
+        <h2 class="category-title">Advogados</h2>
+        <div class="cards-grid">
+          <div class="card">
+            <div class="card-img-placeholder">Mockup Imagem</div>
+            <div class="card-body">
+              <h3 class="card-title">Modelo Advogado 1</h3>
+              <a
+                href="modelos-advogados/modelo1.html"
+                target="_blank"
+                class="btn-view"
+                >Ver Modelo</a
+              >
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-img-placeholder">Mockup Imagem</div>
+            <div class="card-body">
+              <h3 class="card-title">Modelo Advogado 2</h3>
+              <a
+                href="modelos-advogados/modelo2.html"
+                target="_blank"
+                class="btn-view"
+                >Ver Modelo</a
+              >
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-img-placeholder">Mockup Imagem</div>
+            <div class="card-body">
+              <h3 class="card-title">Modelo Advogado 3</h3>
+              <a
+                href="modelos-advogados/dark.html"
+                target="_blank"
+                class="btn-view"
+                >Ver Modelo</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
 
-    <h2>Afiliados</h2>
-    <ul>
-      <li>
-        <a href="./template-paginas-link/modelo-afiliados/shopee.html"
-          >Shopee</a
-        >
-      </li>
-    </ul>
+      <!-- Categoria: Afiliados -->
+      <section id="afiliados" class="category-section">
+        <h2 class="category-title">Afiliados</h2>
+        <div class="cards-grid">
+          <div class="card">
+            <div class="card-img-placeholder">Mockup Imagem</div>
+            <div class="card-body">
+              <h3 class="card-title">Shopee</h3>
+              <a
+                href="modelos-afiliados/shopee.html"
+                target="_blank"
+                class="btn-view"
+                >Ver Modelo</a
+              >
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-img-placeholder">Mockup Imagem</div>
+            <div class="card-body">
+              <h3 class="card-title">Afiliados 1</h3>
+              <a
+                href="modelos-afiliados/afiliados1.html"
+                target="_blank"
+                class="btn-view"
+                >Ver Modelo</a
+              >
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-img-placeholder">Mockup Imagem</div>
+            <div class="card-body">
+              <h3 class="card-title">Afiliados 2</h3>
+              <a
+                href="modelos-afiliados/afiliados2.html"
+                target="_blank"
+                class="btn-view"
+                >Ver Modelo</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Categoria: Artesanato -->
+      <section id="artesanato" class="category-section">
+        <h2 class="category-title">Artesanato</h2>
+        <div class="cards-grid">
+          <div class="card">
+            <div class="card-img-placeholder">Mockup Imagem</div>
+            <div class="card-body">
+              <h3 class="card-title">Crochê</h3>
+              <a
+                href="modelos-artesanato/croche.html"
+                target="_blank"
+                class="btn-view"
+                >Ver Modelo</a
+              >
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-img-placeholder">Mockup Imagem</div>
+            <div class="card-body">
+              <h3 class="card-title">Modelo 2</h3>
+              <a
+                href="modelos-artesanato/modelo1.html"
+                target="_blank"
+                class="btn-view"
+                >Ver Modelo</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Categoria: Catálogo -->
+      <section id="catalogo" class="category-section">
+        <h2 class="category-title">Catálogo</h2>
+        <div class="cards-grid">
+          <div class="card">
+            <div class="card-img-placeholder">Mockup Imagem</div>
+            <div class="card-body">
+              <h3 class="card-title">Modelo 1</h3>
+              <a
+                href="modelos-catalogo/catalogo.html"
+                target="_blank"
+                class="btn-view"
+                >Ver Modelo</a
+              >
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-img-placeholder">Mockup Imagem</div>
+            <div class="card-body">
+              <h3 class="card-title">Delivery</h3>
+              <a
+                href="modelos-catalogo/delivery.html"
+                target="_blank"
+                class="btn-view"
+                >Ver Modelo</a
+              >
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-img-placeholder">Mockup Imagem</div>
+            <div class="card-body">
+              <h3 class="card-title">Produtos</h3>
+              <a
+                href="modelos-catalogo/produtos.html"
+                target="_blank"
+                class="btn-view"
+                >Ver Modelo</a
+              >
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-img-placeholder">Mockup Imagem</div>
+            <div class="card-body">
+              <h3 class="card-title">Roupas</h3>
+              <a
+                href="modelos-catalogo/roupas.html"
+                target="_blank"
+                class="btn-view"
+                >Ver Modelo</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Categoria: Comida -->
+      <section id="comida" class="category-section">
+        <h2 class="category-title">Comida</h2>
+        <div class="cards-grid">
+          <div class="card">
+            <div class="card-img-placeholder">Mockup Imagem</div>
+            <div class="card-body">
+              <h3 class="card-title">Confeitaria</h3>
+              <a
+                href="modelos-comida/confeitaria.html"
+                target="_blank"
+                class="btn-view"
+                >Ver Modelo</a
+              >
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-img-placeholder">Mockup Imagem</div>
+            <div class="card-body">
+              <h3 class="card-title">Doceria</h3>
+              <a
+                href="modelos-comida/doceria.html"
+                target="_blank"
+                class="btn-view"
+                >Ver Modelo</a
+              >
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-img-placeholder">Mockup Imagem</div>
+            <div class="card-body">
+              <h3 class="card-title">Hamburgueria</h3>
+              <a
+                href="modelos-comida/hamburgueria.html"
+                target="_blank"
+                class="btn-view"
+                >Ver Modelo</a
+              >
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-img-placeholder">Mockup Imagem</div>
+            <div class="card-body">
+              <h3 class="card-title">Pizzaria</h3>
+              <a
+                href="modelos-comida/pizzaria.html"
+                target="_blank"
+                class="btn-view"
+                >Ver Modelo</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Categoria: Premium -->
+      <section id="premium" class="category-section">
+        <h2 class="category-title">Premium</h2>
+        <div class="cards-grid">
+          <div class="card">
+            <div class="card-img-placeholder">Mockup Imagem</div>
+            <div class="card-body">
+              <h3 class="card-title">Criativo</h3>
+              <a
+                href="modelos-premium/criativo.html"
+                target="_blank"
+                class="btn-view"
+                >Ver Modelo</a
+              >
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-img-placeholder">Mockup Imagem</div>
+            <div class="card-body">
+              <h3 class="card-title">Dark</h3>
+              <a
+                href="modelos-premium/dark.html"
+                target="_blank"
+                class="btn-view"
+                >Ver Modelo</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Categoria: Saúde -->
+      <section id="saude" class="category-section">
+        <h2 class="category-title">Saúde</h2>
+        <div class="cards-grid">
+          <div class="card">
+            <div class="card-img-placeholder">Mockup Imagem</div>
+            <div class="card-body">
+              <h3 class="card-title">Dentista</h3>
+              <a
+                href="modelos-saude/dentista.html"
+                target="_blank"
+                class="btn-view"
+                >Ver Modelo</a
+              >
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-img-placeholder">Mockup Imagem</div>
+            <div class="card-body">
+              <h3 class="card-title">Médico</h3>
+              <a
+                href="modelos-saude/medico.html"
+                target="_blank"
+                class="btn-view"
+                >Ver Modelo</a
+              >
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-img-placeholder">Mockup Imagem</div>
+            <div class="card-body">
+              <h3 class="card-title">Nutricionista</h3>
+              <a
+                href="modelos-saude/nutricionistas.html"
+                target="_blank"
+                class="btn-view"
+                >Ver Modelo</a
+              >
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-img-placeholder">Mockup Imagem</div>
+            <div class="card-body">
+              <h3 class="card-title">Psicólogo</h3>
+              <a
+                href="modelos-saude/psicologa.html"
+                target="_blank"
+                class="btn-view"
+                >Ver Modelo</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   </body>
 </html>
