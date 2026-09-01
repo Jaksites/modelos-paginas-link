@@ -1,0 +1,258 @@
+
+      :root {
+        --bg-color: #0f0b16;
+        --card-bg: #181224;
+        --purple-dark: #3a0170;
+        --primary: #8343c3;
+        --highlight: #9a46f2;
+        --dark-text: #212121;
+        --light-text: #f1f1f1;
+        --muted-text: #a0a0b0;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: var(--bg-color);
+        color: var(--light-text);
+        padding: 40px 20px;
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      header {
+        text-align: center;
+        margin-bottom: 30px;
+        padding: 30px 20px;
+        background: linear-gradient(135deg, var(--purple-dark), var(--card-bg));
+        border-radius: 16px;
+        border: 1px solid rgba(154, 70, 242, 0.2);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      }
+
+      header h1 {
+        font-size: 2.5rem;
+        color: var(--light-text);
+        margin-bottom: 10px;
+      }
+
+      header p {
+        color: var(--muted-text);
+        font-size: 1.1rem;
+      }
+
+      /* Barra de Categorias */
+      .category-bar {
+        position: sticky;
+        top: 20px;
+        z-index: 100;
+        background-color: rgba(24, 18, 36, 0.85);
+        backdrop-filter: blur(12px);
+        padding: 12px 16px;
+        border-radius: 50px;
+        border: 1px solid rgba(154, 70, 242, 0.3);
+        margin-bottom: 50px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        display: flex;
+        gap: 10px;
+        overflow-x: auto;
+        white-space: nowrap;
+        scrollbar-width: none; /* Firefox */
+      }
+
+      .category-bar::-webkit-scrollbar {
+        display: none; /* Chrome/Safari */
+      }
+
+      .category-btn {
+        color: var(--light-text);
+        text-decoration: none;
+        padding: 8px 18px;
+        border-radius: 20px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        background-color: rgba(58, 1, 112, 0.4);
+        border: 1px solid rgba(131, 67, 195, 0.3);
+        transition: all 0.3s ease;
+      }
+
+      .category-btn:hover {
+        background-color: var(--primary);
+        border-color: var(--highlight);
+        color: #ffffff;
+        box-shadow: 0 0 12px rgba(154, 70, 242, 0.4);
+      }
+
+      .category-section {
+        margin-bottom: 60px;
+        scroll-margin-top: 100px; /* Offset para a barra fixa não cobrir o título ao rolar */
+      }
+
+      .category-title {
+        font-size: 1.8rem;
+        color: var(--highlight);
+        margin-bottom: 24px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid var(--purple-dark);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 24px;
+      }
+
+      .card {
+        background-color: var(--card-bg);
+        border: 1px solid rgba(131, 67, 195, 0.2);
+        border-radius: 12px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease,
+          border-color 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        border-color: var(--highlight);
+        box-shadow: 0 8px 25px rgba(154, 70, 242, 0.25);
+      }
+
+      .card-img {
+        width: 100%;
+        height: 190px; /* Reduz a altura vertical para equilibrar o card */
+        object-fit: contain; /* Mantém a proporção do iPhone sem achatar ou cortar */
+        padding: 12px 10px 0 10px; /* Dá um respiro nas laterais e no topo */
+        box-sizing: border-box;
+      }
+
+      /* Estilo para quando ainda for o texto "Mockup Imagem" sem foto */
+      .card-img-placeholder {
+        width: 100%;
+        height: 190px;
+        background: linear-gradient(135deg, var(--purple-dark), #1d033a);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--muted-text);
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      .card-body {
+        padding: 15px 20px 20px 20px;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        justify-content: space-between;
+      }
+
+      .card-title {
+        font-size: 1.2rem;
+        color: var(--light-text);
+        margin-bottom: 16px;
+        font-weight: 600;
+      }
+
+      .btn-view {
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+        background-color: var(--primary);
+        color: #ffffff;
+        padding: 10px 16px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+        transition:
+          background-color 0.2s ease,
+          transform 0.1s ease;
+      }
+
+      .btn-view:hover {
+        background-color: var(--highlight);
+      }
+
+      .btn-view:active {
+        transform: scale(0.98);
+      }
+
+      @media (max-width: 600px) {
+        header h1 {
+          font-size: 1.8rem;
+        }
+        .category-title {
+          font-size: 1.4rem;
+        }
+        .category-bar {
+          top: 10px;
+          border-radius: 12px;
+        }
+      }
+      .whatsapp-float {
+        position: fixed;
+        width: 60px;
+        height: 60px;
+        bottom: 25px;
+        right: 25px;
+        background-color: #25d366;
+        color: #ffffff;
+        border-radius: 50px;
+        text-align: center;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        transition:
+          transform 0.3s ease,
+          background-color 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+
+      .whatsapp-float:hover {
+        background-color: #20ba5a;
+        transform: scale(1.1);
+        box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+      }
+
+      .whatsapp-icon {
+        width: 32px;
+        height: 32px;
+      }
+
+      /* Ajuste para telas de celular */
+      @media (max-width: 600px) {
+        .whatsapp-float {
+          width: 50px;
+          height: 50px;
+          bottom: 20px;
+          right: 20px;
+        }
+
+        .whatsapp-icon {
+          width: 26px;
+          height: 26px;
+        }
+      }
+   
