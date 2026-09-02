@@ -474,7 +474,80 @@ h3 {
 .btn-view:active {
   transform: scale(0.98);
 }
+/* ==========================================
+   SEÇÃO MODELO PERSONALIZADO (CTA)
+   ========================================== */
+.custom-model-cta {
+  background-color: var(--bg-elevated);
+  border: 1px dashed var(--border-strong);
+  border-radius: 16px;
+  padding: 36px 24px;
+  margin: 20px 0 60px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
 
+.custom-model-cta:hover {
+  border-color: var(--highlight);
+  box-shadow: 0 8px 30px rgba(168, 85, 247, 0.15);
+}
+
+.custom-model-content {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.custom-model-title {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.custom-model-desc {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+.btn-custom-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: var(--whatsapp);
+  color: #ffffff;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 12px 28px;
+  border-radius: 50px;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-custom-whatsapp:hover {
+  background-color: #20bd5a;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
+}
+
+.btn-custom-whatsapp:active {
+  transform: scale(0.98);
+}
+
+.whatsapp-icon {
+  display: block;
+}
 /* ============ WHATSAPP FLOAT ============ */
 .whatsapp-float {
   position: fixed;
@@ -508,7 +581,85 @@ h3 {
   width: 32px;
   height: 32px;
 }
+/* Seção Como Funciona */
+.how-it-works-section {
+  padding: 60px 20px;
+  background-color: var(--bg-soft);
+  font-family: var(--font-body);
+}
 
+.how-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.how-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.how-header h2 {
+  font-family: var(--font-display);
+  color: var(--text);
+}
+
+.how-subtitle {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-top: -8px;
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 20px;
+}
+
+.step-card {
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+  padding: 24px 20px;
+  position: relative;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.step-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-strong);
+  box-shadow: 0 8px 20px rgba(168, 85, 247, 0.15);
+}
+
+.step-number {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--highlight);
+  background: var(--purple-dark);
+  border: 1px solid var(--border-strong);
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.step-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.step-desc {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0;
+}
 /* ============ PLANOS ============ */
 .plans-section {
   padding: 70px 20px;
@@ -517,7 +668,7 @@ h3 {
 }
 
 .plans-container {
-  max-width:1100px;
+  max-width:1200px;
   margin: 0 auto;
 }
 
@@ -697,7 +848,7 @@ h3 {
 }
 
 .services-container {
-  max-width: 940px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -828,7 +979,7 @@ h3 {
 }
 
 .faq-container {
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
