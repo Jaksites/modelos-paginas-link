@@ -67,12 +67,13 @@
           Burgers Artesanais & Batata Crocante
         </p>
 
-        <!-- Status de Funcionamento (Aberto/Fechado) -->
+        <!-- Status de Funcionamento (Aberto/Fechado) Dinâmico -->
         <div
-          class="mt-3 inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/30 px-3 py-1 rounded-full text-xs font-bold text-emerald-400"
+          id="status-container"
+          class="mt-3 inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold transition-all"
         >
-          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
-          ABERTO AGORA • Entrega rápida
+          <span id="status-ping" class="w-2 h-2 rounded-full"></span>
+          <span id="status-text">CARREGANDO...</span>
         </div>
 
         <!-- Informações Úteis (Tempo de entrega, Frete, Pagamento) -->
@@ -283,9 +284,52 @@
       </footer>
     </main>
 
-    <!-- Script para inicializar Lucide Icons -->
+    <!-- Scripts -->
     <script>
+      // Inicializar Lucide Icons
       lucide.createIcons();
+
+      // Regra de Horário de Funcionamento
+      function verificarHorario() {
+        const agora = new Date();
+        const diaSemana = agora.getDay(); // 0 = Domingo, 1 = Segunda, 2 = Terça, ..., 6 = Sábado
+        const hora = agora.getHours();
+        const minutos = agora.getMinutes();
+
+        // Converte o horário atual em minutos totais desde a meia-noite
+        const tempoAtualEmMinutos = hora * 60 + minutos;
+
+        // Horário de Abertura (18:00 = 1080 min) e Fechamento (23:30 = 1410 min)
+        const horaAbertura = 18 * 60; // 18:00
+        const horaFechamento = 23 * 60 + 30; // 23:30
+
+        // Aberto de Terça (2) a Domingo (0). Segunda (1) é fechado.
+        const diaUtil = diaSemana !== 1;
+        const dentroDoHorario =
+          tempoAtualEmMinutos >= horaAbertura &&
+          tempoAtualEmMinutos < horaFechamento;
+
+        const container = document.getElementById("status-container");
+        const ping = document.getElementById("status-ping");
+        const text = document.getElementById("status-text");
+
+        if (diaUtil && dentroDoHorario) {
+          // ESTADO: ABERTO
+          container.className =
+            "mt-3 inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/30 px-3 py-1 rounded-full text-xs font-bold text-emerald-400";
+          ping.className = "w-2 h-2 rounded-full bg-emerald-500 animate-ping";
+          text.innerText = "ABERTO AGORA • Entrega rápida";
+        } else {
+          // ESTADO: FECHADO
+          container.className =
+            "mt-3 inline-flex items-center gap-2 bg-rose-500/10 border border-rose-500/30 px-3 py-1 rounded-full text-xs font-bold text-rose-400";
+          ping.className = "w-2 h-2 rounded-full bg-rose-500";
+          text.innerText = "FECHADO AGORA • Abrimos às 18h";
+        }
+      }
+
+      // Executa ao carregar a página
+      verificarHorario();
     </script>
   </body>
 </html>

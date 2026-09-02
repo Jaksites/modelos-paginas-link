@@ -37,7 +37,7 @@
         text-align: center;
         margin-bottom: 30px;
         padding: 30px 20px;
-        background: linear-gradient(135deg, var(--purple-dark), var(--card-bg));
+        background: linear-gradient(135deg, var(--primary), var(--card-bg));
         border-radius: 16px;
         border: 1px solid rgba(154, 70, 242, 0.2);
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
@@ -84,7 +84,7 @@
         border-radius: 20px;
         font-size: 0.95rem;
         font-weight: 600;
-        background-color: rgba(58, 1, 112, 0.4);
+        background-color: rgba(68, 11, 121, 0.4);
         border: 1px solid rgba(131, 67, 195, 0.3);
         transition: all 0.3s ease;
       }
@@ -195,6 +195,75 @@
       .btn-view:active {
         transform: scale(0.98);
       }
+      .site-footer {
+  background-color: #111827;
+  color: #f3f4f6;
+  padding: 40px 20px 20px 20px;
+  margin-top: 60px;
+  font-family: inherit;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+}
+
+.footer-logo {
+  max-width: 150px;
+  height: auto;
+  margin-bottom: 12px;
+}
+
+.footer-brand p {
+  font-size: 0.9rem;
+  color: #9ca3af;
+  line-height: 1.5;
+}
+
+.footer-title {
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  color: #ffffff;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 8px;
+}
+
+.footer-links a {
+  color: #9ca3af;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: #ffffff;
+}
+
+.footer-contact p {
+  font-size: 0.9rem;
+  color: #9ca3af;
+  margin-bottom: 8px;
+}
+
+.footer-bottom {
+  max-width: 1200px;
+  margin: 30px auto 0 auto;
+  padding-top: 20px;
+  border-top: 1px solid #374151;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #6b7280;
+}
 
       @media (max-width: 600px) {
         header h1 {
@@ -242,7 +311,7 @@
       }
 
       /* Ajuste para telas de celular */
-      @media (max-width: 600px) {
+      @media (max-width: 768px) {
         .whatsapp-float {
           width: 50px;
           height: 50px;
@@ -254,5 +323,29 @@
           width: 26px;
           height: 26px;
         }
+        .cards-grid {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 16px;
+    padding-bottom: 12px;
+    
+    /* Melhora a rolagem em telas de toque */
+    -webkit-overflow-scrolling: touch;
+    
+    /* Esconde a barra de rolagem (opcional) */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .cards-grid::-webkit-scrollbar {
+    display: none; /* Chrome, Safari e Edge */
+  }
+
+  .card {
+    flex: 0 0 80%; /* Cada card ocupa 80% da tela */
+    max-width: 300px;
+    scroll-snap-align: center; /* Trava o card centralizado após o deslize */
+  }
       }
    
