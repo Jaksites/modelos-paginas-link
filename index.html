@@ -3,31 +3,154 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Catálogo de Modelos</title>
+    <meta
+      name="description"
+      content="Mini sites prontos para a bio do seu Instagram. Escolha um modelo, personalize e comece a vender pelo WhatsApp."
+    />
+    <link rel="icon" type="image/x-icon" href="./Assets/Favicon.png" />
+    <title>Jak Digital — Mini Sites para Bio do Instagram</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
-    <div class="container">
-      <header>
-        <h1>Catálogo de Templates</h1>
-        <p>
-          Escolha um modelo abaixo para visualizar a demonstração em tempo real.
-        </p>
-      </header>
+    <!-- Barra de Navegação Principal -->
+    <nav class="navbar">
+      <div class="navbar-container">
+        <a href="#hero" class="navbar-logo">
+          <img src="./Assets/logo-jake.png" alt="" class="navbar-logo-img" />
+        </a>
+        <div class="navbar-links">
+          <a href="#modelos">Modelos</a>
+          <a href="#planos">Planos</a>
+          <a href="#faq">Dúvidas</a>
+        </div>
+        <a
+          href="https://wa.me/5541984940848?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20os%20modelos%20de%20sites."
+          target="_blank"
+          rel="noopener"
+          class="navbar-cta"
+          >Falar no WhatsApp</a
+        >
+      </div>
+    </nav>
 
+    <!-- Hero -->
+    <header class="hero" id="hero">
+      <div class="hero-container">
+        <div class="hero-copy">
+          <h1>Um mini site pronto pra viver na bio do seu Instagram.</h1>
+          <p class="hero-subtitle">
+            Escolha um modelo pronto, personalizamos com suas fotos, cores e
+            links — e você recebe um site rápido, testado e pronto pra colar na
+            bio. Sem mensalidade, sem lidar com código.
+          </p>
+          <div class="hero-actions">
+            <a href="#modelos" class="btn-hero-primary">Ver modelos</a>
+            <a
+              href="https://wa.me/5541984940848?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20os%20modelos%20de%20sites."
+              target="_blank"
+              rel="noopener"
+              class="btn-hero-secondary"
+              >Falar no WhatsApp</a
+            >
+          </div>
+          <div class="hero-trust">
+            <span>Entrega em 24–48h</span>
+            <span>1 ano de hospedagem incluso</span>
+            <span>Pagamento único</span>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="phone-frame">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <div class="mock-avatar"></div>
+              <div class="mock-handle">@seunegocio</div>
+              <div class="mock-bio">Seu produto ou serviço, em um link só</div>
+              <div class="mock-btn">🛍️ Catálogo de produtos</div>
+              <div class="mock-btn">💬 Falar no WhatsApp</div>
+              <div class="mock-btn">📍 Nossa localização</div>
+              <div class="mock-btn mock-btn-ghost">⭐ Depoimentos</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="container">
       <!-- Barra de Navegação por Categorias -->
-      <nav class="category-bar">
-        <a href="#advogados" class="category-btn">Advogados</a>
-        <a href="#afiliados" class="category-btn">Afiliados</a>
-        <a href="#artesanato" class="category-btn">Artesanato</a>
-        <a href="#catalogo" class="category-btn">Catálogo</a>
-        <a href="#comida" class="category-btn">Comida</a>
-        <a href="#premium" class="category-btn">Premium</a>
-        <a href="#saude" class="category-btn">Saúde</a>
+      <nav
+        class="category-bar"
+        id="modelos"
+        role="tablist"
+        aria-label="Categorias de modelos"
+      >
+        <a
+          href="#advogados"
+          class="category-btn is-active"
+          data-target="advogados"
+          role="tab"
+          aria-selected="true"
+          >Advogados</a
+        >
+        <a
+          href="#afiliados"
+          class="category-btn"
+          data-target="afiliados"
+          role="tab"
+          aria-selected="false"
+          >Afiliados</a
+        >
+        <a
+          href="#artesanato"
+          class="category-btn"
+          data-target="artesanato"
+          role="tab"
+          aria-selected="false"
+          >Artesanato</a
+        >
+        <a
+          href="#catalogo"
+          class="category-btn"
+          data-target="catalogo"
+          role="tab"
+          aria-selected="false"
+          >Catálogo</a
+        >
+        <a
+          href="#comida"
+          class="category-btn"
+          data-target="comida"
+          role="tab"
+          aria-selected="false"
+          >Comida</a
+        >
+        <a
+          href="#premium"
+          class="category-btn"
+          data-target="premium"
+          role="tab"
+          aria-selected="false"
+          >Premium</a
+        >
+        <a
+          href="#saude"
+          class="category-btn"
+          data-target="saude"
+          role="tab"
+          aria-selected="false"
+          >Saúde</a
+        >
       </nav>
 
       <!-- Categoria: Advogados -->
-      <section id="advogados" class="category-section">
+      <section id="advogados" class="category-section is-active">
         <h2 class="category-title">Advogados</h2>
         <div class="cards-grid">
           <div class="card">
@@ -429,13 +552,318 @@
         />
       </svg>
     </a>
+    <!-- Seção de Planos e Preços -->
+    <section id="planos" class="plans-section">
+      <div class="plans-container">
+        <header class="plans-header">
+          <h2 class="category-title">Escolha o Plano Ideal</h2>
+          <p class="plans-subtitle">
+            Sem mensalidades ocultas. Escolha o modelo e comece hoje mesmo!
+          </p>
+        </header>
 
+        <div class="plans-grid">
+          <div class="plan-card">
+            <div class="plan-header">
+              <span class="plan-badge">Básico</span>
+              <h3 class="plan-title">Serviços & Bio</h3>
+              <p class="plan-ideal">
+                Ideal para: Advogados, Médicos, Psicólogos, Nutricionistas e
+                Serviços Gerais.
+              </p>
+              <div class="plan-price">
+                <span class="price-currency">R$</span>
+                <span class="price-value">39</span>
+                <span class="price-cents">,99</span>
+                <span class="price-period">/ pagamento único</span>
+              </div>
+            </div>
+
+            <ul class="plan-features">
+              <li><strong>1 Ano de Hospedagem</strong> inclusa (Cloudflare)</li>
+              <li>
+                <strong>Personalização Inicial:</strong> Foto/Logo, Cores, Bio e
+                Textos
+              </li>
+              <li>
+                <strong>Botões de Ação:</strong> WhatsApp, Redes Sociais e
+                Localização
+              </li>
+              <li><strong>Entrega :</strong> Link configurado para sua bio</li>
+              <li>Link no formato: <code>cliente.pages.dev</code></li>
+            </ul>
+
+            <div class="plan-footer">
+              <a
+                href="https://wa.me/5541984940848?text=Ol%C3%A1!%20Gostaria%20de%20contratar%20o%20Plano%20Servi%C3%A7os%20(R$%2039,99)"
+                target="_blank"
+                rel="noopener"
+                class="btn-plan"
+                >Escolher Plano Serviços</a
+              >
+            </div>
+          </div>
+
+          <div class="plan-card">
+            <div class="plan-header">
+              <span class="plan-badge">Divulgação</span>
+              <h3 class="plan-title">Vitrine & Afiliados</h3>
+              <p class="plan-ideal">
+                Ideal para: Afiliados (Shopee/ML) e Divulgação de Links
+                Externos.
+              </p>
+              <div class="plan-price">
+                <span class="price-currency">R$</span>
+                <span class="price-value">59</span>
+                <span class="price-cents">,99</span>
+                <span class="price-period">/ pagamento único</span>
+              </div>
+            </div>
+
+            <ul class="plan-features">
+              <li><strong>Tudo do Plano Serviços +</strong></li>
+              <li><strong>Até 10 Produtos/Achadinhos</strong> cadastrados</li>
+              <li>
+                <strong>Links de Redirecionamento Direto:</strong> Botão vai
+                para a Shopee, ML ou site externo
+              </li>
+              <li><strong>Organização por Categorias</strong> no topo</li>
+              <li><strong>1 Ano de Hospedagem</strong> inclusa</li>
+            </ul>
+
+            <div class="plan-footer">
+              <a
+                href="https://wa.me/5541984940848?text=Ol%C3%A1!%20Gostaria%20de%20contratar%20o%20Plano%20Vitrine/Afiliados%20(R$%2049,99)"
+                target="_blank"
+                rel="noopener"
+                class="btn-plan"
+                >Escolher Plano Afiliados</a
+              >
+            </div>
+          </div>
+
+          <div class="plan-card featured">
+            <div class="plan-header">
+              <span class="plan-badge badge-featured">Mais Completo</span>
+              <h3 class="plan-title">Catálogo Interativo</h3>
+              <p class="plan-ideal">
+                Ideal para: Lojas, Delivery, Confeitaria, Docerias e Vendas
+                Diretas.
+              </p>
+              <div class="plan-price">
+                <span class="price-currency">R$</span>
+                <span class="price-value">79</span>
+                <span class="price-cents">,99</span>
+                <span class="price-period">/ pagamento único</span>
+              </div>
+            </div>
+
+            <ul class="plan-features">
+              <li>
+                <strong>Carrinho de Compras Integrado:</strong> Soma os itens
+                automaticamente
+              </li>
+              <li>
+                <strong>Checkout via WhatsApp:</strong> Formulário de endereço e
+                dados de entrega
+              </li>
+              <li>
+                <strong>Pedido Formatado:</strong> Envia a lista do pedido
+                pronta no WhatsApp
+              </li>
+              <li><strong>Até 10 Itens Inicialmente</strong> cadastrados</li>
+              <li><strong>1 Ano de Hospedagem</strong> inclusa</li>
+            </ul>
+
+            <div class="plan-footer">
+              <a
+                href="https://wa.me/5541984940848?text=Ol%C3%A1!%20Gostaria%20de%20contratar%20o%20Plano%20Cat%C3%A1logo%20com%20Carrinho%20(R$%2069,99)"
+                target="_blank"
+                rel="noopener"
+                class="btn-plan btn-featured"
+                >Escolher Catálogo Completo</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Seção: Tabela de Serviços Adicionais -->
+    <section id="servicos-adicionais" class="services-section">
+      <div class="services-container">
+        <header class="services-header">
+          <h2 class="category-title">Serviços Adicionais & Manutenção</h2>
+          <p class="services-subtitle">
+            Transparência total: precise de atualizações ou melhorias a qualquer
+            momento com preços acessíveis.
+          </p>
+        </header>
+
+        <div class="table-responsive">
+          <table class="services-table">
+            <thead>
+              <tr>
+                <th>Serviço Adicional</th>
+                <th>Descrição</th>
+                <th>Valor</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="Serviço Adicional">
+                  <strong>Alteração Simples</strong>
+                </td>
+                <td data-label="Descrição">
+                  Troca de 1 a 3 informações simples (ex: trocar número do
+                  WhatsApp, chave PIX, endereço ou texto da bio).
+                </td>
+                <td data-label="Valor" class="price-cell">R$ 9,99</td>
+              </tr>
+              <tr>
+                <td data-label="Serviço Adicional">
+                  <strong>Pacote +10 Produtos / Links</strong>
+                </td>
+                <td data-label="Descrição">
+                  Cadastro ou substituição de até 10 novos produtos ou links de
+                  afiliados com foto e link.
+                </td>
+                <td data-label="Valor" class="price-cell">R$ 14,99</td>
+              </tr>
+              <tr>
+                <td data-label="Serviço Adicional">
+                  <strong>Pacote +20 Produtos / Links</strong>
+                </td>
+                <td data-label="Descrição">
+                  Cadastro ou substituição de até 20 novos produtos ou links.
+                </td>
+                <td data-label="Valor" class="price-cell">R$ 24,99</td>
+              </tr>
+              <tr>
+                <td data-label="Serviço Adicional">
+                  <strong>Domínio Próprio (.com.br)</strong>
+                </td>
+                <td data-label="Descrição">
+                  Registro oficial no seu CPF/CNPJ via Registro.br (R$ 40/ano) +
+                  taxa de configuração e apontamento no servidor (R$ 29,99
+                  única).
+                </td>
+                <td data-label="Valor" class="price-cell">
+                  R$ 69,99
+                  <span class="setup-tag"
+                    >(R$ 40 Domínio + R$ 29,99 Setup)</span
+                  >
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+    <!-- Seção FAQ / Dúvidas Frequentes -->
+    <section id="faq" class="faq-section">
+      <div class="faq-container">
+        <h2 class="category-title">Dúvidas Frequentes</h2>
+        <p class="faq-subtitle">
+          Tudo o que você precisa saber antes de pedir o seu Mini Site
+        </p>
+
+        <div class="faq-grid">
+          <details class="faq-item">
+            <summary class="faq-question">
+              O que está incluso no valor do Mini Site?
+            </summary>
+            <div class="faq-answer">
+              <p>
+                O valor inclui a personalização inicial completa com seus dados
+                (fotos, logotipo, cores, textos, botões de WhatsApp, redes
+                sociais e localização), além de
+                <strong>1 ano de hospedagem inclusa</strong> em servidores
+                ultrarápidos e seguros.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">Há cobrança de mensalidade?</summary>
+            <div class="faq-answer">
+              <p>
+                <strong>Não!</strong> Você paga um valor único no momento da
+                criação. Após 1 ano de uso, existe apenas uma taxa de renovação
+                anual simbólica no valor de R$ 29,99 para manter a hospedagem do
+                seu link ativa no ar.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              Como funciona a entrega e o que eu recebo?
+            </summary>
+            <div class="faq-answer">
+              <p>
+                Você não precisa se preocupar com códigos ou servidores! Nós
+                cuidamos de toda a parte técnica e entregamos o
+                <strong>link do seu Mini Site pronto e testado</strong>, basta
+                copiar e colar na bio do seu Instagram ou WhatsApp.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              Qual é o link/endereço do meu Mini Site?
+            </summary>
+            <div class="faq-answer">
+              <p>
+                Por padrão, seu site terá um link seguro e exclusivo incluso no
+                formato
+                <code>suaempresa.pages.dev</code>.
+              </p>
+              <p>
+                Caso queira um endereço exclusivo (ex:
+                <code>www.suaempresa.com.br</code>), fazemos o registro oficial
+                no seu nome pelo Registro.br (R$ 40,00/ano pago ao órgão) mais a
+                nossa taxa de configuração e apontamento de DNS (R$ 29,99). O
+                domínio fica 100% no seu nome e precisa ser renovado anualmente
+                para continuar ativo.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              E se eu precisar alterar produtos, fotos ou informações no futuro?
+            </summary>
+            <div class="faq-answer">
+              <p>
+                Oferecemos suporte pós-venda para qualquer modificação rápida
+                (como troca de número do WhatsApp ou bio) por uma taxa acessível
+                a partir de R$ 9,99. Para inclusão ou atualização de novos
+                pacotes de produtos/links, consulte nossos pacotes de
+                manutenção.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">Qual é o prazo de entrega?</summary>
+            <div class="faq-answer">
+              <p>
+                Seu Mini Site é entregue em até
+                <strong>24h a 48h úteis</strong> após você nos enviar as fotos,
+                links e textos necessários para a personalização.
+              </p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
     <footer class="site-footer">
       <div class="footer-container">
         <!-- Coluna 1: Logo e Descrição -->
         <div class="footer-brand">
           <img
-            src="./Assets/logo.png"
+            src="./Assets/Logo-jake.png"
             alt="Logo da Empresa"
             class="footer-logo"
           />
@@ -457,7 +885,7 @@
                 >Meu Portfólio</a
               >
             </li>
-            <li><a href="#advogados">Modelos</a></li>
+            <li><a href="#modelos">Modelos</a></li>
             <li>
               <a
                 href="https://wa.me/5541984940848"
@@ -484,5 +912,46 @@
         </p>
       </div>
     </footer>
+
+    <script>
+      (function () {
+        var tabs = document.querySelectorAll(".category-btn");
+        var sections = document.querySelectorAll(".category-section");
+
+        function activate(target, updateHash) {
+          sections.forEach(function (section) {
+            section.classList.toggle("is-active", section.id === target);
+          });
+          tabs.forEach(function (tab) {
+            var isActive = tab.dataset.target === target;
+            tab.classList.toggle("is-active", isActive);
+            tab.setAttribute("aria-selected", isActive ? "true" : "false");
+          });
+          if (updateHash && history.replaceState) {
+            history.replaceState(null, "", "#" + target);
+          }
+        }
+
+        tabs.forEach(function (tab) {
+          tab.addEventListener("click", function (event) {
+            event.preventDefault();
+            activate(tab.dataset.target, true);
+            document
+              .getElementById("modelos")
+              .scrollIntoView({ behavior: "smooth", block: "start" });
+          });
+        });
+
+        var initial = window.location.hash
+          ? window.location.hash.replace("#", "")
+          : null;
+        var validTargets = Array.prototype.map.call(tabs, function (t) {
+          return t.dataset.target;
+        });
+        if (initial && validTargets.indexOf(initial) !== -1) {
+          activate(initial, false);
+        }
+      })();
+    </script>
   </body>
 </html>
