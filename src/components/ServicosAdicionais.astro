@@ -1,73 +1,243 @@
 ---
 ---
- 
- <section id="servicos-adicionais" class="services-section">
-      <div class="services-container">
-        <header class="services-header">
-          <h2 class="category-title">Serviços Adicionais & Manutenção</h2>
-          <p class="services-subtitle">
-            Transparência total: precise de atualizações ou melhorias a qualquer
-            momento com preços acessíveis.
-          </p>
-        </header>
+<section id="servicos-adicionais" class="services-section">
+  <div class="services-container">
+    <header class="services-header">
+      <span class="section-tag">Manutenção & Expansão</span>
+      <h2 class="category-title">Serviços Adicionais</h2>
+      <p class="services-subtitle">
+        Transparência total: atualizações ou melhorias a qualquer momento com preços acessíveis.
+      </p>
+    </header>
 
-        <div class="table-responsive">
-          <table class="services-table">
-            <thead>
-              <tr>
-                <th>Serviço Adicional</th>
-                <th>Descrição</th>
-                <th>Valor</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td data-label="Serviço Adicional">
-                  <strong>Alteração Simples</strong>
-                </td>
-                <td data-label="Descrição">
-                  Troca de 1 a 3 informações simples (ex: trocar número do
-                  WhatsApp, chave PIX, endereço ou texto da bio).
-                </td>
-                <td data-label="Valor" class="price-cell">R$ 9,99</td>
-              </tr>
-              <tr>
-                <td data-label="Serviço Adicional">
-                  <strong>Pacote +10 Produtos / Links</strong>
-                </td>
-                <td data-label="Descrição">
-                  Cadastro ou substituição de até 10 novos produtos ou links de
-                  afiliados com foto e link.
-                </td>
-                <td data-label="Valor" class="price-cell">R$ 14,99</td>
-              </tr>
-              <tr>
-                <td data-label="Serviço Adicional">
-                  <strong>Pacote +20 Produtos / Links</strong>
-                </td>
-                <td data-label="Descrição">
-                  Cadastro ou substituição de até 20 novos produtos ou links.
-                </td>
-                <td data-label="Valor" class="price-cell">R$ 24,99</td>
-              </tr>
-              <tr>
-                <td data-label="Serviço Adicional">
-                  <strong>Domínio Próprio (.com.br)</strong>
-                </td>
-                <td data-label="Descrição">
-                  Registro oficial no seu CPF/CNPJ via Registro.br (R$ 40/ano) +
-                  taxa de configuração e apontamento no servidor (R$ 29,99
-                  única).
-                </td>
-                <td data-label="Valor" class="price-cell">
-                  R$ 69,99
-                  <span class="setup-tag"
-                    >(R$ 40 Domínio + R$ 29,99 Setup)</span
-                  >
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
+    <div class="table-responsive">
+      <table class="services-table">
+        <thead>
+          <tr>
+            <th>Serviço Adicional</th>
+            <th>Descrição</th>
+            <th>Valor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Serviço Adicional">
+              <strong class="service-name">Alteração Simples</strong>
+            </td>
+            <td data-label="Descrição">
+              Troca de 1 a 3 informações simples (ex: trocar número do WhatsApp, chave PIX, endereço ou texto da bio).
+            </td>
+            <td data-label="Valor" class="price-cell">R$ 9,99</td>
+          </tr>
+          <tr>
+            <td data-label="Serviço Adicional">
+              <strong class="service-name">Pacote +10 Produtos / Links</strong>
+            </td>
+            <td data-label="Descrição">
+              Cadastro ou substituição de até 10 novos produtos ou links de afiliados com foto e direcionamento.
+            </td>
+            <td data-label="Valor" class="price-cell">R$ 14,99</td>
+          </tr>
+          <tr>
+            <td data-label="Serviço Adicional">
+              <strong class="service-name">Pacote +20 Produtos / Links</strong>
+            </td>
+            <td data-label="Descrição">
+              Cadastro ou substituição de até 20 novos produtos ou links de afiliados.
+            </td>
+            <td data-label="Valor" class="price-cell">R$ 24,99</td>
+          </tr>
+          <tr>
+            <td data-label="Serviço Adicional">
+              <strong class="service-name">Domínio Próprio (.com.br)</strong>
+            </td>
+            <td data-label="Descrição">
+              Registro oficial no seu CPF/CNPJ via Registro.br (R$ 40/ano) + taxa de configuração e apontamento no servidor (R$ 29,99 única).
+            </td>
+            <td data-label="Valor" class="price-cell">
+              R$ 69,99
+              <span class="setup-tag">(R$ 40 Domínio + R$ 29,99 Setup)</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+.services-section {
+  padding: 80px 20px;
+  background-color: var(--bg-soft, #110c16);
+  border-top: 1px solid var(--border-soft, rgba(168, 85, 247, 0.15));
+  font-family: 'Inter', sans-serif;
+}
+
+.services-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.services-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.section-tag {
+  display: inline-block;
+  font-family: 'Sora', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--highlight, #a855f7);
+  background: rgba(168, 85, 247, 0.12);
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  padding: 5px 14px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+
+.category-title {
+  font-family: 'Sora', sans-serif;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.services-subtitle {
+  color: var(--text-muted, #c4b8d7);
+  font-size: 0.98rem;
+  margin-top: 8px;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 16px;
+  border: 1px solid var(--border-soft, rgba(168, 85, 247, 0.18));
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.services-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--bg-elevated, #1a1422);
+  text-align: left;
+  font-size: 0.93rem;
+}
+
+.services-table th {
+  background-color: rgba(168, 85, 247, 0.1);
+  color: #ffffff;
+  font-family: 'Sora', sans-serif;
+  padding: 18px 20px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  border-bottom: 1px solid var(--border-soft, rgba(168, 85, 247, 0.18));
+}
+
+.services-table td {
+  padding: 20px;
+  border-bottom: 1px solid var(--border-soft, rgba(168, 85, 247, 0.12));
+  color: var(--text-muted, #c4b8d7);
+  line-height: 1.55;
+}
+
+.service-name {
+  color: #ffffff;
+  font-family: 'Sora', sans-serif;
+  font-size: 0.98rem;
+}
+
+.services-table tr:last-child td {
+  border-bottom: none;
+}
+
+.services-table tr:hover {
+  background-color: rgba(168, 85, 247, 0.05);
+}
+
+.price-cell {
+  font-family: 'Sora', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--highlight, #a855f7);
+  white-space: nowrap;
+}
+
+.setup-tag {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--text-muted, #c4b8d7);
+  margin-top: 4px;
+}
+
+/* Layout Responsivo para Telas Menores (Modo Card) */
+@media (max-width: 680px) {
+  .services-section {
+    padding: 50px 16px;
+  }
+
+  .table-responsive {
+    border: none;
+    box-shadow: none;
+    background: transparent;
+  }
+
+  .services-table thead {
+    display: none;
+  }
+
+  .services-table,
+  .services-table tbody,
+  .services-table tr,
+  .services-table td {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .services-table tr {
+    margin-bottom: 16px;
+    border: 1px solid var(--border-soft, rgba(168, 85, 247, 0.18));
+    border-radius: 14px;
+    background-color: var(--bg-elevated, #1a1422);
+    padding: 16px;
+  }
+
+  .services-table td {
+    padding: 8px 0;
+    border-bottom: none;
+    text-align: left;
+  }
+
+  .services-table td::before {
+    content: attr(data-label);
+    display: block;
+    font-family: 'Sora', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--highlight, #a855f7);
+    margin-bottom: 4px;
+  } 
+
+  .service-name {
+    font-size: 1.1rem;
+  }
+
+  .price-cell {
+    margin-top: 6px;
+    padding-top: 10px !important;
+    border-top: 1px dashed rgba(168, 85, 247, 0.2) !important;
+    font-size: 1.2rem;
+  }
+}
+</style>

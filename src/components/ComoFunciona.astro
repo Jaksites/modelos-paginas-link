@@ -1,55 +1,208 @@
 ---
 ---
+<section id="como-funciona" class="how-it-works-section">
+  <div class="how-container">
+    <header class="how-header">
+      <span class="how-badge">Passo a Passo</span>
+      <h2 class="category-title">Como Funciona?</h2>
+      <p class="how-subtitle">
+        Sem complicação! Você escolhe e nós cuidamos de tudo em 4 passos simples.
+      </p>
+    </header>
 
- <section id="como-funciona" class="how-it-works-section">
-      <div class="how-container">
-        <header class="how-header">
-          <h2 class="category-title">Como Funciona?</h2>
-          <p class="how-subtitle">
-            Sem complicação! Você escolhe e nós cuidamos de tudo.
-          </p>
-        </header>
-
-        <div class="steps-grid">
-          <!-- Passo 01 -->
-          <div class="step-card">
-            <div class="step-number">01</div>
-            <h3 class="step-title">Escolha seu modelo</h3>
-            <p class="step-desc">
-              Navegue pelo nosso catálogo e encontre o modelo ideal para o seu
-              segmento ou estilo.
-            </p>
-          </div>
-
-          <!-- Passo 02 -->
-          <div class="step-card">
-            <div class="step-number">02</div>
-            <h3 class="step-title">Envie suas informações</h3>
-            <p class="step-desc">
-              Mande sua logo, fotos, textos, links e contatos. Nós orientamos
-              tudo o que for necessário.
-            </p>
-          </div>
-
-          <!-- Passo 03 -->
-          <div class="step-card">
-            <div class="step-number">03</div>
-            <h3 class="step-title">Nós personalizamos</h3>
-            <p class="step-desc">
-              Configuramos a página com as suas cores, dados e links para ficar
-              com a cara do seu negócio.
-            </p>
-          </div>
-
-          <!-- Passo 04 -->
-          <div class="step-card">
-            <div class="step-number">04</div>
-            <h3 class="step-title">Receba seu link</h3>
-            <p class="step-desc">
-              Entregamos seu Mini Site testado, com hospedagem inclusa e pronto
-              para colar no perfil!
-            </p>
-          </div>
+    <div class="steps-grid">
+      <!-- Passo 01 -->
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-number">01</div>
+          <div class="step-line" aria-hidden="true"></div>
         </div>
+        <h3 class="step-title">Escolha seu modelo</h3>
+        <p class="step-desc">
+          Navegue pelo catálogo e encontre o layout ideal para o seu segmento ou estilo de marca.
+        </p>
       </div>
-    </section>
+
+      <!-- Passo 02 -->
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-number">02</div>
+          <div class="step-line" aria-hidden="true"></div>
+        </div>
+        <h3 class="step-title">Envie as informações</h3>
+        <p class="step-desc">
+          Mande sua logo, fotos, textos e links. Nós orientamos tudo o que for necessário via WhatsApp.
+        </p>
+      </div>
+
+      <!-- Passo 03 -->
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-number">03</div>
+          <div class="step-line" aria-hidden="true"></div>
+        </div>
+        <h3 class="step-title">Nós personalizamos</h3>
+        <p class="step-desc">
+          Configuramos a página com as suas cores e dados para que fique exatamente com a identidade da sua empresa.
+        </p>
+      </div>
+
+      <!-- Passo 04 -->
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-number">04</div>
+        </div>
+        <h3 class="step-title">Receba seu link</h3>
+        <p class="step-desc">
+          Entregamos seu Mini Site em até 48h com hospedagem inclusa e pronto para colar na bio!
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500&display=swap');
+
+.how-it-works-section {
+  padding: 80px 20px;
+  background-color: var(--bg-soft, #130d1b);
+  position: relative;
+  overflow: hidden;
+}
+
+.how-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.how-header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.how-badge {
+  display: inline-block;
+  font-family: 'Sora', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--highlight, #a855f7);
+  background: rgba(168, 85, 247, 0.12);
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  padding: 5px 14px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+
+.how-header h2 {
+  font-family: 'Sora', sans-serif;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 12px;
+}
+
+.how-subtitle {
+  color: var(--text-muted, #c4b8d7);
+  font-size: 1.02rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.step-card {
+  background: linear-gradient(160deg, rgba(38, 25, 58, 0.6) 0%, rgba(19, 13, 27, 0.8) 100%);
+  border: 1px solid var(--border-soft, rgba(168, 85, 247, 0.2));
+  border-radius: 16px;
+  padding: 28px 20px;
+  position: relative;
+  backdrop-filter: blur(8px);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.step-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--highlight, #a855f7);
+  box-shadow: 0 12px 30px rgba(168, 85, 247, 0.2);
+}
+
+.step-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.step-number {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--primary, #8343c3), var(--highlight, #a855f7));
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);
+  flex-shrink: 0;
+}
+
+.step-line {
+  height: 2px;
+  background: linear-gradient(90deg, rgba(168, 85, 247, 0.4), transparent);
+  flex-grow: 1;
+  margin-left: 12px;
+}
+
+.step-title {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.step-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted, #c4b8d7);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+  .steps-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .how-it-works-section {
+    padding: 50px 20px;
+  }
+
+  .steps-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .step-line {
+    display: none;
+  }
+
+  .step-card {
+    padding: 22px 18px;
+  }
+}
+</style>
