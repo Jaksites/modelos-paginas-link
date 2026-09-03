@@ -11,6 +11,11 @@ import Faq from '../components/Faq.astro';
 import Footer from '../components/Footer.astro';
 import WhatsappFloat from '../components/WhatsappFloat.astro';
 
+// Informações globais de SEO
+const siteUrl = "https://sites-bio.pages.dev";
+const pageTitle = "Jak Digital — Mini Sites Prontos para Bio do Instagram";
+const pageDescription = "Modelos profissionais de mini sites para a bio do seu Instagram. Escolha um modelo, personalize e converta seguidores em clientes no WhatsApp.";
+const ogImage = `${siteUrl}/Assets/og-image.png`; // Crie essa imagem de capa na pasta public/Assets
 ---
 
 <!doctype html>
@@ -18,32 +23,57 @@ import WhatsappFloat from '../components/WhatsappFloat.astro';
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Mini sites prontos para a bio do seu Instagram. Escolha um modelo, personalize e comece a vender pelo WhatsApp."
-    />
-    <link rel="icon" type="image/x-icon" href="./Assets/Favicon.png" />
-    <title>Jak Digital — Mini Sites para Bio do Instagram</title>
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Jak Digital Design" />
+
+    <!-- SEO Primário -->
+    <title>{pageTitle}</title>
+    <meta name="title" content={pageTitle} />
+    <meta name="description" content={pageDescription} />
+    <meta name="keywords" content="mini site bio, link na bio instagram, pagina de links, cartao de visita digital, site para psicologos, site para advogados, landing page whatsapp, jak digital" />
+    <link rel="canonical" href={siteUrl} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/Assets/Favicon.png" />
+
+    <!-- Open Graph / Facebook / WhatsApp / Instagram / LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={siteUrl} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="pt_BR" />
+
+    <!-- Twitter / X -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={siteUrl} />
+    <meta property="twitter:title" content={pageTitle} />
+    <meta property="twitter:description" content={pageDescription} />
+    <meta property="twitter:image" content={ogImage} />
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="index.css" />
   </head>
   <body>
 
     <Navbar />
-	<Hero/>
-    <Modelos/>
-    <Cta/>
-   <ComoFunciona />
+    <Hero />
+    <Modelos />
+    <Cta />
+    <ComoFunciona />
     <Planos />
     <ServicosAdicionais />
     <Faq />
-  <Footer />
-  <WhatsappFloat/>
+    <Footer />
+    <WhatsappFloat />
+
   </body>
 </html>
 
