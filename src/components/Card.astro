@@ -1,0 +1,152 @@
+---
+interface Props {
+  title: string;
+  code: string;
+  image: string;
+  link: string;
+  whatsappMessage?: string;
+}
+
+const { title, code, image, link, whatsappMessage } = Astro.props;
+
+const phone = "5541984940848";
+const defaultMsg = `Olá, tenho interesse no plano ${title} (Modelo #${code})`;
+const encodedMsg = encodeURIComponent(whatsappMessage || defaultMsg);
+const whatsappUrl = `https://wa.me/${phone}?text=${encodedMsg}`;
+---
+<div class="card">
+<h3 class="card-title">
+     <span class="card-badge">#{code}</span>
+    </h3>
+  <img src={image} alt={`${title} #${code}`} class="card-img" />
+  <div class="card-body">
+    
+    <div class="card-actions">
+      <a href={link} target="_blank" class="btn-view">Ver Modelo</a>
+      <a href={whatsappUrl} target="_blank" class="btn-wsp" aria-label="Contato via WhatsApp">
+        <svg width="20" height="20" fill="currentColor">
+          <use href="/Assets/icons.svg#icon-whatsapp"></use>
+        </svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+
+
+.card {
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--highlight);
+  box-shadow: 0 8px 20px rgba(154, 70, 242, 0.25);
+}
+
+.card-img {
+  width: 100%;
+  height: 190px;
+  object-fit: contain;
+  padding: 12px 10px 0 10px;
+  box-sizing: border-box;
+}
+
+.card-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+}
+
+.card-title {
+  font-size: 1.1rem;
+  color: var(--text);
+  margin-bottom: 16px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-badge {
+  font-size: 0.75rem;
+  background-color: rgba(154, 70, 242, 0.15);
+  color: var(--highlight);
+  padding: 2px 8px;
+  border-radius: 12px;
+  border: 1px solid rgba(154, 70, 242, 0.3);
+  font-weight: 700;
+}
+
+/* ============ BOTÕES ============ */
+.card-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.btn-view {
+  flex: 1;
+  text-align: center;
+  background-color: var(--primary);
+  color: #ffffff;
+  padding: 9px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  white-space: nowrap;
+}
+
+.btn-view:hover {
+  background-color: var(--highlight);
+}
+
+.btn-wsp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #25D366;
+  color: #ffffff;
+  padding: 9px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  flex-shrink: 0;
+}
+
+.btn-wsp:hover {
+  background-color: #20ba5a;
+}
+.btn-wsp svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+  display: block;
+}
+
+.btn-view:active, .btn-wsp:active {
+  transform: scale(0.96);
+}
+
+@media (max-width: 640px) {
+
+  .card {
+    flex: 0 0 85%;
+    max-width: 290px;
+    scroll-snap-align: center;
+  }
+}
+
+</style>
