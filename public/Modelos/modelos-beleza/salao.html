@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Studio Bella | Salão & Estética</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      .font-serif-beauty {
+        font-family: "Playfair Display", serif;
+      }
+      .font-sans-clean {
+        font-family: "Montserrat", sans-serif;
+      }
+
+      /* Estilização Rose Gold e Soft Shadows */
+      .rosegold-gradient {
+        background: linear-gradient(135deg, #e8b4b8 0%, #ced3c5 100%);
+      }
+      .rosegold-btn-gradient {
+        background: linear-gradient(135deg, #b5737a 0%, #9a5b62 100%);
+      }
+      .rosegold-border {
+        border: 1px solid rgba(181, 115, 122, 0.3);
+      }
+      .beauty-shadow {
+        box-shadow: 0 10px 25px -5px rgba(181, 115, 122, 0.12);
+      }
+    </style>
+  </head>
+  <body
+    class="bg-[#FAF7F5] text-[#4A3E3D] font-sans-clean min-h-screen flex flex-col items-center justify-between p-4 sm:p-6 selection:bg-[#E8B4B8] selection:text-black"
+  >
+    <!-- Container Principal (Ajustado para Mobile e Desktop) -->
+    <main
+      class="w-full max-w-lg md:max-w-xl flex flex-col items-center gap-6 my-4 sm:my-8"
+    >
+      <!-- HEADER DA PÁGINA -->
+      <header class="flex flex-col items-center text-center">
+        <!-- Foto do Salão / Profissional com Anel Rose Gold -->
+        <div class="relative mb-4">
+          <div
+            class="w-28 h-28 sm:w-32 sm:h-32 rounded-full p-1 bg-gradient-to-b from-[#E8B4B8] to-[#B5737A] shadow-md"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&q=80&w=400"
+              alt="Studio Bella Salão de Beleza"
+              class="w-full h-full object-cover rounded-full border-2 border-white"
+            />
+          </div>
+          <!-- Badge de Atendimento -->
+          <span
+            class="absolute -bottom-1 bg-[#B5737A] text-white text-[10px] font-semibold px-3 py-0.5 rounded-full shadow-sm tracking-wider uppercase border border-white"
+          >
+            Agenda Aberta
+          </span>
+        </div>
+
+        <!-- Nome do Salão -->
+        <h1
+          class="font-serif-beauty text-2xl sm:text-3xl text-[#362A29] font-medium tracking-tight mt-1"
+        >
+          Studio Bella Concept
+        </h1>
+
+        <p
+          class="text-xs sm:text-sm text-[#8C7472] font-medium tracking-wide mt-1"
+        >
+          Cabelo • Unhas • Estética • Maquiagem
+        </p>
+
+        <!-- Bio Curta -->
+        <p
+          class="text-xs sm:text-sm text-[#6E5A58] max-w-xs sm:max-w-sm leading-relaxed mt-2.5"
+        >
+          Realçando sua beleza natural com atendimento exclusivo e produtos de
+          alta performance.
+        </p>
+      </header>
+
+      <!-- SEÇÃO DE LINKS E SERVIÇOS -->
+      <section class="w-full flex flex-col gap-3.5">
+        <!-- LINK 1: Agendamento Principal (Destaque Rose Gold) -->
+        <a
+          href="https://wa.me/5500000000000?text=Olá!%20Gostaria%20de%20agendar%20um%20horário."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group relative w-full p-4 rounded-2xl rosegold-btn-gradient text-white transition-all duration-300 beauty-shadow flex items-center justify-between hover:scale-[1.01]"
+        >
+          <div class="flex items-center gap-3.5">
+            <div
+              class="p-2.5 rounded-xl bg-white/15 text-white backdrop-blur-sm"
+            >
+              <i data-lucide="sparkles" class="w-5 h-5"></i>
+            </div>
+            <div class="text-left">
+              <h2 class="text-sm sm:text-base font-semibold leading-snug">
+                Agender Horário no WhatsApp
+              </h2>
+              <p class="text-[11px] text-[#F3E2E4] font-light">
+                Atendimento rápido e confirmação imediata
+              </p>
+            </div>
+          </div>
+          <div
+            class="p-1.5 rounded-full bg-white/20 group-hover:bg-white group-hover:text-[#B5737A] transition-colors"
+          >
+            <i data-lucide="calendar" class="w-4 h-4"></i>
+          </div>
+        </a>
+
+        <!-- LINK 2: Tabela de Preços / Menu de Serviços -->
+        <a
+          href="#servicos"
+          onclick="toggleServicesModal()"
+          class="group relative w-full p-4 rounded-2xl bg-white hover:bg-[#F5ECE9] text-[#4A3E3D] rosegold-border transition-all duration-300 beauty-shadow flex items-center justify-between cursor-pointer"
+        >
+          <div class="flex items-center gap-3.5">
+            <div class="p-2.5 rounded-xl bg-[#F8EFEF] text-[#B5737A]">
+              <i data-lucide="scissors" class="w-5 h-5"></i>
+            </div>
+            <div class="text-left">
+              <h2
+                class="text-sm sm:text-base font-semibold text-[#362A29] leading-snug"
+              >
+                Menu de Serviços e Valores
+              </h2>
+              <p class="text-[11px] text-[#8C7472]">
+                Confira nossa tabela completa
+              </p>
+            </div>
+          </div>
+          <i
+            data-lucide="chevron-right"
+            class="w-5 h-5 text-[#B5737A] group-hover:translate-x-1 transition-transform"
+          ></i>
+        </a>
+
+        <!-- LINK 3: Localização & Rota -->
+        <a
+          href="https://maps.google.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group relative w-full p-4 rounded-2xl bg-white hover:bg-[#F5ECE9] text-[#4A3E3D] rosegold-border transition-all duration-300 beauty-shadow flex items-center justify-between"
+        >
+          <div class="flex items-center gap-3.5">
+            <div class="p-2.5 rounded-xl bg-[#F8EFEF] text-[#B5737A]">
+              <i data-lucide="map-pin" class="w-5 h-5"></i>
+            </div>
+            <div class="text-left">
+              <h2
+                class="text-sm sm:text-base font-semibold text-[#362A29] leading-snug"
+              >
+                Onde Estamos (Localização)
+              </h2>
+              <p class="text-[11px] text-[#8C7472]">
+                Rua das Flores, 150 - Jardins (Com Estacionamento)
+              </p>
+            </div>
+          </div>
+          <i data-lucide="navigation" class="w-4 h-4 text-[#B5737A]"></i>
+        </a>
+
+        <!-- LINK 4: Fotos de Antes e Depois / Portfólio -->
+        <a
+          href="https://instagram.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group relative w-full p-4 rounded-2xl bg-white hover:bg-[#F5ECE9] text-[#4A3E3D] rosegold-border transition-all duration-300 beauty-shadow flex items-center justify-between"
+        >
+          <div class="flex items-center gap-3.5">
+            <div class="p-2.5 rounded-xl bg-[#F8EFEF] text-[#B5737A]">
+              <i data-lucide="camera" class="w-5 h-5"></i>
+            </div>
+            <div class="text-left">
+              <h2
+                class="text-sm sm:text-base font-semibold text-[#362A29] leading-snug"
+              >
+                Ver Portfólio no Instagram
+              </h2>
+              <p class="text-[11px] text-[#8C7472]">
+                Fotos de mechas, unhas e transformações
+              </p>
+            </div>
+          </div>
+          <i
+            data-lucide="chevron-right"
+            class="w-5 h-5 text-[#B5737A] group-hover:translate-x-1 transition-transform"
+          ></i>
+        </a>
+      </section>
+
+      <!-- HORÁRIO DE FUNCIONAMENTO -->
+      <div
+        class="w-full bg-white/80 rounded-2xl p-3.5 rosegold-border text-center text-xs text-[#6E5A58] flex items-center justify-center gap-2"
+      >
+        <i data-lucide="clock" class="w-4 h-4 text-[#B5737A]"></i>
+        <span>Terça a Sábado: <strong>09h às 19h</strong></span>
+      </div>
+
+      <!-- RODAPÉ E REDES SOCIAIS -->
+      <footer class="mt-2 flex flex-col items-center gap-3">
+        <div class="flex items-center gap-3">
+          <a
+            href="https://instagram.com"
+            target="_blank"
+            class="p-2.5 rounded-full bg-white rosegold-border text-[#B5737A] hover:bg-[#B5737A] hover:text-white transition-all shadow-sm"
+          >
+            <svg class="w-5 h-5 fill-current shrink-0">
+              <use href="../../Assets/icons.svg#icon-instagram"></use>
+            </svg>
+          </a>
+          <a
+            href="https://wa.me/5500000000000"
+            target="_blank"
+            class="p-2.5 rounded-full bg-white rosegold-border text-[#B5737A] hover:bg-[#B5737A] hover:text-white transition-all shadow-sm"
+          >
+            <svg class="w-5 h-5 fill-current shrink-0">
+              <use href="../../Assets/icons.svg#icon-whatsapp"></use>
+            </svg>
+          </a>
+        </div>
+
+        <p class="text-[11px] text-[#8C7472] tracking-wider">
+          © Studio Bella Concept • Todos os direitos reservados.
+        </p>
+      </footer>
+    </main>
+
+    <!-- MODAL DE TABELA DE SERVIÇOS (Pop-up interno) -->
+    <div
+      id="servicesModal"
+      class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4"
+    >
+      <div
+        class="bg-white w-full max-w-md rounded-3xl p-6 shadow-2xl border border-[#E8B4B8] relative"
+      >
+        <button
+          onclick="toggleServicesModal()"
+          class="absolute top-4 right-4 text-[#8C7472] hover:text-[#B5737A]"
+        >
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+
+        <h3 class="font-serif-beauty text-xl text-[#362A29] font-semibold mb-1">
+          Principais Serviços
+        </h3>
+        <p class="text-xs text-[#8C7472] mb-4">
+          Valores sujeitos a avaliação prévia
+        </p>
+
+        <div class="space-y-3 divide-y divide-gray-100 text-xs sm:text-sm">
+          <div class="pt-2 flex justify-between items-center">
+            <div>
+              <strong class="text-[#362A29] block">Corte & Escova</strong>
+              <span class="text-[11px] text-gray-500"
+                >Inclui lavatório com tratamento</span
+              >
+            </div>
+            <span class="font-semibold text-[#B5737A]">R$ 120</span>
+          </div>
+
+          <div class="pt-2 flex justify-between items-center">
+            <div>
+              <strong class="text-[#362A29] block">Mechas & Iluminado</strong>
+              <span class="text-[11px] text-gray-500">A partir de</span>
+            </div>
+            <span class="font-semibold text-[#B5737A]">R$ 380</span>
+          </div>
+
+          <div class="pt-2 flex justify-between items-center">
+            <div>
+              <strong class="text-[#362A29] block">Manicure & Pedicure</strong>
+              <span class="text-[11px] text-gray-500"
+                >Cutilagem e esmaltação</span
+              >
+            </div>
+            <span class="font-semibold text-[#B5737A]">R$ 65</span>
+          </div>
+
+          <div class="pt-2 flex justify-between items-center">
+            <div>
+              <strong class="text-[#362A29] block"
+                >Design de Sobrancelhas</strong
+              >
+              <span class="text-[11px] text-gray-500"
+                >Com Henna ou Tintura</span
+              >
+            </div>
+            <span class="font-semibold text-[#B5737A]">R$ 55</span>
+          </div>
+        </div>
+
+        <a
+          href="https://wa.me/5500000000000?text=Olá!%20Quero%20agendar%20um%20serviço."
+          target="_blank"
+          class="w-full mt-6 py-3 rosegold-btn-gradient text-white rounded-xl text-xs font-semibold flex items-center justify-center gap-2 shadow-sm"
+        >
+          <svg class="w-5 h-5 fill-current shrink-0">
+            <use href="../../Assets/icons.svg#icon-whatsapp"></use>
+          </svg>
+          Agendar via WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <!-- Scripts de Inicialização -->
+    <script>
+      lucide.createIcons();
+
+      function toggleServicesModal() {
+        const modal = document.getElementById("servicesModal");
+        modal.classList.toggle("hidden");
+      }
+    </script>
+  </body>
+</html>

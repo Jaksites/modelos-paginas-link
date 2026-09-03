@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Barbearia Navalha & Estilo | Agendamentos</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      .font-oswald {
+        font-family: "Oswald", sans-serif;
+      }
+      body {
+        font-family: "Roboto", sans-serif;
+      }
+
+      /* Estilo Industrial Dark com Sombra Bronze */
+      .bronze-border {
+        border: 1px solid rgba(212, 163, 89, 0.3);
+      }
+      .bronze-border-glow:hover {
+        border-color: rgba(212, 163, 89, 0.8);
+        box-shadow: 0 0 15px rgba(212, 163, 89, 0.15);
+      }
+      .bronze-bg {
+        background-color: #d4a359;
+      }
+      .bronze-text {
+        color: #d4a359;
+      }
+      .card-bg {
+        background: linear-gradient(145deg, #1f2125 0%, #141518 100%);
+      }
+    </style>
+  </head>
+  <body
+    class="bg-[#111214] text-gray-200 min-h-screen flex flex-col items-center justify-between p-4 sm:p-6 selection:bg-[#D4A359] selection:text-black"
+  >
+    <!-- Container Principal -->
+    <main
+      class="w-full max-w-lg md:max-w-xl flex flex-col items-center gap-5 my-4 sm:my-6"
+    >
+      <!-- HEADER DA BARBEARIA -->
+      <header class="flex flex-col items-center text-center">
+        <!-- Logo Circular com Borda Bronze -->
+        <div class="relative mb-3">
+          <div
+            class="w-28 h-28 sm:w-32 sm:h-32 rounded-full p-1.5 bronze-border bg-gradient-to-b from-[#D4A359]/40 to-transparent"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&q=80&w=400"
+              alt="Logo Barbearia Navalha & Estilo"
+              class="w-full h-full object-cover rounded-full"
+            />
+          </div>
+        </div>
+
+        <!-- Nome da Barbearia -->
+        <h1
+          class="font-oswald text-2xl sm:text-3xl text-white font-bold tracking-wider uppercase"
+        >
+          Navalha & Estilo
+        </h1>
+        <p
+          class="text-xs text-[#D4A359] font-medium tracking-widest uppercase mt-0.5"
+        >
+          Barber Shop & Cervejaria
+        </p>
+
+        <!-- Status de Funcionamento -->
+        <div
+          class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/60 border border-emerald-500/40 text-[11px] font-medium text-emerald-400 mt-3"
+        >
+          <span
+            class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"
+          ></span>
+          Aberto Hoje até às 20h
+        </div>
+      </header>
+
+      <!-- BOTÃO DE AGENDAMENTO PRINCIPAL -->
+      <a
+        href="https://wa.me/5500000000000?text=Olá!%20Gostaria%20de%20agendar%20um%20horário."
+        target="_blank"
+        rel="noopener noreferrer"
+        class="w-full p-4 rounded-2xl bronze-bg hover:bg-[#c2924a] text-black font-bold transition-all duration-300 flex items-center justify-between shadow-lg hover:scale-[1.01]"
+      >
+        <div class="flex items-center gap-3.5">
+          <div class="p-2.5 rounded-xl bg-black/20 text-black">
+            <i data-lucide="scissors" class="w-6 h-6"></i>
+          </div>
+          <div class="text-left">
+            <h2
+              class="font-oswald text-lg uppercase tracking-wide leading-none"
+            >
+              Agendar Horário
+            </h2>
+            <p class="text-xs font-medium text-black/80 mt-1">
+              Corte, Barba e Sobrancelha no WhatsApp
+            </p>
+          </div>
+        </div>
+        <i data-lucide="arrow-right" class="w-5 h-5 text-black"></i>
+      </a>
+
+      <!-- TABELA DE SERVIÇOS E PREÇOS -->
+      <section class="w-full card-bg rounded-2xl p-5 bronze-border">
+        <h3
+          class="font-oswald text-base text-white uppercase tracking-wider mb-4 flex items-center justify-between border-b border-gray-800 pb-2"
+        >
+          <span class="flex items-center gap-2">
+            <i data-lucide="sparkles" class="w-4 h-4 bronze-text"></i>
+            Tabela de Serviços
+          </span>
+          <span class="text-xs font-normal text-gray-500 font-sans"
+            >Valores individuais</span
+          >
+        </h3>
+
+        <div class="space-y-3.5 text-xs sm:text-sm">
+          <!-- Serviço 1 -->
+          <div class="flex items-center justify-between">
+            <div>
+              <strong class="text-white block font-medium"
+                >Corte Masculino (Degradê/Social)</strong
+              >
+              <span class="text-[11px] text-gray-400"
+                >Inclui lavagem e finalização</span
+              >
+            </div>
+            <span class="font-oswald text-base bronze-text font-bold"
+              >R$ 50,00</span
+            >
+          </div>
+          <div class="h-px bg-gray-800/80"></div>
+
+          <!-- Serviço 2 -->
+          <div class="flex items-center justify-between">
+            <div>
+              <strong class="text-white block font-medium"
+                >Barba Terapia com Toalha Quente</strong
+              >
+              <span class="text-[11px] text-gray-400"
+                >Desenho, hidratação e óleos essenciais</span
+              >
+            </div>
+            <span class="font-oswald text-base bronze-text font-bold"
+              >R$ 40,00</span
+            >
+          </div>
+          <div class="h-px bg-gray-800/80"></div>
+
+          <!-- Serviço 3 (Combo) -->
+          <div
+            class="flex items-center justify-between bg-black/40 p-2.5 rounded-xl border border-[#D4A359]/20"
+          >
+            <div>
+              <strong
+                class="text-white block font-medium flex items-center gap-1.5"
+              >
+                Combo: Cabelo + Barba
+                <span
+                  class="bg-[#D4A359]/20 text-[#D4A359] text-[9px] px-1.5 py-0.5 rounded uppercase font-bold"
+                  >Mais Pedido</span
+                >
+              </strong>
+              <span class="text-[11px] text-gray-400"
+                >Ganha 1 Cerveja Long Neck grátis</span
+              >
+            </div>
+            <span class="font-oswald text-base bronze-text font-bold"
+              >R$ 80,00</span
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- LOCALIZAÇÃO E CONTATO RÁPIDO -->
+      <section class="w-full grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+        <!-- Card Localização -->
+        <a
+          href="https://maps.google.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group card-bg p-4 rounded-2xl bronze-border bronze-border-glow transition-all flex items-center gap-3"
+        >
+          <div class="p-2.5 rounded-xl bg-black/60 bronze-text">
+            <i data-lucide="map-pin" class="w-5 h-5"></i>
+          </div>
+          <div class="text-left">
+            <h4 class="text-xs font-bold text-white uppercase tracking-wider">
+              Como Chegar
+            </h4>
+            <p class="text-[11px] text-gray-400 mt-0.5">
+              Rua das Navalhas, 150 - Centro
+            </p>
+          </div>
+        </a>
+
+        <!-- Card Horários -->
+        <div
+          class="card-bg p-4 rounded-2xl bronze-border flex items-center gap-3"
+        >
+          <div class="p-2.5 rounded-xl bg-black/60 bronze-text">
+            <i data-lucide="clock" class="w-5 h-5"></i>
+          </div>
+          <div class="text-left">
+            <h4 class="text-xs font-bold text-white uppercase tracking-wider">
+              Horários
+            </h4>
+            <p class="text-[11px] text-gray-400 mt-0.5">
+              Ter a Sáb: 09h às 20h
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- RODAPÉ E REDES SOCIAIS -->
+      <footer class="mt-4 flex flex-col items-center gap-3">
+        <div class="flex items-center gap-4 text-gray-400">
+          <a
+            href="https://instagram.com"
+            target="_blank"
+            class="hover:text-[#D4A359] transition-colors p-2 bg-black/40 rounded-full border border-gray-800"
+          >
+            <svg class="w-5 h-5 fill-current shrink-0">
+              <use href="../../Assets/icons.svg#icon-instagram"></use>
+            </svg>
+          </a>
+          <a
+            href="https://wa.me/5500000000000"
+            target="_blank"
+            class="hover:text-[#D4A359] transition-colors p-2 bg-black/40 rounded-full border border-gray-800"
+          >
+            <svg class="w-5 h-5 fill-current shrink-0">
+              <use href="../../Assets/icons.svg#icon-whatsapp"></use>
+            </svg>
+          </a>
+        </div>
+
+        <p class="text-[11px] text-gray-500 uppercase tracking-widest">
+          @barbearianavalha • Desde 2020
+        </p>
+      </footer>
+    </main>
+
+    <!-- Script para inicializar Lucide Icons -->
+    <script>
+      lucide.createIcons();
+    </script>
+  </body>
+</html>

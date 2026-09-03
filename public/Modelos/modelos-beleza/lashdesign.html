@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SOPHIA LIMA | Brow & Lash Specialist</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      .font-serif-luxury {
+        font-family: "Cormorant Garamond", serif;
+      }
+      .font-sans-clean {
+        font-family: "Montserrat", sans-serif;
+      }
+
+      /* Estilização Rose Gold / Nude Luxo */
+      .rosegold-gradient-text {
+        background: linear-gradient(135deg, #e6c5b8 0%, #b88e82 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .rosegold-bg {
+        background: linear-gradient(135deg, #d8ab9e 0%, #b88e82 100%);
+      }
+
+      .rosegold-border {
+        border-color: rgba(216, 171, 158, 0.4);
+      }
+
+      .rosegold-glow:hover {
+        border-color: rgba(216, 171, 158, 0.8);
+        box-shadow: 0 0 20px rgba(216, 171, 158, 0.15);
+      }
+
+      .card-bg {
+        background: linear-gradient(180deg, #1a1818 0%, #121111 100%);
+      }
+    </style>
+  </head>
+  <body
+    class="bg-[#121111] text-gray-300 font-sans-clean min-h-screen flex flex-col items-center justify-between p-4 sm:p-6 selection:bg-[#D8AB9E] selection:text-black"
+  >
+    <!-- Container Principal -->
+    <main
+      class="w-full max-w-lg md:max-w-xl flex flex-col items-center gap-6 my-4 sm:my-8"
+    >
+      <!-- HEADER DA PÁGINA -->
+      <header class="flex flex-col items-center text-center">
+        <!-- Foto de Perfil com Anel Rose Gold -->
+        <div class="relative mb-4">
+          <div
+            class="w-28 h-28 sm:w-32 sm:h-32 rounded-full p-1 rosegold-bg shadow-xl"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?auto=format&fit=crop&q=80&w=400"
+              alt="Foto Sophia Lima"
+              class="w-full h-full object-cover rounded-full border-2 border-[#121111]"
+            />
+          </div>
+          <span
+            class="absolute bottom-1 right-1 bg-[#121111] text-[#D8AB9E] p-1.5 rounded-full border border-[#D8AB9E]/40"
+            title="Especialista Certificada"
+          >
+            <i data-lucide="sparkles" class="w-4 h-4"></i>
+          </span>
+        </div>
+
+        <!-- Nome Profissional e Título -->
+        <h1
+          class="font-serif-luxury text-3xl sm:text-4xl text-white font-normal tracking-wide"
+        >
+          Sophia Lima
+        </h1>
+        <p
+          class="text-[11px] sm:text-xs text-[#D8AB9E] font-medium tracking-[0.2em] uppercase mt-1"
+        >
+          Especialista em Olhar & Micropigmentação
+        </p>
+
+        <!-- Bio Curta -->
+        <p
+          class="text-xs sm:text-sm text-gray-400 max-w-xs sm:max-w-sm leading-relaxed mt-3"
+        >
+          Realçando sua beleza natural com simetria perfeita e técnicas
+          exclusivas de design e fios.
+        </p>
+      </header>
+
+      <!-- SEÇÃO DE LINKS DE ATENDIMENTO -->
+      <section class="w-full flex flex-col gap-3.5 mt-2">
+        <!-- LINK 1: Agendamento Principal VIP (Destaque Rose Gold) -->
+        <a
+          href="https://wa.me/5500000000000?text=Olá!%20Gostaria%20de%20agendar%20um%20horário."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group relative w-full p-4 rounded-2xl rosegold-bg text-black font-semibold transition-all duration-300 shadow-lg hover:brightness-110 flex items-center justify-between"
+        >
+          <div class="flex items-center gap-3.5">
+            <div class="p-2.5 rounded-xl bg-black/10 text-black">
+              <i data-lucide="calendar-check" class="w-5 h-5"></i>
+            </div>
+            <div class="text-left">
+              <h2 class="text-sm sm:text-base font-bold leading-snug">
+                Agendar Horário no WhatsApp
+              </h2>
+              <p class="text-[11px] font-medium opacity-80">
+                Atendimento exclusivo com hora marcada
+              </p>
+            </div>
+          </div>
+          <i
+            data-lucide="arrow-right"
+            class="w-5 h-5 group-hover:translate-x-1 transition-transform"
+          ></i>
+        </a>
+
+        <!-- LINK 2: Modal Tabela de Preços (Destaque Interativo) -->
+        <button
+          onclick="togglePricesModal()"
+          class="group relative w-full p-4 rounded-2xl card-bg border rosegold-border rosegold-glow text-white transition-all duration-300 flex items-center justify-between text-left"
+        >
+          <div class="flex items-center gap-3.5">
+            <div class="p-2.5 rounded-xl bg-white/5 text-[#D8AB9E]">
+              <i data-lucide="receipt" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h2 class="text-sm sm:text-base font-medium leading-snug">
+                Menu de Serviços & Valores
+              </h2>
+              <p class="text-[11px] text-gray-400">
+                Confira nossos procedimentos e combinações
+              </p>
+            </div>
+          </div>
+          <span
+            class="text-[10px] tracking-widest uppercase border border-[#D8AB9E]/50 px-2.5 py-1 rounded-lg text-[#D8AB9E] group-hover:bg-[#D8AB9E] group-hover:text-black transition-colors"
+          >
+            Ver Menu
+          </span>
+        </button>
+
+        <!-- LINK 3: Localização do Studio -->
+        <a
+          href="https://maps.google.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group relative w-full p-4 rounded-2xl card-bg border rosegold-border rosegold-glow text-white transition-all duration-300 flex items-center justify-between"
+        >
+          <div class="flex items-center gap-3.5">
+            <div class="p-2.5 rounded-xl bg-white/5 text-[#D8AB9E]">
+              <i data-lucide="map-pin" class="w-5 h-5"></i>
+            </div>
+            <div class="text-left">
+              <h2 class="text-sm sm:text-base font-medium leading-snug">
+                Localização do Studio
+              </h2>
+              <p class="text-[11px] text-gray-400">Jardins • São Paulo, SP</p>
+            </div>
+          </div>
+          <i
+            data-lucide="chevron-right"
+            class="w-5 h-5 text-gray-500 group-hover:translate-x-1 transition-transform"
+          ></i>
+        </a>
+
+        <!-- LINK 4: Orientações de Cuidados Pós-Procedimento -->
+        <a
+          href="https://wa.me/5500000000000?text=Quero%20tirar%20dúvidas%20sobre%20cuidados."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group relative w-full p-4 rounded-2xl card-bg border rosegold-border rosegold-glow text-white transition-all duration-300 flex items-center justify-between"
+        >
+          <div class="flex items-center gap-3.5">
+            <div class="p-2.5 rounded-xl bg-white/5 text-[#D8AB9E]">
+              <i data-lucide="heart-handshake" class="w-5 h-5"></i>
+            </div>
+            <div class="text-left">
+              <h2 class="text-sm sm:text-base font-medium leading-snug">
+                Cuidados Pós-Procedimento
+              </h2>
+              <p class="text-[11px] text-gray-400">
+                Dicas para aumentar a durabilidade
+              </p>
+            </div>
+          </div>
+          <i
+            data-lucide="chevron-right"
+            class="w-5 h-5 text-gray-500 group-hover:translate-x-1 transition-transform"
+          ></i>
+        </a>
+      </section>
+
+      <!-- RODAPÉ E REDES SOCIAIS -->
+      <footer class="mt-6 flex flex-col items-center gap-4">
+        <div class="flex items-center gap-4">
+          <a
+            href="https://instagram.com"
+            target="_blank"
+            class="p-2.5 rounded-full bg-[#1A1818] border rosegold-border text-gray-400 hover:text-[#D8AB9E] transition-all"
+          >
+            <svg class="w-5 h-5 fill-current shrink-0">
+              <use href="../../Assets/icons.svg#icon-instagram"></use>
+            </svg>
+          </a>
+          <a
+            href="https://wa.me/5500000000000"
+            target="_blank"
+            class="p-2.5 rounded-full bg-[#1A1818] border rosegold-border text-gray-400 hover:text-[#D8AB9E] transition-all"
+          >
+            <svg class="w-5 h-5 fill-current shrink-0">
+              <use href="../../Assets/icons.svg#icon-whatsapp"></use>
+            </svg>
+          </a>
+          <a
+            href="mailto:contato@sophialimabrow.com"
+            class="p-2.5 rounded-full bg-[#1A1818] border rosegold-border text-gray-400 hover:text-[#D8AB9E] transition-all"
+          >
+            <svg class="w-5 h-5 fill-current shrink-0">
+              <use href="../../Assets/icons.svg#icon-email"></use>
+            </svg>
+          </a>
+        </div>
+
+        <p class="text-[11px] text-gray-500 tracking-widest uppercase">
+          @sophialimabrow • Studio de Beleza
+        </p>
+      </footer>
+    </main>
+
+    <!-- MODAL DE TABELA DE PREÇOS (MENU LUXO) -->
+    <div
+      id="pricesModal"
+      class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4"
+    >
+      <div
+        class="bg-[#1A1818] w-full max-w-lg rounded-3xl p-6 border rosegold-border shadow-2xl relative max-h-[85vh] overflow-y-auto"
+      >
+        <!-- Botão Fechar -->
+        <button
+          onclick="togglePricesModal()"
+          class="absolute top-5 right-5 text-gray-400 hover:text-white p-1"
+        >
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+
+        <!-- Header do Modal -->
+        <div class="text-center mb-6">
+          <span class="text-[10px] tracking-[0.25em] uppercase text-[#D8AB9E]"
+            >Menu de Experiências</span
+          >
+          <h3
+            class="font-serif-luxury text-2xl sm:text-3xl text-white font-normal mt-1"
+          >
+            Tabela de Serviços
+          </h3>
+        </div>
+
+        <!-- SEÇÃO 1: SOBRANCELHAS -->
+        <div class="mb-6">
+          <h4
+            class="text-xs font-semibold text-[#D8AB9E] uppercase tracking-wider mb-3 flex items-center gap-2 border-b border-gray-800 pb-2"
+          >
+            <i data-lucide="sparkle" class="w-3.5 h-3.5"></i> Sobrancelhas
+          </h4>
+          <div class="space-y-3">
+            <div
+              class="flex justify-between items-baseline border-b border-gray-800/60 pb-2"
+            >
+              <div>
+                <span class="text-xs sm:text-sm font-medium text-gray-200 block"
+                  >Design Personalizado (Mapeamento)</span
+                >
+                <span class="text-[10px] text-gray-500"
+                  >Alinhamento e remoção de fios em simetria</span
+                >
+              </div>
+              <span class="text-xs sm:text-sm font-semibold text-[#D8AB9E] pl-2"
+                >R$ 65</span
+              >
+            </div>
+
+            <div
+              class="flex justify-between items-baseline border-b border-gray-800/60 pb-2"
+            >
+              <div>
+                <span class="text-xs sm:text-sm font-medium text-gray-200 block"
+                  >Design com Henna / Colorimetria</span
+                >
+                <span class="text-[10px] text-gray-500"
+                  >Pigmentação natural com alta durabilidade</span
+                >
+              </div>
+              <span class="text-xs sm:text-sm font-semibold text-[#D8AB9E] pl-2"
+                >R$ 90</span
+              >
+            </div>
+
+            <div
+              class="flex justify-between items-baseline border-b border-gray-800/60 pb-2"
+            >
+              <div>
+                <span class="text-xs sm:text-sm font-medium text-gray-200 block"
+                  >Brow Lamination (Nutrição + Tintura)</span
+                >
+                <span class="text-[10px] text-gray-500"
+                  >Efeito selvagem e alinhamento dos fios</span
+                >
+              </div>
+              <span class="text-xs sm:text-sm font-semibold text-[#D8AB9E] pl-2"
+                >R$ 160</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- SEÇÃO 2: MICROPIGMENTAÇÃO -->
+        <div class="mb-6">
+          <h4
+            class="text-xs font-semibold text-[#D8AB9E] uppercase tracking-wider mb-3 flex items-center gap-2 border-b border-gray-800 pb-2"
+          >
+            <i data-lucide="feather" class="w-3.5 h-3.5"></i> Micropigmentação
+          </h4>
+          <div class="space-y-3">
+            <div
+              class="flex justify-between items-baseline border-b border-gray-800/60 pb-2"
+            >
+              <div>
+                <span class="text-xs sm:text-sm font-medium text-gray-200 block"
+                  >Nanoblading / Flow Brows</span
+                >
+                <span class="text-[10px] text-gray-500"
+                  >Fios hiper-realistas e delicados</span
+                >
+              </div>
+              <span class="text-xs sm:text-sm font-semibold text-[#D8AB9E] pl-2"
+                >R$ 480</span
+              >
+            </div>
+
+            <div
+              class="flex justify-between items-baseline border-b border-gray-800/60 pb-2"
+            >
+              <div>
+                <span class="text-xs sm:text-sm font-medium text-gray-200 block"
+                  >Shadow Line / Efeito Sombra</span
+                >
+                <span class="text-[10px] text-gray-500"
+                  >Preenchimento suave estilo maquiagem</span
+                >
+              </div>
+              <span class="text-xs sm:text-sm font-semibold text-[#D8AB9E] pl-2"
+                >R$ 520</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- SEÇÃO 3: CÍLIOS -->
+        <div class="mb-6">
+          <h4
+            class="text-xs font-semibold text-[#D8AB9E] uppercase tracking-wider mb-3 flex items-center gap-2 border-b border-gray-800 pb-2"
+          >
+            <i data-lucide="eye" class="w-3.5 h-3.5"></i> Lash Design
+          </h4>
+          <div class="space-y-3">
+            <div
+              class="flex justify-between items-baseline border-b border-gray-800/60 pb-2"
+            >
+              <div>
+                <span class="text-xs sm:text-sm font-medium text-gray-200 block"
+                  >Lash Lifting + Nutrição de Queratina</span
+                >
+                <span class="text-[10px] text-gray-500"
+                  >Curvatura e curvamento dos cílios naturais</span
+                >
+              </div>
+              <span class="text-xs sm:text-sm font-semibold text-[#D8AB9E] pl-2"
+                >R$ 150</span
+              >
+            </div>
+
+            <div
+              class="flex justify-between items-baseline border-b border-gray-800/60 pb-2"
+            >
+              <div>
+                <span class="text-xs sm:text-sm font-medium text-gray-200 block"
+                  >Extensão Fio a Fio Clássico</span
+                >
+                <span class="text-[10px] text-gray-500"
+                  >Efeito natural e elegante</span
+                >
+              </div>
+              <span class="text-xs sm:text-sm font-semibold text-[#D8AB9E] pl-2"
+                >R$ 180</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Botão de Agendamento do Modal -->
+        <a
+          href="https://wa.me/5500000000000?text=Olá!%20Vi%20a%20tabela%20de%20preços%20e%20gostaria%20de%20agendar."
+          target="_blank"
+          class="w-full mt-2 py-3 rosegold-bg text-black font-semibold rounded-xl text-xs uppercase tracking-wider flex items-center justify-center gap-2 hover:brightness-110 transition-all"
+        >
+          <i data-lucide="calendar" class="w-4 h-4"></i>
+          Agendar Procedimento
+        </a>
+      </div>
+    </div>
+
+    <!-- Scripts de Inicialização -->
+    <script>
+      lucide.createIcons();
+
+      function togglePricesModal() {
+        const modal = document.getElementById("pricesModal");
+        modal.classList.toggle("hidden");
+      }
+    </script>
+  </body>
+</html>

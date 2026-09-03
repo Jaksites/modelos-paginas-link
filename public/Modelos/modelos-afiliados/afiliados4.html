@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Achadinhos da Lu | Melhores Ofertas & Afiliados</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+      }
+      .card-shadow {
+        box-shadow:
+          0 4px 20px -2px rgba(0, 0, 0, 0.05),
+          0 2px 6px -1px rgba(0, 0, 0, 0.02);
+      }
+    </style>
+  </head>
+  <body
+    class="bg-slate-50 text-slate-800 min-h-screen flex flex-col items-center justify-between p-4 sm:p-6 selection:bg-indigo-100 selection:text-indigo-600"
+  >
+    <!-- Container Principal -->
+    <main
+      class="w-full max-w-lg md:max-w-xl flex flex-col items-center gap-5 my-2 sm:my-6"
+    >
+      <!-- HEADER DO PERFIL -->
+      <header class="flex flex-col items-center text-center">
+        <!-- Avatar com Borda Gradiente -->
+        <div class="relative mb-3">
+          <div
+            class="w-24 h-24 sm:w-28 sm:h-28 rounded-full p-1 bg-gradient-to-tr from-amber-400 via-rose-500 to-indigo-600 shadow-md"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=400"
+              alt="Foto Luiza Achados"
+              class="w-full h-full object-cover rounded-full border-2 border-white"
+            />
+          </div>
+        </div>
+
+        <!-- Nome e Handle -->
+        <h1
+          class="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight flex items-center gap-1.5"
+        >
+          Achadinhos da Lu
+          <i
+            data-lucide="sparkles"
+            class="w-5 h-5 text-amber-500 fill-amber-400"
+          ></i>
+        </h1>
+        <p
+          class="text-xs sm:text-sm font-semibold text-indigo-600 tracking-wide mt-0.5"
+        >
+          @achadinhosdalu • As melhores ofertas da internet
+        </p>
+
+        <!-- Bio Curta -->
+        <p
+          class="text-xs sm:text-sm text-slate-600 max-w-xs sm:max-w-sm leading-relaxed mt-2"
+        >
+          Selecionei os melhores produtos com desconto na Shopee, Amazon e
+          Mercado Livre! 🛒👇
+        </p>
+      </header>
+
+      <!-- BARRA DE PESQUISA (Filtra os produtos em tempo real) -->
+      <div class="w-full relative">
+        <i
+          data-lucide="search"
+          class="w-4 h-4 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2"
+        ></i>
+        <input
+          type="text"
+          id="searchInput"
+          onkeyup="filterProducts()"
+          placeholder="Buscar produto ou cupom..."
+          class="w-full pl-11 pr-4 py-3 bg-white rounded-2xl border border-slate-200 text-xs sm:text-sm focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 transition-all card-shadow"
+        />
+      </div>
+
+      <!-- LINK DE COMUNIDADE (GRUPO DE OFERTAS) -->
+      <a
+        href="https://t.me"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="w-full bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 text-white p-3.5 rounded-2xl font-bold text-xs sm:text-sm flex items-center justify-between shadow-md shadow-indigo-200 transition-all hover:scale-[1.01]"
+      >
+        <div class="flex items-center gap-3">
+          <div class="p-2 rounded-xl bg-white/20">
+            <i data-lucide="send" class="w-4 h-4 text-white"></i>
+          </div>
+          <div class="text-left">
+            <span class="block leading-none"
+              >Entrar no Grupo VIP de Ofertas</span
+            >
+            <span class="text-[10px] font-normal text-indigo-200"
+              >Receba cupons secretos no Telegram/WhatsApp</span
+            >
+          </div>
+        </div>
+        <i data-lucide="chevron-right" class="w-4 h-4"></i>
+      </a>
+
+      <!-- SEÇÃO DE PRODUTOS / ACHADINHOS -->
+      <section id="productList" class="w-full flex flex-col gap-3.5 mt-1">
+        <!-- ITEM 1: Shopee -->
+        <div
+          class="product-item bg-white p-3.5 rounded-2xl border border-slate-100 card-shadow flex items-center justify-between gap-3 group hover:border-indigo-200 transition-all"
+        >
+          <div class="flex items-center gap-3.5 min-w-0">
+            <!-- Imagem do Produto com Badge -->
+            <div
+              class="relative w-20 h-20 sm:w-22 sm:h-22 rounded-xl overflow-hidden bg-slate-100 flex-shrink-0"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&q=80&w=300"
+                alt="Fone Bluetooth"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform"
+              />
+              <span
+                class="absolute top-1 left-1 bg-rose-500 text-white text-[9px] font-extrabold px-1.5 py-0.5 rounded-md"
+              >
+                -45%
+              </span>
+            </div>
+
+            <!-- Informações do Produto -->
+            <div class="min-w-0 flex-1">
+              <span
+                class="inline-block text-[10px] font-bold uppercase tracking-wider text-orange-600 bg-orange-50 px-2 py-0.5 rounded-md mb-1"
+              >
+                Shopee
+              </span>
+              <h2
+                class="product-title text-xs sm:text-sm font-bold text-slate-800 truncate leading-snug"
+              >
+                Fone de Ouvido Bluetooth Sem Fio C/ Cancelamento de Ruído
+              </h2>
+              <div class="flex items-baseline gap-2 mt-1">
+                <span class="text-xs text-slate-400 line-through"
+                  >R$ 159,90</span
+                >
+                <span class="text-sm sm:text-base font-extrabold text-slate-900"
+                  >R$ 87,90</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Botão de Afiliado -->
+          <a
+            href="https://shope.ee/seu-link-de-afiliado"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex-shrink-0 bg-orange-500 hover:bg-orange-600 text-white p-2.5 sm:px-4 sm:py-2.5 rounded-xl font-bold text-xs flex items-center gap-1.5 transition-colors shadow-sm"
+          >
+            <span class="hidden sm:inline">Ver Oferta</span>
+            <i data-lucide="external-link" class="w-4 h-4"></i>
+          </a>
+        </div>
+
+        <!-- ITEM 2: Amazon -->
+        <div
+          class="product-item bg-white p-3.5 rounded-2xl border border-slate-100 card-shadow flex items-center justify-between gap-3 group hover:border-indigo-200 transition-all"
+        >
+          <div class="flex items-center gap-3.5 min-w-0">
+            <div
+              class="relative w-20 h-20 sm:w-22 sm:h-22 rounded-xl overflow-hidden bg-slate-100 flex-shrink-0"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&q=80&w=300"
+                alt="Mochila Antifurto"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform"
+              />
+              <span
+                class="absolute top-1 left-1 bg-amber-500 text-white text-[9px] font-extrabold px-1.5 py-0.5 rounded-md"
+              >
+                CUPOM
+              </span>
+            </div>
+
+            <div class="min-w-0 flex-1">
+              <span
+                class="inline-block text-[10px] font-bold uppercase tracking-wider text-amber-700 bg-amber-50 px-2 py-0.5 rounded-md mb-1"
+              >
+                Amazon
+              </span>
+              <h2
+                class="product-title text-xs sm:text-sm font-bold text-slate-800 truncate leading-snug"
+              >
+                Mochila Antifurto Impermeável com Entrada USB para Notebook
+              </h2>
+              <div class="flex items-baseline gap-2 mt-1">
+                <span class="text-xs text-slate-400 line-through"
+                  >R$ 189,00</span
+                >
+                <span class="text-sm sm:text-base font-extrabold text-slate-900"
+                  >R$ 119,90</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <a
+            href="https://amzn.to/seu-link-de-afiliado"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex-shrink-0 bg-amber-500 hover:bg-amber-600 text-slate-900 p-2.5 sm:px-4 sm:py-2.5 rounded-xl font-bold text-xs flex items-center gap-1.5 transition-colors shadow-sm"
+          >
+            <span class="hidden sm:inline">Ver Oferta</span>
+            <i data-lucide="external-link" class="w-4 h-4"></i>
+          </a>
+        </div>
+
+        <!-- ITEM 3: Mercado Livre -->
+        <div
+          class="product-item bg-white p-3.5 rounded-2xl border border-slate-100 card-shadow flex items-center justify-between gap-3 group hover:border-indigo-200 transition-all"
+        >
+          <div class="flex items-center gap-3.5 min-w-0">
+            <div
+              class="relative w-20 h-20 sm:w-22 sm:h-22 rounded-xl overflow-hidden bg-slate-100 flex-shrink-0"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&q=80&w=300"
+                alt="Smartwatch Fitness"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform"
+              />
+              <span
+                class="absolute top-1 left-1 bg-emerald-500 text-white text-[9px] font-extrabold px-1.5 py-0.5 rounded-md"
+              >
+                FRETE GRÁTIS
+              </span>
+            </div>
+
+            <div class="min-w-0 flex-1">
+              <span
+                class="inline-block text-[10px] font-bold uppercase tracking-wider text-yellow-700 bg-yellow-100 px-2 py-0.5 rounded-md mb-1"
+              >
+                Mercado Livre
+              </span>
+              <h2
+                class="product-title text-xs sm:text-sm font-bold text-slate-800 truncate leading-snug"
+              >
+                Smartwatch Esportivo com Monitor Cardíaco e Notificações
+              </h2>
+              <div class="flex items-baseline gap-2 mt-1">
+                <span class="text-xs text-slate-400 line-through"
+                  >R$ 299,00</span
+                >
+                <span class="text-sm sm:text-base font-extrabold text-slate-900"
+                  >R$ 149,00</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <a
+            href="https://mercadolivre.com/seu-link-de-afiliado"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex-shrink-0 bg-yellow-400 hover:bg-yellow-500 text-slate-900 p-2.5 sm:px-4 sm:py-2.5 rounded-xl font-bold text-xs flex items-center gap-1.5 transition-colors shadow-sm"
+          >
+            <span class="hidden sm:inline">Ver Oferta</span>
+            <i data-lucide="external-link" class="w-4 h-4"></i>
+          </a>
+        </div>
+
+        <!-- ITEM 4: Shein / Magalu -->
+        <div
+          class="product-item bg-white p-3.5 rounded-2xl border border-slate-100 card-shadow flex items-center justify-between gap-3 group hover:border-indigo-200 transition-all"
+        >
+          <div class="flex items-center gap-3.5 min-w-0">
+            <div
+              class="relative w-20 h-20 sm:w-22 sm:h-22 rounded-xl overflow-hidden bg-slate-100 flex-shrink-0"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&q=80&w=300"
+                alt="Câmera Polaroid"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform"
+              />
+              <span
+                class="absolute top-1 left-1 bg-purple-500 text-white text-[9px] font-extrabold px-1.5 py-0.5 rounded-md"
+              >
+                VIRAL
+              </span>
+            </div>
+
+            <div class="min-w-0 flex-1">
+              <span
+                class="inline-block text-[10px] font-bold uppercase tracking-wider text-purple-700 bg-purple-50 px-2 py-0.5 rounded-md mb-1"
+              >
+                Magalu
+              </span>
+              <h2
+                class="product-title text-xs sm:text-sm font-bold text-slate-800 truncate leading-snug"
+              >
+                Mini Câmera Fotográfica Instantânea Estilo Vintage
+              </h2>
+              <div class="flex items-baseline gap-2 mt-1">
+                <span class="text-xs text-slate-400 line-through"
+                  >R$ 450,00</span
+                >
+                <span class="text-sm sm:text-base font-extrabold text-slate-900"
+                  >R$ 389,00</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <a
+            href="https://magalu.com/seu-link-de-afiliado"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex-shrink-0 bg-blue-600 hover:bg-blue-700 text-white p-2.5 sm:px-4 sm:py-2.5 rounded-xl font-bold text-xs flex items-center gap-1.5 transition-colors shadow-sm"
+          >
+            <span class="hidden sm:inline">Ver Oferta</span>
+            <i data-lucide="external-link" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </section>
+
+      <!-- AVISO DE TRANSPARÊNCIA / AFILIADOS -->
+      <div
+        class="w-full bg-slate-100/80 rounded-xl p-3 text-center border border-slate-200/60 mt-2"
+      >
+        <p class="text-[10px] text-slate-500 leading-normal">
+          <strong>Aviso de Transparência:</strong> Como participante de
+          programas de afiliados, posso receber uma pequena comissão por compras
+          qualificadas através destes links, sem nenhum custo adicional para
+          você.
+        </p>
+      </div>
+
+      <!-- RODAPÉ E REDES SOCIAIS -->
+      <footer class="mt-4 flex flex-col items-center gap-3">
+        <div class="flex items-center gap-4 text-slate-500">
+          <a
+            href="https://instagram.com"
+            target="_blank"
+            class="hover:text-indigo-600 transition-colors"
+          >
+            <svg class="w-5 h-5 fill-current shrink-0">
+              <use href="../../Assets/icons.svg#icon-instagram"></use>
+            </svg>
+          </a>
+          <a
+            href="https://tiktok.com"
+            target="_blank"
+            class="hover:text-indigo-600 transition-colors"
+          >
+            <svg class="w-5 h-5 fill-current shrink-0">
+              <use href="../../Assets/icons.svg#icon-tiktok"></use>
+            </svg>
+          </a>
+          <a
+            href="https://youtube.com"
+            target="_blank"
+            class="hover:text-indigo-600 transition-colors"
+          >
+            <svg class="w-5 h-5 fill-current shrink-0">
+              <use href="../../Assets/icons.svg#icon-youtube"></use>
+            </svg>
+          </a>
+        </div>
+
+        <p class="text-[11px] text-slate-400">
+          © Achadinhos da Lu • Todos os direitos reservados
+        </p>
+      </footer>
+    </main>
+
+    <!-- Scripts de Inicialização e Filtro JS -->
+    <script>
+      lucide.createIcons();
+
+      // Função de Pesquisa Instantânea em JavaScript puro
+      function filterProducts() {
+        const input = document.getElementById("searchInput");
+        const filter = input.value.toLowerCase();
+        const items = document.getElementsByClassName("product-item");
+
+        for (let i = 0; i < items.length; i++) {
+          const title =
+            items[i].querySelector(".product-title").textContent ||
+            items[i].querySelector(".product-title").innerText;
+          const platform =
+            items[i].querySelector("span").textContent ||
+            items[i].querySelector("span").innerText;
+
+          if (
+            title.toLowerCase().indexOf(filter) > -1 ||
+            platform.toLowerCase().indexOf(filter) > -1
+          ) {
+            items[i].style.display = "flex";
+          } else {
+            items[i].style.display = "none";
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Barbearia Imperium | Club & Barber</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Montserrat:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      .font-vintage {
+        font-family: "Cinzel", serif;
+      }
+      .font-sans-clean {
+        font-family: "Montserrat", sans-serif;
+      }
+
+      /* Estilização da paleta amadeirada / couro escuro */
+      .wood-border {
+        border: 1px solid rgba(197, 155, 94, 0.3);
+      }
+      .wood-border-glow:hover {
+        border-color: rgba(197, 155, 94, 0.8);
+        box-shadow: 0 0 18px rgba(197, 155, 94, 0.15);
+      }
+      .gold-vintage-text {
+        color: #c59b5e;
+      }
+      .bg-barber-card {
+        background: linear-gradient(145deg, #1a1a1a 0%, #111111 100%);
+      }
+    </style>
+  </head>
+  <body
+    class="bg-[#0A0A0A] text-gray-300 font-sans-clean min-h-screen flex flex-col items-center justify-between p-4 sm:p-6 selection:bg-[#C59B5E] selection:text-black"
+  >
+    <!-- Container Principal (Ajustado para Mobile e Desktop) -->
+    <main
+      class="w-full max-w-lg md:max-w-xl flex flex-col items-center gap-6 my-4 sm:my-8"
+    >
+      <!-- HEADER DA BARBEARIA -->
+      <header class="flex flex-col items-center text-center">
+        <!-- Logo / Emblem Circular -->
+        <div class="relative mb-3">
+          <div
+            class="w-28 h-28 sm:w-32 sm:h-32 rounded-full wood-border p-1.5 bg-gradient-to-b from-[#C59B5E]/30 to-transparent"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&q=80&w=400"
+              alt="Logo Barbearia Imperium"
+              class="w-full h-full object-cover rounded-full filter grayscale hover:grayscale-0 transition-all duration-500"
+            />
+          </div>
+        </div>
+
+        <!-- Nome e Tagline -->
+        <h1
+          class="font-vintage text-2xl sm:text-3xl text-gray-100 font-bold tracking-wider uppercase"
+        >
+          Imperium Barber
+        </h1>
+        <p
+          class="text-[11px] sm:text-xs text-[#C59B5E] font-semibold tracking-[0.25em] uppercase mt-1"
+        >
+          Gentleman Club • Est. 2018
+        </p>
+
+        <!-- Status do Estabelecimento -->
+        <div
+          class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/40 border border-emerald-800/50 text-[10px] font-medium text-emerald-400 mt-3"
+        >
+          <span
+            class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"
+          ></span>
+          Aberto hoje até às 20h
+        </div>
+
+        <!-- Bio Curta -->
+        <p
+          class="text-xs sm:text-sm text-gray-400 max-w-xs sm:max-w-sm leading-relaxed mt-3"
+        >
+          Estilo, tradição e navalha afiada. O ambiente exclusivo para cuidar do
+          seu visual com cerveja gelada.
+        </p>
+      </header>
+
+      <!-- SEÇÃO DE LINKS E AÇÕES -->
+      <section class="w-full flex flex-col gap-3.5">
+        <!-- LINK 1: Agendamento Principal (Destaque Dourado/Amadeirado) -->
+        <a
+          href="https://wa.me/5500000000000?text=Olá!%20Gostaria%20de%20agendar%20um%20horário."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group relative w-full p-4 rounded-xl bg-gradient-to-r from-[#C59B5E] to-[#A0783E] text-black font-bold transition-all duration-300 shadow-lg hover:brightness-110 flex items-center justify-between"
+        >
+          <div class="flex items-center gap-3.5">
+            <div class="p-2.5 rounded-lg bg-black/20 text-black">
+              <i data-lucide="scissors" class="w-5 h-5"></i>
+            </div>
+            <div class="text-left">
+              <h2
+                class="text-sm sm:text-base font-extrabold uppercase tracking-wide leading-snug"
+              >
+                Agendar Horário VIP
+              </h2>
+              <p class="text-[11px] font-medium text-black/80">
+                Atendimento rápido via WhatsApp
+              </p>
+            </div>
+          </div>
+          <i
+            data-lucide="calendar"
+            class="w-5 h-5 text-black group-hover:scale-110 transition-transform"
+          ></i>
+        </a>
+
+        <!-- LINK 2: Modal de Tabela de Preços (Ação Dinâmica) -->
+        <button
+          onclick="togglePricesModal()"
+          class="group relative w-full p-4 rounded-xl bg-barber-card wood-border wood-border-glow text-gray-200 transition-all duration-300 flex items-center justify-between text-left cursor-pointer"
+        >
+          <div class="flex items-center gap-3.5">
+            <div
+              class="p-2.5 rounded-lg bg-black/60 text-[#C59B5E] border border-[#C59B5E]/30"
+            >
+              <i data-lucide="receipt" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h2
+                class="text-sm sm:text-base font-semibold text-gray-100 leading-snug"
+              >
+                Tabela de Preços & Serviços
+              </h2>
+              <p class="text-[11px] text-gray-400">
+                Corte, barba, selagem e combos
+              </p>
+            </div>
+          </div>
+          <span
+            class="text-[10px] uppercase font-bold tracking-widest text-[#C59B5E] bg-[#C59B5E]/10 px-2.5 py-1 rounded border border-[#C59B5E]/30 group-hover:bg-[#C59B5E] group-hover:text-black transition-colors"
+          >
+            Ver Menu
+          </span>
+        </button>
+
+        <!-- LINK 3: Localização com Waze / Google Maps -->
+        <a
+          href="https://maps.google.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group relative w-full p-4 rounded-xl bg-barber-card wood-border wood-border-glow text-gray-200 transition-all duration-300 flex items-center justify-between"
+        >
+          <div class="flex items-center gap-3.5">
+            <div
+              class="p-2.5 rounded-lg bg-black/60 text-[#C59B5E] border border-[#C59B5E]/30"
+            >
+              <i data-lucide="map-pin" class="w-5 h-5"></i>
+            </div>
+            <div class="text-left">
+              <h2
+                class="text-sm sm:text-base font-semibold text-gray-100 leading-snug"
+              >
+                Como Chegar à Barbearia
+              </h2>
+              <p class="text-[11px] text-gray-400">
+                Rua dos Barbeiros, 500 - Centro (Estreito)
+              </p>
+            </div>
+          </div>
+          <i
+            data-lucide="navigation"
+            class="w-5 h-5 text-gray-500 group-hover:text-[#C59B5E] group-hover:translate-x-1 transition-all"
+          ></i>
+        </a>
+
+        <!-- LINK 4: Clube de Assinatura / Pacotes Mensais -->
+        <a
+          href="https://wa.me/5500000000000?text=Quero%20saber%20mais%20sobre%20o%20Clube%20de%20Assinatura."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group relative w-full p-4 rounded-xl bg-barber-card wood-border wood-border-glow text-gray-200 transition-all duration-300 flex items-center justify-between"
+        >
+          <div class="flex items-center gap-3.5">
+            <div
+              class="p-2.5 rounded-lg bg-black/60 text-[#C59B5E] border border-[#C59B5E]/30"
+            >
+              <i data-lucide="crown" class="w-5 h-5"></i>
+            </div>
+            <div class="text-left">
+              <h2
+                class="text-sm sm:text-base font-semibold text-gray-100 leading-snug"
+              >
+                Clube do Bigode (Assinatura Mensal)
+              </h2>
+              <p class="text-[11px] text-gray-400">
+                Corte e barba ilimitados por mês
+              </p>
+            </div>
+          </div>
+          <i
+            data-lucide="chevron-right"
+            class="w-5 h-5 text-gray-500 group-hover:text-[#C59B5E] group-hover:translate-x-1 transition-all"
+          ></i>
+        </a>
+      </section>
+
+      <!-- RODAPÉ E HORÁRIO DE FUNCIONAMENTO -->
+      <footer class="mt-4 flex flex-col items-center gap-4 text-center">
+        <div class="flex items-center gap-4">
+          <a
+            href="https://instagram.com"
+            target="_blank"
+            class="p-2.5 rounded-lg bg-barber-card wood-border text-gray-400 hover:text-[#C59B5E] transition-colors"
+          >
+            <svg class="w-5 h-5 fill-current shrink-0">
+              <use href="../../Assets/icons.svg#icon-instagram"></use>
+            </svg>
+          </a>
+          <a
+            href="https://wa.me/5500000000000"
+            target="_blank"
+            class="p-2.5 rounded-lg bg-barber-card wood-border text-gray-400 hover:text-[#C59B5E] transition-colors"
+          >
+            <svg class="w-5 h-5 fill-current shrink-0">
+              <use href="../../Assets/icons.svg#icon-whatsapp"></use>
+            </svg>
+          </a>
+        </div>
+
+        <div class="text-[11px] text-gray-500 space-y-0.5">
+          <p>Segunda a Sábado: 09h às 20h</p>
+          <p
+            class="font-vintage text-[#C59B5E]/80 tracking-widest text-[10px] uppercase"
+          >
+            @imperiumbarber
+          </p>
+        </div>
+      </footer>
+    </main>
+
+    <!-- MODAL TABELA DE PREÇOS (Elegante e Escuro) -->
+    <div
+      id="pricesModal"
+      class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4"
+    >
+      <div
+        class="bg-[#141414] w-full max-w-md rounded-2xl p-5 sm:p-6 wood-border relative max-h-[85vh] overflow-y-auto shadow-2xl"
+      >
+        <!-- Botão Fechar -->
+        <button
+          onclick="togglePricesModal()"
+          class="absolute top-4 right-4 text-gray-400 hover:text-[#C59B5E] transition-colors"
+        >
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+
+        <!-- Cabeçalho do Modal -->
+        <div class="text-center mb-6">
+          <i
+            data-lucide="scissors"
+            class="w-7 h-7 text-[#C59B5E] mx-auto mb-2"
+          ></i>
+          <h3
+            class="font-vintage text-xl text-gray-100 font-bold uppercase tracking-wider"
+          >
+            Tabela de Serviços
+          </h3>
+          <p class="text-xs text-gray-400 mt-1">
+            Todos os serviços incluem bebida de cortesia (Cerveja ou Café)
+          </p>
+        </div>
+
+        <!-- Lista de Serviços com Preços -->
+        <div class="space-y-4">
+          <!-- ITEM 1 -->
+          <div
+            class="flex items-center justify-between pb-3 border-b border-gray-800"
+          >
+            <div>
+              <h4 class="text-sm font-semibold text-gray-200">
+                Corte Social / Fade / Degradê
+              </h4>
+              <p class="text-[11px] text-gray-500">
+                Lavagem com shampoo especial + finalização com pomada
+              </p>
+            </div>
+            <span
+              class="font-vintage text-base font-bold gold-vintage-text ml-3"
+              >R$ 50</span
+            >
+          </div>
+
+          <!-- ITEM 2 -->
+          <div
+            class="flex items-center justify-between pb-3 border-b border-gray-800"
+          >
+            <div>
+              <h4 class="text-sm font-semibold text-gray-200">
+                Barba de Respeito (Barboterapia)
+              </h4>
+              <p class="text-[11px] text-gray-500">
+                Toalha quente, óleo hidratante e alinhamento na navalha
+              </p>
+            </div>
+            <span
+              class="font-vintage text-base font-bold gold-vintage-text ml-3"
+              >R$ 40</span
+            >
+          </div>
+
+          <!-- ITEM 3: COMBO DESTAQUE -->
+          <div
+            class="flex items-center justify-between p-3 rounded-lg bg-[#C59B5E]/10 border border-[#C59B5E]/40"
+          >
+            <div>
+              <span
+                class="text-[9px] uppercase font-bold text-black bg-[#C59B5E] px-1.5 py-0.5 rounded"
+                >Combo Campeão</span
+              >
+              <h4 class="text-sm font-bold text-gray-100 mt-1">
+                Corte + Barboterapia
+              </h4>
+              <p class="text-[11px] text-gray-400">
+                Experiência completa de cuidado masculino
+              </p>
+            </div>
+            <span
+              class="font-vintage text-lg font-extrabold gold-vintage-text ml-3"
+              >R$ 80</span
+            >
+          </div>
+
+          <!-- ITEM 4 -->
+          <div
+            class="flex items-center justify-between pb-3 border-b border-gray-800"
+          >
+            <div>
+              <h4 class="text-sm font-semibold text-gray-200">
+                Acabamento / Pezinho
+              </h4>
+              <p class="text-[11px] text-gray-500">
+                Alinhamento das bordas na navalha
+              </p>
+            </div>
+            <span
+              class="font-vintage text-base font-bold gold-vintage-text ml-3"
+              >R$ 20</span
+            >
+          </div>
+
+          <!-- ITEM 5 -->
+          <div
+            class="flex items-center justify-between pb-3 border-b border-gray-800"
+          >
+            <div>
+              <h4 class="text-sm font-semibold text-gray-200">
+                Selagem / Camuflagem de Grisalhos
+              </h4>
+              <p class="text-[11px] text-gray-500">
+                Tratamento para alinhar os fios ou cobrir brancos
+              </p>
+            </div>
+            <span
+              class="font-vintage text-base font-bold gold-vintage-text ml-3"
+              >R$ 70</span
+            >
+          </div>
+        </div>
+
+        <!-- Botão do Modal para Ação Direta -->
+        <a
+          href="https://wa.me/5500000000000?text=Olá!%20Vi%20a%20tabela%20de%20preços%20e%20quero%20agendar."
+          target="_blank"
+          class="w-full mt-6 py-3 bg-[#C59B5E] hover:bg-[#b0884d] text-black rounded-xl text-xs font-bold uppercase tracking-wider transition-colors flex items-center justify-center gap-2"
+        >
+          <i data-lucide="check-circle" class="w-4 h-4"></i>
+          Agendar com base no menu
+        </a>
+      </div>
+    </div>
+
+    <!-- Scripts de Inicialização -->
+    <script>
+      lucide.createIcons();
+
+      function togglePricesModal() {
+        const modal = document.getElementById("pricesModal");
+        modal.classList.toggle("hidden");
+      }
+    </script>
+  </body>
+</html>
