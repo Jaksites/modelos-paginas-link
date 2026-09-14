@@ -1,0 +1,328 @@
+---
+const whatsappNumber = "5541999999999"; // Substitua pelo seu número do WhatsApp (ex: 55 + DDD + Numero)
+const whatsappMessage = encodeURIComponent("Olá! Gostaria de contratar a Vitrine Digital por R$ 149,99/ano.");
+const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+---
+
+<section id="planos" class="pricing-section">
+  <div class="pricing-container">
+    <header class="section-header">
+      <span class="section-tag">Investimento Transparente</span>
+      <h2 class="section-title">Preço Único, <span class="text-gradient">Sem Surpresas</span></h2>
+      <p class="section-subtitle">
+        Sua loja virtual no WhatsApp pronta para rodar sem mensalidades abusivas e sem comissão sobre suas vendas.
+      </p>
+    </header>
+
+    <div class="pricing-wrapper">
+      <!-- Card do Plano Único -->
+      <div class="pricing-card featured">
+        <div class="card-badge">Plano Anual Completo</div>
+
+        <div class="card-header">
+          <h3 class="plan-name">Vitrine Digital Pro</h3>
+          <p class="plan-description">Ideal para lojas, prestadores de serviços e autônomos que buscam profissionalizar suas vendas pelo WhatsApp.</p>
+        </div>
+
+        <div class="price-box">
+          <div class="currency-row">
+            <span class="currency">R$</span>
+            <span class="amount">149</span>
+            <span class="cents">,99</span>
+            <span class="period">/ ano</span>
+          </div>
+          <p class="renewal-info">🔄 Renovação Anual pelo mesmo valor (Sem reajustes ocultos)</p>
+        </div>
+
+        <ul class="features-list">
+          <li>
+            <span class="check-icon">✓</span>
+            <span><strong>Até 20 Produtos/Serviços</strong> totalmente cadastrados</span>
+          </li>
+          <li>
+            <span class="check-icon">✓</span>
+            <span>Fotos de alta qualidade, descrições e variações (tamanho/cor)</span>
+          </li>
+          <li>
+            <span class="check-icon">✓</span>
+            <span><strong>Carrinho de Compras Interativo</strong> com cálculo total</span>
+          </li>
+          <li>
+            <span class="check-icon">✓</span>
+            <span>Envio de pedido pronto e formatado no WhatsApp</span>
+          </li>
+          <li>
+            <span class="check-icon">✓</span>
+            <span>Sem taxas por venda ou comissões</span>
+          </li>
+          <li>
+            <span class="check-icon">✓</span>
+            <span>Otimizado para celulares e carregamento ultra-rápido</span>
+          </li>
+          <li>
+            <span class="check-icon">✓</span>
+            <span>Botão de chave PIX ou dados de pagamento integrados</span>
+          </li>
+          <li>
+            <span class="check-icon">✓</span>
+            <span>Hospedagem e manutenção por 12 meses inclusas</span>
+          </li>
+          <li>
+            <span class="check-icon">✓</span>
+            <span>Entrega rápida em até <strong>48 horas</strong></span>
+          </li>
+        </ul>
+
+        <div class="card-action">
+          <a href={whatsappLink} target="_blank" rel="noopener noreferrer" class="btn-cta">
+            <span>Quero Garantir Minha Vitrine</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <span class="guarantee-text">🔒 Pagamento único via PIX ou Cartão • Suporte direto</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.pricing-section {
+  padding: 100px 20px;
+  background-color: #000000;
+  border-top: 1px solid rgba(148, 70, 242, 0.15);
+  position: relative;
+}
+
+.pricing-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.section-tag {
+  display: inline-block;
+  font-family: 'Sora', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #9446f2;
+  background: rgba(148, 70, 242, 0.12);
+  border: 1px solid rgba(148, 70, 242, 0.25);
+  padding: 5px 14px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-family: 'Sora', sans-serif;
+  font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #ffffff 0%, #9446f2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section-subtitle {
+  color: #c4b8d7;
+  font-size: 1rem;
+  margin-top: 10px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.pricing-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.pricing-card {
+  width: 100%;
+  max-width: 620px;
+  background: linear-gradient(145deg, rgba(26, 18, 36, 0.95), rgba(17, 12, 22, 0.9));
+  border: 2px solid #9446f2;
+  border-radius: 24px;
+  padding: 40px 36px;
+  position: relative;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 35px rgba(148, 70, 242, 0.25);
+}
+
+.card-badge {
+  position: absolute;
+  top: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #8343c3, #9446f2);
+  color: #ffffff;
+  font-family: 'Sora', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 6px 18px;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(148, 70, 242, 0.4);
+}
+
+.card-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.plan-name {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+
+.plan-description {
+  color: #c4b8d7;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.price-box {
+  text-align: center;
+  background: rgba(58, 1, 112, 0.25);
+  border: 1px solid rgba(148, 70, 242, 0.2);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.currency-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  color: #ffffff;
+  font-family: 'Sora', sans-serif;
+}
+
+.currency {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-right: 4px;
+  color: #9446f2;
+}
+
+.amount {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.cents {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.period {
+  font-size: 1rem;
+  color: #c4b8d7;
+  margin-left: 8px;
+  font-family: 'Inter', sans-serif;
+}
+
+.renewal-info {
+  font-size: 0.82rem;
+  color: #c4b8d7;
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+.features-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 36px;
+}
+
+.features-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.95rem;
+  color: #ffffff;
+  line-height: 1.4;
+}
+
+.features-list strong {
+  color: #ffffff;
+}
+
+.check-icon {
+  color: #9446f2;
+  font-weight: bold;
+  font-size: 1.1rem;
+  background: rgba(148, 70, 242, 0.15);
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.card-action {
+  text-align: center;
+}
+
+.btn-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  background: linear-gradient(135deg, #8343c3, #9446f2);
+  color: #ffffff;
+  text-decoration: none;
+  padding: 18px 28px;
+  border-radius: 14px;
+  font-family: 'Sora', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 800;
+  box-shadow: 0 8px 30px rgba(148, 70, 242, 0.4);
+  transition: all 0.3s ease;
+}
+
+.btn-cta:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(148, 70, 242, 0.6);
+}
+
+.guarantee-text {
+  display: block;
+  font-size: 0.78rem;
+  color: #c4b8d7;
+  margin-top: 12px;
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+  .pricing-card {
+    padding: 32px 20px;
+  }
+
+  .amount {
+    font-size: 2.8rem;
+  }
+
+  .features-list li {
+    font-size: 0.88rem;
+  }
+}
+</style>

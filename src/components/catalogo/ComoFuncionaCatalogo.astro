@@ -1,0 +1,245 @@
+---
+---
+<section id="como-funciona" class="how-it-works-section">
+  <div class="how-container">
+    <header class="section-header">
+      <span class="section-tag">Passo a Passo</span>
+      <h2 class="section-title">Como Funciona a sua <span class="text-gradient">Vitrine Digital</span></h2>
+      <p class="section-subtitle">
+        Sem complicação para você e sem aplicativos para o seu cliente baixar. É simples, rápido e direto no WhatsApp.
+      </p>
+    </header>
+
+    <div class="steps-grid">
+      <!-- Passo 1 -->
+      <div class="step-card">
+        <div class="step-number">01</div>
+        <div class="step-icon-wrapper">
+          <svg class="step-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 20h9"></path>
+            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+          </svg>
+        </div>
+        <h3 class="step-title">Você envia os seus dados</h3>
+        <p class="step-description">
+          Após escolher o plano, você nos envia a sua logo, cores preferidas, informações de contato e a lista dos seus produtos/serviços com fotos e preços.
+        </p>
+      </div>
+
+      <!-- Passo 2 -->
+      <div class="step-card">
+        <div class="step-number">02</div>
+        <div class="step-icon-wrapper">
+          <svg class="step-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="16 18 22 12 16 6"></polyline>
+            <polyline points="8 6 2 12 8 18"></polyline>
+          </svg>
+        </div>
+        <h3 class="step-title">Nós criamos a sua vitrine</h3>
+        <p class="step-description">
+          Desenvolvemos seu catálogo interativo e otimizado para celulares. Tudo organizado por categorias e com carrinho de compras ativo.
+        </p>
+      </div>
+
+      <!-- Passo 3 -->
+      <div class="step-card">
+        <div class="step-number">03</div>
+        <div class="step-icon-wrapper">
+          <svg class="step-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+          </svg>
+        </div>
+        <h3 class="step-title">Receba os pedidos prontos</h3>
+        <p class="step-description">
+          Você coloca o link do catálogo na sua bio do Instagram. O cliente entra, escolhe os produtos e manda o pedido detalhado no seu WhatsApp.
+        </p>
+      </div>
+    </div>
+
+    <!-- Banner Destaque de Fluxo de Compra -->
+    <div class="flow-preview-box">
+      <div class="flow-content">
+        <h4>Exemplo de como você recebe o pedido no seu WhatsApp:</h4>
+        <div class="message-bubble">
+          <p class="msg-header">🛒 <strong>NOVO PEDIDO VIA VITRINE DIGITAL</strong></p>
+          <p class="msg-body">
+            Olá! Gostaria de fazer o seguinte pedido:<br/><br/>
+            • 1x Vestido Elegance Premium (Tamanho: M) - R$ 149,90<br/>
+            • 1x Bolsa Couro Legítimo - R$ 189,90<br/><br/>
+            💰 <strong>Total: R$ 339,80</strong><br/>
+            📍 Entregar em: Rua Exemplo, 123 - Bairro Central
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.how-it-works-section {
+  padding: 100px 20px;
+  background-color: #000000;
+  border-top: 1px solid rgba(148, 70, 242, 0.15);
+  position: relative;
+}
+
+.how-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-tag {
+  display: inline-block;
+  font-family: 'Sora', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #9446f2;
+  background: rgba(148, 70, 242, 0.12);
+  border: 1px solid rgba(148, 70, 242, 0.25);
+  padding: 5px 14px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-family: 'Sora', sans-serif;
+  font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #ffffff 0%, #9446f2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section-subtitle {
+  color: #c4b8d7;
+  font-size: 1rem;
+  margin-top: 10px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Grid de Passos */
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 50px;
+}
+
+.step-card {
+  background: rgba(26, 18, 36, 0.6);
+  border: 1px solid rgba(148, 70, 242, 0.2);
+  border-radius: 20px;
+  padding: 30px 24px;
+  position: relative;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.step-card:hover {
+  transform: translateY(-5px);
+  border-color: #9446f2;
+  box-shadow: 0 10px 30px rgba(148, 70, 242, 0.2);
+}
+
+.step-number {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  font-family: 'Sora', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  color: rgba(148, 70, 242, 0.15);
+}
+
+.step-icon-wrapper {
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, #3a0170, #8343c3);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 15px rgba(131, 67, 195, 0.3);
+}
+
+.step-title {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 12px;
+}
+
+.step-description {
+  color: #c4b8d7;
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+/* Caixa de Exemplo de Mensagem do WhatsApp */
+.flow-preview-box {
+  background: linear-gradient(135deg, rgba(58, 1, 112, 0.3), rgba(26, 18, 36, 0.8));
+  border: 1px dashed rgba(148, 70, 242, 0.35);
+  border-radius: 20px;
+  padding: 30px;
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+.flow-content h4 {
+  font-family: 'Sora', sans-serif;
+  font-size: 1rem;
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.message-bubble {
+  background-color: #0b141a; /* Estilo escuro similar ao WhatsApp */
+  border-left: 4px solid #25d366;
+  border-radius: 12px;
+  padding: 16px 20px;
+  font-family: 'Inter', sans-serif;
+  max-width: 550px;
+  margin: 0 auto;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.msg-header {
+  font-size: 0.82rem;
+  color: #25d366;
+  margin-bottom: 8px;
+  letter-spacing: 0.02em;
+}
+
+.msg-body {
+  font-size: 0.88rem;
+  color: #e9edef;
+  line-height: 1.5;
+}
+
+/* Responsivo */
+@media (max-width: 900px) {
+  .steps-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .flow-preview-box {
+    padding: 20px 16px;
+  }
+}
+</style>

@@ -1,0 +1,184 @@
+---
+const faqs = [
+  {
+    question: "Como funciona a Vitrine Digital?",
+    answer: "A Vitrine Digital é um mini site interativo otimizado para celulares. Seu cliente acessa através do link na sua bio do Instagram, navega pelos seus produtos ou serviços, escolhe as opções (tamanho, cor, variações), adiciona ao carrinho e clica em 'Finalizar Pedido'. O sistema gera uma mensagem formatada e abre direto o seu WhatsApp com a lista de itens prontos."
+  },
+  {
+    question: "O que está incluso no valor de R$ 149,99/ano?",
+    answer: "Está incluso a criação da sua Vitrine Digital, a configuração do sistema de carrinho integrado ao WhatsApp, o cadastro inicial de até 20 produtos/serviços com fotos e descrições, hospedagem rápida e suporte por 12 meses. A renovação ocorre após 1 ano por esse mesmo valor."
+  },
+  {
+    question: "Cobram comissão ou taxa por cada venda?",
+    answer: "Não! Zero taxas por venda. O valor arrecadado com as suas vendas é 100% seu. Você paga apenas o valor anual da vitrine."
+  },
+  {
+    question: "E se eu precisar cadastrar mais de 20 produtos?",
+    answer: "O plano padrão inclui até 20 produtos cadastrados. Caso precise de mais itens no seu catálogo, temos pacotes adicionais acessíveis para inclusão de novos produtos a qualquer momento."
+  },
+  {
+    question: "Como o cliente faz o pagamento das compras?",
+    answer: "O pedido chega detalhado no seu WhatsApp. Você pode combinar o pagamento direto com seu cliente (enviando sua chave PIX, link de pagamento do Mercado Pago/PagSeguro ou máquina de cartão na entrega)."
+  },
+  {
+    question: "Qual é o prazo de entrega da minha vitrine?",
+    answer: "Após você nos enviar as fotos, valores, informações dos produtos e os dados do seu negócio, entregamos a sua Vitrine Digital totalmente pronta para uso em até 48 horas úteis."
+  },
+  {
+    question: "Preciso ter um domínio próprio (.com.br)?",
+    answer: "Não é obrigatório. Disponibilizamos um link gratuito pronto para você colocar na bio do Instagram (ex: minhasite.pages.dev). Caso prefira ter o seu próprio domínio profissional (ex: sualoja.com.br), oferecemos o serviço opcional de registro e configuração."
+  }
+];
+---
+
+<section id="faq" class="faq-section">
+  <div class="faq-container">
+    <header class="section-header">
+      <span class="section-tag">Tire suas Dúvidas</span>
+      <h2 class="section-title">Perguntas <span class="text-gradient">Frequentes</span></h2>
+      <p class="section-subtitle">
+        Tudo o que você precisa saber sobre a sua nova Vitrine Digital com pedido no WhatsApp.
+      </p>
+    </header>
+
+    <div class="faq-accordion">
+      {faqs.map((faq, index) => (
+        <details class="faq-item" key={index}>
+          <summary class="faq-question">
+            <span>{faq.question}</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer">
+            <p>{faq.answer}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+.faq-section {
+  padding: 100px 20px;
+  background-color: #000000;
+  border-top: 1px solid rgba(148, 70, 242, 0.15);
+  position: relative;
+}
+
+.faq-container {
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.section-tag {
+  display: inline-block;
+  font-family: 'Sora', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #9446f2;
+  background: rgba(148, 70, 242, 0.12);
+  border: 1px solid rgba(148, 70, 242, 0.25);
+  padding: 5px 14px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-family: 'Sora', sans-serif;
+  font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #ffffff 0%, #9446f2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section-subtitle {
+  color: #c4b8d7;
+  font-size: 1rem;
+  margin-top: 10px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Accordion */
+.faq-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.faq-item {
+  background: rgba(26, 18, 36, 0.6);
+  border: 1px solid rgba(148, 70, 242, 0.2);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.faq-item[open] {
+  border-color: #9446f2;
+  box-shadow: 0 4px 20px rgba(148, 70, 242, 0.15);
+  background: rgba(26, 18, 36, 0.95);
+}
+
+.faq-question {
+  padding: 20px 24px;
+  font-family: 'Sora', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  user-select: none;
+}
+
+.faq-question::-webkit-details-marker {
+  display: none;
+}
+
+.faq-icon {
+  font-size: 1.4rem;
+  color: #9446f2;
+  transition: transform 0.3s ease;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.faq-item[open] .faq-icon {
+  transform: rotate(45deg);
+}
+
+.faq-answer {
+  padding: 0 24px 22px 24px;
+  color: #c4b8d7;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+  .faq-question {
+    padding: 16px 18px;
+    font-size: 0.95rem;
+  }
+
+  .faq-answer {
+    padding: 0 18px 18px 18px;
+    font-size: 0.88rem;
+  }
+}
+</style>

@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Link na Bio - Maquiadora</title>
+
+    <!-- Fontes do Google: Cormorant Garamond (Elegante/Serifada) e Montserrat (Limpa/Sans-Serif) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Ícones do FontAwesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <style>
+      /* ==========================================================
+       PALETA DE CORES E VARIÁVEIS (Rosa Elegante & Nude Sophisticated)
+       ========================================================== */
+      :root {
+        --bg-color: #f7eff0; /* Rosa muito suave / Blush claríssimo */
+        --card-bg: #efe4e5; /* Tom levemente mais encorpado para cards/botões */
+        --text-dark: #2c2223; /* Marrom/Cinza escuro para contraste elegante */
+        --text-muted: #7a686a; /* Tom intermediário para subtítulos */
+        --border-color: #c8b3b5; /* Borda sutil em tom rosa seco */
+        --accent-color: #8c5b63; /* Rosa queimado / Vinho suave para destaques */
+
+        --font-serif: "Cormorant Garamond", serif;
+        --font-sans: "Montserrat", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background-color: #e2d7d9; /* Fundo externo da página */
+        font-family: var(--font-sans);
+        color: var(--text-dark);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 20px 0;
+      }
+
+      /* Container simulando a tela de celular / cartão central */
+      .bio-container {
+        background-color: var(--bg-color);
+        width: 100%;
+        max-width: 420px;
+        border-radius: 32px;
+        padding: 40px 24px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      /* Foto de Perfil Redonda */
+      .profile-img-wrapper {
+        width: 110px;
+        height: 110px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      }
+
+      .profile-img-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* Título e Subtítulo */
+      .name {
+        font-family: var(--font-serif);
+        font-size: 2.1rem;
+        font-weight: 500;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        line-height: 1.1;
+        margin-bottom: 12px;
+        color: var(--text-dark);
+      }
+
+      .subtitle {
+        font-size: 0.72rem;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        color: var(--text-muted);
+        font-weight: 500;
+        margin-bottom: 28px;
+      }
+
+      /* Ícones Sociais */
+      .social-links {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        margin-bottom: 36px;
+      }
+
+      .social-links a {
+        color: var(--text-dark);
+        font-size: 1.35rem;
+        transition: all 0.3s ease;
+        text-decoration: none;
+      }
+
+      .social-links a:hover {
+        color: var(--accent-color);
+        transform: translateY(-2px);
+      }
+
+      /* Seção de Serviços / Portfólio */
+      .section-title {
+        font-family: var(--font-serif);
+        font-size: 1.35rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 24px;
+        font-weight: 600;
+        color: var(--text-dark);
+      }
+
+      .grid-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        width: 100%;
+        margin-bottom: 20px;
+      }
+
+      .card {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .card-img {
+        width: 100%;
+        height: 180px;
+        border-radius: 4px;
+        overflow: hidden;
+        margin-bottom: 12px;
+      }
+
+      .card-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+      }
+
+      .card:hover .card-img img {
+        transform: scale(1.05);
+      }
+
+      .card-title {
+        font-family: var(--font-serif);
+        font-size: 1.05rem;
+        color: var(--text-dark);
+        margin-bottom: 14px;
+        line-height: 1.2;
+        min-height: 2.4em; /* Mantém o alinhamento das duas colunas */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .btn {
+        display: inline-block;
+        width: 100%;
+        padding: 10px 0;
+        border: 1px solid var(--border-color);
+        background-color: var(--card-bg);
+        color: var(--text-dark);
+        text-decoration: none;
+        font-size: 0.75rem;
+        text-transform: capitalize;
+        letter-spacing: 1px;
+        border-radius: 2px;
+        transition: all 0.3s ease;
+        font-weight: 500;
+      }
+
+      .btn:hover {
+        background-color: var(--accent-color);
+        color: #fff;
+        border-color: var(--accent-color);
+      }
+
+      /* Botão de Destaque / Agendamento Direto na parte inferior */
+      .full-btn {
+        width: 100%;
+        margin-top: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bio-container">
+      <!-- Foto da Maquiadora -->
+      <div class="profile-img-wrapper">
+        <img
+          src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400"
+          alt="Foto de Perfil"
+        />
+      </div>
+
+      <!-- Nome e Profissão -->
+      <h1 class="name">Juliana<br />Fernandes</h1>
+      <p class="subtitle">Beleza & Maquiagem Social</p>
+
+      <!-- Redes Sociais -->
+      <div class="social-links">
+        <a href="#" target="_blank" aria-label="Facebook"
+          ><i class="fab fa-facebook-f"></i
+        ></a>
+        <a href="#" target="_blank" aria-label="Instagram"
+          ><i class="fab fa-instagram"></i
+        ></a>
+        <a href="#" target="_blank" aria-label="TikTok"
+          ><i class="fab fa-tiktok"></i
+        ></a>
+        <a href="#" target="_blank" aria-label="YouTube"
+          ><i class="fab fa-youtube"></i
+        ></a>
+      </div>
+
+      <!-- Título da Seção -->
+      <h2 class="section-title">Atendimentos</h2>
+
+      <!-- Grid de Serviços -->
+      <div class="grid-container">
+        <!-- Card 1 -->
+        <div class="card">
+          <div class="card-img">
+            <img
+              src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&q=80&w=400"
+              alt="Maquiagem Social"
+            />
+          </div>
+          <h3 class="card-title">Maquiagem<br />Social & Festas</h3>
+          <a href="#" class="btn">Agendar</a>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card">
+          <div class="card-img">
+            <img
+              src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&q=80&w=400"
+              alt="Dia da Noiva"
+            />
+          </div>
+          <h3 class="card-title">Dia da Noiva<br />& Mães</h3>
+          <a href="#" class="btn">Orcamento</a>
+        </div>
+      </div>
+
+      <!-- Botão de Ação Principal (WhatsApp / Agendamento) -->
+      <a href="#" class="btn full-btn">Falar no WhatsApp</a>
+    </div>
+  </body>
+</html>

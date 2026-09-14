@@ -1,0 +1,83 @@
+---
+import '../styles/index.css'; // Mantenha ou importe '../styles/catalogo.css' se tiver estilos específicos
+import NavbarCatalogo from '../components/catalogo/NavbarCatalogo.astro';
+import HeroCatalogo from '../components/catalogo/HeroCatalogo.astro';
+import ComoFuncionaCatalogo from '../components/catalogo/ComoFuncionaCatalogo.astro';
+import RecursosCatalogo from '../components/catalogo/RecursosCatalogo.astro';
+import ModelosCatalogo from '../components/catalogo/ModelosCatalogo.astro';
+import PlanosCatalogo from '../components/catalogo/PlanosCatalogo.astro';
+import ServicosAdicionaisCatalogo from '../components/catalogo/ServicosAdicionaisCatalogo.astro';
+import FaqCatalogo from '../components/catalogo/FaqCatalogo.astro';
+import CtaCatalogo from '../components/catalogo/CtaCatalogo.astro';
+import Footer from '../components/Footer.astro';
+import WhatsappFloat from '../components/WhatsappFloat.astro';
+
+
+// SEO específico para a página de Catálogo / Vitrine Digital
+const siteUrl = "https://sites-bio.pages.dev/catalogo";
+const pageTitle = "Jak Digital — Vitrine Digital & Catálogo com Pedido no WhatsApp";
+const pageDescription = "Crie seu catálogo interativo com carrinho de compras. Seu cliente escolhe os produtos e envia o pedido formatado direto no seu WhatsApp.";
+const ogImage = `${siteUrl}/Assets/og-catalogo.png`;
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Jak Digital Design" />
+
+    <!-- SEO Primário -->
+    <title>{pageTitle}</title>
+    <meta name="title" content={pageTitle} />
+    <meta name="description" content={pageDescription} />
+    <meta name="keywords" content="catalogo digital whatsapp, vitrine virtual, carrinho no whatsapp, mini e-commerce whatsapp, loja virtual simples, jak digital" />
+    <link rel="canonical" href={siteUrl} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/Assets/favicon1.png" />
+
+    <!-- Open Graph / Redes Sociais -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={siteUrl} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="pt_BR" />
+
+    <!-- Twitter / X -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={siteUrl} />
+    <meta property="twitter:title" content={pageTitle} />
+    <meta property="twitter:description" content={pageDescription} />
+    <meta property="twitter:image" content={ogImage} />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+
+    <NavbarCatalogo />
+    <HeroCatalogo />
+    <ComoFuncionaCatalogo/>
+    <ModelosCatalogo />
+    <RecursosCatalogo />
+    <PlanosCatalogo />
+    <ServicosAdicionaisCatalogo />
+    <CtaCatalogo />
+    <FaqCatalogo />
+    <Footer />
+    <WhatsappFloat />
+    
+    
+
+  </body>
+</html>

@@ -1,0 +1,358 @@
+---
+// Exemplo de dados dos 3 modelos focados nos nichos
+const modelos = [
+  {
+    id: "loja",
+    categoria: "Loja & Vestuário",
+    titulo: "Vitrine Moda & Acessórios",
+    descricao: "Perfeito para lojas de roupas, calçados e bijuterias. Com seleções de tamanhos, cores e visualização limpa dos produtos.",
+    imagem: "/Assets/modelo-loja.png", // Substitua pelo caminho da sua imagem
+    linkDemo: "https://demo.seusite.com/loja", // Link para a demo ao vivo
+    tags: ["Roupas", "Acessórios", "Moda", "Calçados"]
+  },
+  {
+    id: "delivery",
+    categoria: "Delivery & Alimentação",
+    titulo: "Cardápio & Delivery Zap",
+    descricao: "Ideal para hamburguerias, confeitarias, marmitarias e petiscarias. O cliente escolhe os itens e envia o endereço e o pedido pronto.",
+    imagem: "/Assets/modelo-delivery.png", // Substitua pelo caminho da sua imagem
+    linkDemo: "https://demo.seusite.com/delivery", // Link para a demo ao vivo
+    tags: ["Lanches", "Doces", "Marmitas", "Bebidas"]
+  },
+  {
+    id: "afiliados",
+    categoria: "Afiliados & Infoprodutos",
+    titulo: "Vitrine de Afiliados & E-books",
+    descricao: "Ideal para afiliados e criadores digitais. Organize seus links da Shopee, Amazon, e-books e cursos em uma vitrine atraente.",
+    imagem: "/Assets/modelo-afiliados.png", // Substitua pelo caminho da sua imagem
+    linkDemo: "https://demo.seusite.com/afiliados", // Link para a demo ao vivo
+    tags: ["Achadinhos", "Shopee", "Cursos", "E-books"]
+  }
+];
+---
+
+<section id="modelos" class="models-section">
+  <div class="models-container">
+    <header class="section-header">
+      <span class="section-tag">Demonstração ao Vivo</span>
+      <h2 class="section-title">Escolha o Estilo Perfeito Para <span class="text-gradient">Seu Negócio</span></h2>
+      <p class="section-subtitle">
+        Veja na prática como o seu catálogo vai se comportar no celular do seu cliente. Teste a navegação e a adição de itens ao carrinho.
+      </p>
+    </header>
+
+    <!-- Indicador de deslize visível apenas no mobile -->
+    <div class="swipe-hint">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8L22 12L18 16"></path><path d="M6 8L2 12L6 16"></path><path d="M2 12H22"></path></svg>
+      <span>Deslize para ver mais modelos</span>
+    </div>
+
+    <div class="models-grid">
+      {modelos.map((item) => (
+        <div class="model-card">
+          <!-- Banner / Imagem do Modelo -->
+          <div class="model-image-wrapper">
+            <span class="category-badge">{item.categoria}</span>
+            <img src={item.imagem} alt={item.titulo} loading="lazy" class="model-img" />
+            <div class="image-overlay">
+              <a href={item.linkDemo} target="_blank" rel="noopener noreferrer" class="btn-hover-demo">
+                <span>Ver Demonstração</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Conteúdo do Card -->
+          <div class="model-info">
+            <h3 class="model-title">{item.titulo}</h3>
+            <p class="model-description">{item.descricao}</p>
+
+            <div class="tags-container">
+              {item.tags.map((tag) => (
+                <span class="tag-item">#{tag}</span>
+              ))}
+            </div>
+
+            <a href={item.linkDemo} target="_blank" rel="noopener noreferrer" class="btn-card-demo">
+              <span>Testar Modelo</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+.models-section {
+  padding: 100px 20px;
+  background-color: #000000;
+  border-top: 1px solid rgba(148, 70, 242, 0.15);
+}
+
+.models-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.section-tag {
+  display: inline-block;
+  font-family: 'Sora', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #9446f2;
+  background: rgba(148, 70, 242, 0.12);
+  border: 1px solid rgba(148, 70, 242, 0.25);
+  padding: 5px 14px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-family: 'Sora', sans-serif;
+  font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #ffffff 0%, #9446f2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section-subtitle {
+  color: #c4b8d7;
+  font-size: 1rem;
+  margin-top: 10px;
+  max-width: 620px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Indicador de Swipe (Escondido em Telas Grandes) */
+.swipe-hint {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #9446f2;
+  font-size: 0.82rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+/* Grid de Modelos (Desktop) */
+.models-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.model-card {
+  background: rgba(26, 18, 36, 0.7);
+  border: 1px solid rgba(148, 70, 242, 0.2);
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+.model-card:hover {
+  transform: translateY(-6px);
+  border-color: #9446f2;
+  box-shadow: 0 12px 35px rgba(148, 70, 242, 0.25);
+}
+
+/* Área de Imagem e Overlay */
+.model-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  background-color: #110c16;
+  overflow: hidden;
+}
+
+.model-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.model-card:hover .model-img {
+  transform: scale(1.05);
+}
+
+.category-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(148, 70, 242, 0.3);
+  color: #ffffff;
+  font-family: 'Sora', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 12px;
+}
+
+.image-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.model-image-wrapper:hover .image-overlay {
+  opacity: 1;
+}
+
+.btn-hover-demo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #8343c3, #9446f2);
+  color: #ffffff;
+  text-decoration: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-family: 'Sora', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+/* Informações do Card */
+.model-info {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.model-title {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.model-description {
+  color: #c4b8d7;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  margin-bottom: 18px;
+  flex-grow: 1;
+}
+
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 22px;
+}
+
+.tag-item {
+  font-size: 0.75rem;
+  color: #9446f2;
+  background: rgba(148, 70, 242, 0.1);
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+.btn-card-demo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: rgba(58, 1, 112, 0.3);
+  border: 1px solid rgba(148, 70, 242, 0.3);
+  color: #ffffff;
+  text-decoration: none;
+  padding: 12px;
+  border-radius: 10px;
+  font-family: 'Sora', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  transition: all 0.25s ease;
+}
+
+.btn-card-demo:hover {
+  background: rgba(58, 1, 112, 0.7);
+  border-color: #9446f2;
+  color: #ffffff;
+}
+
+/* Transformação em Carrossel / Slider para Mobile */
+@media (max-width: 868px) {
+  .swipe-hint {
+    display: flex;
+  }
+
+  .models-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 16px;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+
+  /* Oculta a barra de rolagem visual mantendo a funcionalidade */
+  .models-grid::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .models-grid::-webkit-scrollbar-track {
+    background: rgba(26, 18, 36, 0.5);
+    border-radius: 10px;
+  }
+
+  .models-grid::-webkit-scrollbar-thumb {
+    background: #9446f2;
+    border-radius: 10px;
+  }
+
+  .model-card {
+    min-width: 85%;
+    max-width: 85%;
+    scroll-snap-align: center;
+    flex-shrink: 0;
+  } 
+}
+
+@media (max-width: 480px) {
+  .model-card {
+    min-width: 90%;
+    max-width: 90%;
+  }
+}
+</style>

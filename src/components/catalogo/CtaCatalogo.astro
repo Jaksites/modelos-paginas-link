@@ -1,0 +1,199 @@
+---
+const whatsappNumber = "5541999999999"; // Substitua pelo seu número do WhatsApp (ex: 55 + DDD + Numero)
+const whatsappMessage = encodeURIComponent("Olá! Gostaria de criar minha Vitrine Digital por R$ 149,99/ano.");
+const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+---
+
+<section class="cta-section">
+  <div class="cta-bg-glow"></div>
+
+  <div class="cta-container">
+    <div class="cta-box">
+      <span class="cta-tag">🚀 Comece Hoje Mesmo</span>
+
+      <h2 class="cta-title">
+        Pronto para transformar seu WhatsApp em uma <span class="text-gradient">Máquina de Vendas</span>?
+      </h2>
+
+      <p class="cta-description">
+        Garanta sua Vitrine Digital por apenas <strong>R$ 149,99/ano</strong>. Entregamos seu catálogo com carrinho de compras integrado ao WhatsApp pronto em até 48 horas.
+      </p>
+
+      <div class="cta-actions">
+        <a href={whatsappLink} target="_blank" rel="noopener noreferrer" class="btn-cta-primary">
+          <svg class="whatsapp-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+          </svg>
+          <span>Criar Minha Vitrine Digital Agora</span>
+        </a>
+      </div>
+
+      <div class="cta-badges">
+        <div class="badge-item">
+          <span class="check-icon">✓</span>
+          <span>Entrega em até 48h</span>
+        </div>
+        <div class="badge-item">
+          <span class="check-icon">✓</span>
+          <span>Sem taxas por venda</span>
+        </div>
+        <div class="badge-item">
+          <span class="check-icon">✓</span>
+          <span>Suporte dedicado</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.cta-section {
+  padding: 100px 20px;
+  background-color: #000000;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(148, 70, 242, 0.15);
+}
+
+.cta-bg-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 550px;
+  height: 550px;
+  background: radial-gradient(circle, rgba(58, 1, 112, 0.7) 0%, rgba(148, 70, 242, 0.2) 50%, rgba(0, 0, 0, 0) 80%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.cta-container {
+  max-width: 950px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.cta-box {
+  background: linear-gradient(145deg, rgba(26, 18, 36, 0.95), rgba(17, 12, 22, 0.9));
+  border: 1px solid rgba(148, 70, 242, 0.35);
+  border-radius: 28px;
+  padding: 60px 40px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(148, 70, 242, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.cta-tag {
+  display: inline-block;
+  font-family: 'Sora', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #9446f2;
+  background: rgba(148, 70, 242, 0.12);
+  border: 1px solid rgba(148, 70, 242, 0.25);
+  padding: 6px 16px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+.cta-title {
+  font-family: 'Sora', sans-serif;
+  font-size: clamp(2rem, 3.8vw, 2.8rem);
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #ffffff 0%, #9446f2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.cta-description {
+  color: #c4b8d7;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 650px;
+  margin: 0 auto 36px auto;
+}
+
+.cta-description strong {
+  color: #ffffff;
+}
+
+.cta-actions {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.btn-cta-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: linear-gradient(135deg, #8343c3, #9446f2);
+  color: #ffffff;
+  text-decoration: none;
+  padding: 20px 36px;
+  border-radius: 14px;
+  font-family: 'Sora', sans-serif;
+  font-size: 1.08rem;
+  font-weight: 800;
+  box-shadow: 0 8px 30px rgba(148, 70, 242, 0.45);
+  transition: all 0.3s ease;
+}
+
+.btn-cta-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(148, 70, 242, 0.65);
+}
+
+.whatsapp-icon {
+  stroke-width: 2.2;
+}
+
+.cta-badges {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.badge-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  color: #c4b8d7;
+}
+
+.check-icon {
+  color: #9446f2;
+  font-weight: bold;
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+  .cta-box {
+    padding: 40px 20px;
+  }
+
+  .btn-cta-primary {
+    width: 100%;
+    padding: 16px 20px;
+    font-size: 0.95rem;
+  }
+
+  .cta-badges {
+    gap: 12px;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+</style>

@@ -1,0 +1,387 @@
+---
+---
+<section class="hero-section">
+  <div class="hero-bg-glow"></div>
+  
+  <div class="hero-container">
+    <div class="hero-content">
+      <div class="hero-tag">
+        <span class="tag-icon">⚡</span>
+        <span>Catálogo Interativo com Pedidos no WhatsApp</span>
+      </div>
+
+      <h1 class="hero-title">
+        Transforme seguidores em <span class="text-gradient">vendas diretas</span> no seu WhatsApp
+      </h1>
+
+      <p class="hero-description">
+        Apresente seus produtos e serviços com visual profissional. Seu cliente escolhe os itens, adiciona ao carrinho e envia o pedido pronto e formatado no seu WhatsApp.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#planos" class="btn-primary">
+          <span>Quero Minha Vitrine Digital</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        
+        <a href="#modelos" class="btn-secondary">
+          <span>Ver Demonstração</span>
+        </a>
+      </div>
+
+      <div class="hero-features-list">
+        <div class="feature-item">
+          <span class="check-icon">✓</span>
+          <span>Sem taxas por venda</span>
+        </div>
+        <div class="feature-item">
+          <span class="check-icon">✓</span>
+          <span>Carrinho integrado</span>
+        </div>
+        <div class="feature-item">
+          <span class="check-icon">✓</span>
+          <span>Pronto em até 48h</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mockup da Vitrine / Carrinho -->
+    <div class="hero-visual">
+      <div class="mockup-card">
+        <div class="mockup-header">
+          <div class="mockup-dots">
+            <span></span><span></span><span></span>
+          </div>
+          <div class="mockup-badge">Sua Loja no Zap</div>
+        </div>
+
+        <div class="mockup-body">
+          <div class="mockup-item">
+            <div class="item-img">📦</div>
+            <div class="item-info">
+              <h4>Vestido Elegance Premium</h4>
+              <p>Tam: M | Cor: Preto</p>
+              <span class="item-price">R$ 149,90</span>
+            </div>
+            <span class="item-qty">1x</span>
+          </div>
+
+          <div class="mockup-item">
+            <div class="item-img">✨</div>
+            <div class="item-info">
+              <h4>Bolsa Couro Legítimo</h4>
+              <p>Cor: Caramelo</p>
+              <span class="item-price">R$ 189,90</span>
+            </div>
+            <span class="item-qty">1x</span>
+          </div>
+
+          <div class="cart-summary">
+            <div class="cart-row">
+              <span>Total do Pedido:</span>
+              <strong class="total-price">R$ 339,80</strong>
+            </div>
+            <div class="whatsapp-btn-mock">
+              <span class="wa-icon">💬</span> Enviar Pedido para o WhatsApp
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.hero-section {
+  position: relative;
+  padding: 140px 20px 80px 20px;
+  background-color: #000000;
+  overflow: hidden;
+}
+
+.hero-bg-glow {
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(58, 1, 112, 0.6) 0%, rgba(148, 70, 242, 0.15) 50%, rgba(0,0,0,0) 80%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 40px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(58, 1, 112, 0.4);
+  border: 1px solid #9446f2;
+  padding: 6px 16px;
+  border-radius: 30px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.hero-title {
+  font-family: 'Sora', sans-serif;
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 18px;
+  color: #ffffff;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #ffffff 0%, #9446f2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-description {
+  color: #c4b8d7;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 32px;
+  max-width: 580px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #8343c3, #9446f2);
+  color: #ffffff;
+  text-decoration: none;
+  padding: 16px 28px;
+  border-radius: 12px;
+  font-family: 'Sora', sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  box-shadow: 0 6px 25px rgba(148, 70, 242, 0.4);
+  transition: all 0.25s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(148, 70, 242, 0.6);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(58, 1, 112, 0.2);
+  color: #ffffff;
+  text-decoration: none;
+  padding: 16px 24px;
+  border-radius: 12px;
+  border: 1px solid rgba(148, 70, 242, 0.25);
+  font-family: 'Sora', sans-serif;
+  font-size: 0.98rem;
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+.btn-secondary:hover {
+  background: rgba(58, 1, 112, 0.5);
+  border-color: #9446f2;
+}
+
+.hero-features-list {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  color: #c4b8d7;
+}
+
+.check-icon {
+  color: #9446f2;
+  font-weight: bold;
+}
+
+.hero-visual {
+  display: flex;
+  justify-content: center;
+}
+
+.mockup-card {
+  width: 100%;
+  max-width: 380px;
+  background-color: rgba(26, 18, 36, 0.9);
+  border: 1px solid rgba(148, 70, 242, 0.25);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(148, 70, 242, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.mockup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(148, 70, 242, 0.25);
+  margin-bottom: 16px;
+}
+
+.mockup-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.mockup-dots span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.mockup-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #9446f2;
+  background: rgba(148, 70, 242, 0.15);
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+
+.mockup-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mockup-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.item-img {
+  width: 42px;
+  height: 42px;
+  background: #3a0170;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+.item-info h4 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.item-info p {
+  font-size: 0.72rem;
+  color: #c4b8d7;
+}
+
+.item-price {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #9446f2;
+}
+
+.item-qty {
+  margin-left: auto;
+  font-size: 0.8rem;
+  color: #c4b8d7;
+  font-weight: 600;
+}
+
+.cart-summary {
+  margin-top: 8px;
+  padding-top: 14px;
+  border-top: 1px dashed rgba(148, 70, 242, 0.25);
+}
+
+.cart-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+  color: #ffffff;
+}
+
+.total-price {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.1rem;
+  color: #25d366;
+}
+
+.whatsapp-btn-mock {
+  background: #25d366;
+  color: #000000;
+  text-align: center;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+@media (max-width: 900px) {
+  .hero-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .hero-description {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-actions, .hero-features-list {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-actions {
+    flex-direction: column;
+  }
+
+  .btn-primary, .btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+}
+</style>

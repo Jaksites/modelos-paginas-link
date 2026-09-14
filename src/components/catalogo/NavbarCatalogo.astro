@@ -1,0 +1,96 @@
+---
+---
+<header class="navbar">
+  <div class="nav-container">
+    <a href="/catalogo" class="nav-logo">
+      <span class="logo-text">Vitrine<span class="logo-highlight">Zap</span></span>
+    </a>
+
+    <nav class="nav-links">
+      <a href="#como-funciona" class="nav-link">Como Funciona</a>
+      <a href="#recursos" class="nav-link">Recursos</a>
+      <a href="#modelos" class="nav-link">Demonstração</a>
+      <a href="#planos" class="nav-link">Planos</a>
+      <a href="#faq" class="nav-link">Dúvidas</a>
+    </nav>
+
+    <a href="#planos" class="btn-nav">
+      Criar Meu Catálogo
+    </a>
+  </div>
+</header>
+
+<style>
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(148, 70, 242, 0.25);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo {
+  text-decoration: none;
+  font-family: 'Sora', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.logo-highlight {
+  color: #9446f2;
+}
+
+.nav-links {
+  display: flex;
+  gap: 28px;
+}
+
+.nav-link {
+  color: #c4b8d7;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: color 0.25s ease;
+}
+
+.nav-link:hover {
+  color: #9446f2;
+}
+
+.btn-nav {
+  background: linear-gradient(135deg, #8343c3, #9446f2);
+  color: #ffffff;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-family: 'Sora', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(148, 70, 242, 0.3);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn-nav:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(148, 70, 242, 0.5);
+}
+
+@media (max-width: 900px) {
+  .nav-links {
+    display: none;
+  }
+}
+</style>
