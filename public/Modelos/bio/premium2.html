@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Camila Vasconcelos | Consultoria de Imagem</title>
+
+    <!-- Fontes Luxuosas -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Ícones FontAwesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <style>
+      /* =========================================================
+       PALETA DE CORES E VARIÁVEIS (FÁCIL ALTERAÇÃO)
+       ========================================================= */
+      :root {
+        /* Cores do Bloco Escuro / Hero */
+        --dark-bg: #22201e;
+        --dark-text: #ffffff;
+
+        /* Cores do Bloco Claro */
+        --light-bg: #faf8f5;
+        --light-text: #22201e;
+        --muted-text: #66625d;
+
+        /* Destaques (Dourado Elegante) */
+        --gold-accent: #c5a059;
+        --gold-gradient: linear-gradient(135deg, #d4af37 0%, #aa7c11 100%);
+        --border-line: #e5e0d8;
+
+        /* Fontes */
+        --font-title: "Playfair Display", serif;
+        --font-body: "Montserrat", sans-serif;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: var(--font-body);
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      body {
+        background-color: #121110;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 0;
+      }
+
+      .bio-container {
+        width: 100%;
+        max-width: 430px;
+        background-color: var(--light-bg);
+        min-height: 100vh;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        overflow: hidden;
+        position: relative;
+      }
+
+      /* 1. HERO SECTION */
+      .hero-section {
+        background-color: var(--dark-bg);
+        color: var(--dark-text);
+        text-align: center;
+        position: relative;
+
+        padding-bottom: 45px;
+        border-bottom-left-radius: 40px;
+        border-bottom-right-radius: 40px;
+      }
+
+      .hero-image-wrapper {
+        width: 100%;
+        max-width: 100%;
+        height: 330px;
+        margin: 0 auto 18px auto;
+        overflow: hidden;
+
+        position: relative;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      }
+
+      .hero-image-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top center;
+      }
+
+      .hero-title {
+        font-family: var(--font-title);
+        font-style: italic;
+        font-size: 2.1rem;
+        font-weight: 500;
+        letter-spacing: -0.5px;
+        margin-bottom: 6px;
+        color: var(--dark-text);
+      }
+
+      .hero-subtitle {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: var(--gold-accent);
+        font-weight: 600;
+      }
+
+      /* 2. SOBRE MIM */
+      .about-section {
+        padding: 35px 25px 25px 25px;
+        background-color: var(--light-bg);
+        color: var(--light-text);
+      }
+
+      .section-title-italic {
+        font-family: var(--font-title);
+        font-style: italic;
+        font-size: 1.8rem;
+        text-align: center;
+        color: var(--light-text);
+        margin-bottom: 15px;
+      }
+
+      .divider-line {
+        width: 100%;
+        height: 1px;
+        background-color: var(--border-line);
+        margin: 0 auto 20px auto;
+      }
+
+      .about-text {
+        font-size: 0.88rem;
+        line-height: 1.6;
+        color: var(--muted-text);
+        margin-bottom: 22px;
+        text-align: left;
+      }
+
+      .skills-list {
+        list-style: none;
+        padding-left: 0;
+        margin-bottom: 10px;
+      }
+
+      .skills-list-title {
+        font-family: var(--font-title);
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 12px;
+        color: var(--light-text);
+      }
+
+      .skills-list li {
+        font-size: 0.85rem;
+        color: var(--muted-text);
+        margin-bottom: 8px;
+        position: relative;
+        padding-left: 18px;
+      }
+
+      .skills-list li::before {
+        content: "•";
+        color: var(--gold-accent);
+        font-weight: bold;
+        font-size: 1.2rem;
+        position: absolute;
+        left: 0;
+        top: -2px;
+      }
+
+      /* 3. SERVIÇOS */
+      .services-section {
+        background-color: var(--dark-bg);
+        color: var(--dark-text);
+        padding: 35px 25px;
+        border-top-left-radius: 35px;
+        border-top-right-radius: 35px;
+        margin-top: 10px;
+      }
+
+      .services-section .section-title-italic {
+        color: var(--dark-text);
+        margin-bottom: 25px;
+      }
+
+      .service-item {
+        margin-bottom: 22px;
+        padding-bottom: 18px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .service-item:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      .service-header {
+        display: flex;
+        align-items: baseline;
+        gap: 12px;
+        margin-bottom: 6px;
+      }
+
+      .service-num {
+        font-family: var(--font-title);
+        font-style: italic;
+        color: var(--gold-accent);
+        font-size: 1.1rem;
+        font-weight: 600;
+      }
+
+      .service-name {
+        font-family: var(--font-title);
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: var(--dark-text);
+      }
+
+      .service-desc {
+        font-size: 0.82rem;
+        line-height: 1.5;
+        color: rgba(255, 255, 255, 0.7);
+        padding-left: 36px;
+      }
+
+      /* 4. BOTÕES DE AÇÃO */
+      .links-section {
+        padding: 30px 25px 20px 25px;
+        background-color: var(--light-bg);
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .action-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        padding: 16px;
+        border-radius: 12px;
+        text-decoration: none;
+        font-size: 0.82rem;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+
+      .btn-gold {
+        background: var(--gold-gradient);
+        color: #ffffff;
+        box-shadow: 0 8px 20px rgba(197, 160, 89, 0.25);
+      }
+
+      .btn-outline {
+        background: transparent;
+        color: var(--dark-bg);
+        border: 1px solid var(--dark-bg);
+      }
+
+      .action-btn:hover {
+        transform: translateY(-2px);
+        opacity: 0.95;
+      }
+
+      /* REDES SOCIAIS */
+      .social-footer {
+        display: flex;
+        justify-content: center;
+        gap: 22px;
+        padding: 10px 0 30px 0;
+        background-color: var(--light-bg);
+      }
+
+      .social-footer a {
+        color: var(--dark-bg);
+        font-size: 1.15rem;
+        transition: color 0.3s;
+      }
+
+      .social-footer a:hover {
+        color: var(--gold-accent);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bio-container">
+      <!-- HERO -->
+      <header class="hero-section">
+        <div class="hero-image-wrapper">
+          <img
+            src="https://plus.unsplash.com/premium_photo-1740409497402-b0e4931e6a05?q=80&w=687&?auto=format&fit=crop&q=80&w=600"
+            alt="Camila Vasconcelos"
+          />
+        </div>
+        <h1 class="hero-title">Camila Vasconcelos</h1>
+        <p class="hero-subtitle">Consultoria de Imagem & Estilo</p>
+      </header>
+
+      <!-- SOBRE MIM -->
+      <section class="about-section">
+        <h2 class="section-title-italic">Sobre mim</h2>
+        <div class="divider-line"></div>
+
+        <p class="about-text">
+          Ajudo mulheres executivas e empreendedoras a comunicarem autoridade,
+          elegância e autenticidade através da sua imagem pessoal, sem abrir mão
+          do seu estilo único.
+        </p>
+
+        <div class="skills-list-title">Credenciais:</div>
+        <ul class="skills-list">
+          <li>Certificação Internacional pela FIT New York</li>
+          <li>Especialista em Análise de Coloração Pessoal</li>
+          <li>Membro da Associação Internacional de Consultores</li>
+        </ul>
+      </section>
+
+      <!-- SERVIÇOS -->
+      <section class="services-section">
+        <h2 class="section-title-italic">Serviços</h2>
+
+        <div class="service-item">
+          <div class="service-header">
+            <span class="service-num">//01</span>
+            <h3 class="service-name">Consultoria Completa VIP</h3>
+          </div>
+          <p class="service-desc">
+            Análise de estilo, biotipo, coloração pessoal, revitalização do
+            guarda-roupa e experiência de personal shopper.
+          </p>
+        </div>
+
+        <div class="service-item">
+          <div class="service-header">
+            <span class="service-num">//02</span>
+            <h3 class="service-name">Análise de Coloração Pessoal</h3>
+          </div>
+          <p class="service-desc">
+            Descubra sua cartela ideal para acertar nas cores de roupas,
+            maquiagens, acessórios e tom de cabelo.
+          </p>
+        </div>
+
+        <div class="service-item">
+          <div class="service-header">
+            <span class="service-num">//03</span>
+            <h3 class="service-name">Mentoria de Imagem Profissional</h3>
+          </div>
+          <p class="service-desc">
+            Acompanhamento estratégico para adequar seu posicionamento visual
+            aos seus objetivos de carreira.
+          </p>
+        </div>
+      </section>
+
+      <!-- BOTÕES DE AÇÃO -->
+      <section class="links-section">
+        <a
+          href="https://wa.me/5500000000000"
+          class="action-btn btn-gold"
+          target="_blank"
+        >
+          <i class="fab fa-whatsapp"></i> Agendar Atendimento VIP
+        </a>
+
+        <a href="#" class="action-btn btn-outline">
+          <i class="fas fa-book-open"></i> Ver Catálogo de Serviços
+        </a>
+      </section>
+
+      <!-- REDES SOCIAIS -->
+      <footer class="social-footer">
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" aria-label="E-mail"><i class="far fa-envelope"></i></a>
+      </footer>
+    </div>
+  </body>
+</html>
