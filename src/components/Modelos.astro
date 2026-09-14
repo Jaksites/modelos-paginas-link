@@ -1,194 +1,83 @@
 ---
 import Card from '../components/Card.astro';
 
-const planos = [
-  {
-    id: "basica",
-    titulo: "Serviços & Bio",
-    preco: "R$ 39,99",
-    descricao: "Ideal para profissionais liberais, saúde, consultorias e prestadores de serviços.",
-    modelos: [
-      { code: "Advogado01", image: "./Modelos/modelos-advogados/imgs/advogado-dark.webp", link: "./Modelos/modelos-advogados/dark.html" },
-      { code: "Advogado02", image: "./Modelos/modelos-advogados/imgs/advogado-clean.webp", link: "./Modelos/modelos-advogados/clean.html" },
-      { code: "Artesanato01", image: "./Modelos/modelos-artesanato/imgs/atelie.webp", link: "./Modelos/modelos-artesanato/atelie.html" },
-      { code: "Artesanato02", image: "./Modelos/modelos-artesanato/imgs/croche.webp", link: "./Modelos/modelos-artesanato/croche.html" },
-      { code: "Confeitaria01", image: "./Modelos/modelos-comida/imgs/confeitaria.webp", link: "./Modelos/modelos-comida/confeitaria.html" },
-      { code: "Confeitaria02", image: "./Modelos/modelos-comida/imgs/doceria.webp", link: "./Modelos/modelos-comida/doceria.html" },
-      { code: "Hamburgueria01", image: "./Modelos/modelos-comida/imgs/hamburgueria.webp", link: "./Modelos/modelos-comida/hamburgueria.html" },
-      { code: "Pizzaria01", image: "./Modelos/modelos-comida/imgs/pizzaria.webp", link: "./Modelos/modelos-comida/pizzaria.html" },
-      { code: "Criativo01", image: "./Modelos/modelos-premium/imgs/criativo.webp", link: "./Modelos/modelos-premium/criativo.html" },
-      { code: "Premium01", image: "./Modelos/modelos-premium/imgs/dark.webp", link: "./Modelos/modelos-premium/dark.html" },
-      { code: "Dentista01", image: "./Modelos/modelos-saude/imgs/dentista.webp", link: "./Modelos/modelos-saude/dentista.html" },  
-      { code: "Médico01", image: "./Modelos/modelos-saude/imgs/medico.webp", link: "./Modelos/modelos-saude/medico.html" }, 
-      { code: "Nutricionista01", image: "./Modelos/modelos-saude/imgs/nutricionista.webp", link: "./Modelos/modelos-saude/nutricionistas.html" },
-      { code: "Psicologa01", image: "./Modelos/modelos-saude/imgs/psicologa.webp", link: "./Modelos/modelos-saude/psicologa.html" }  
-    ]
-  },
-  {
-    id: "vitrine",
-    titulo: "Tabela & Vitrine",
-    preco: "R$ 59,99",
-    descricao: "Perfeito para afiliados, achadinhos, criadores de conteúdo e links de bio.",
-    modelos: [
-      { code: "Afiliados01", image: "./Modelos/modelos-afiliados/imgs/achadinhos.webp", link: "./Modelos/modelos-afiliados/afiliados1.html" },
-      { code: "Afiliados02", image: "./Modelos/modelos-afiliados/imgs/achadinhos2.webp", link: "./Modelos/modelos-afiliados/afiliados2.html" },
-      { code: "Afiliados03", image: "./Modelos/modelos-afiliados/imgs/achadinhos3.webp", link: "./Modelos/modelos-afiliados/afiliados3.html" },
-      { code: "Afiliados04", image: "./Modelos/modelos-afiliados/imgs/achadinhos4.webp", link: "./Modelos/modelos-afiliados/afiliados4.html" },
-      { code: "Barbearia01", image: "./Modelos/modelos-beleza/imgs/barbearia.webp", link: "./Modelos/modelos-beleza/barbearia.html" },
-      { code: "Barbearia02", image: "./Modelos/modelos-beleza/imgs/barbearia2.webp", link: "./Modelos/modelos-beleza/barbearia2.html" },
-      { code: "Cabeleireira01", image: "./Modelos/modelos-beleza/imgs/cabeleireira.webp", link: "./Modelos/modelos-beleza/cabeleireira.html" },
-      { code: "LashDesign01", image: "./Modelos/modelos-beleza/imgs/lashdesign.webp", link: "./Modelos/modelos-beleza/lashdesign.html" },
-      { code: "NailDesign01", image: "./Modelos/modelos-beleza/imgs/naildesign.webp", link: "./Modelos/modelos-beleza/naildesign.html" },
-      { code: "Salão01", image: "./Modelos/modelos-beleza/imgs/salao.webp", link: "./Modelos/modelos-beleza/salao.html" },
-    ]
-  },
-  {
-    id: "catalogo",
-    titulo: "Catálogo Interativo",
-    preco: "R$ 89,99",
-    descricao: "Com carrinho de compras e envio de pedidos direto para o WhatsApp.",
-    modelos: [
-      { code: "Loja01", image: "./Modelos/modelos-catalogo/imgs/catalogo.webp", link: "./Modelos/modelos-catalogo/catalogo.html" },
-      { code: "Loja02", image: "./Modelos/modelos-catalogo/imgs/roupas.webp", link: "./Modelos/modelos-catalogo/roupas.html" },
-      { code: "Confeitaria01", image: "./Modelos/modelos-catalogo/imgs/doceria.webp", link: "./Modelos/modelos-catalogo/produtos.html" },
-      { code: "Delivery01", image: "./Modelos/modelos-catalogo/imgs/delivery.webp", link: "./Modelos/modelos-catalogo/delivery.html" }     
-    ]
-  }
+// Apenas os modelos do plano de R$ 39,99
+const modelos = [
+  { code: "Advogado01", image: "./Modelos/modelos-advogados/imgs/advogado-dark.webp", link: "./Modelos/modelos-advogados/dark.html" },
+  { code: "Advogado02", image: "./Modelos/modelos-advogados/imgs/advogado-clean.webp", link: "./Modelos/modelos-advogados/clean.html" },
+  { code: "Artesanato01", image: "./Modelos/modelos-artesanato/imgs/atelie.webp", link: "./Modelos/modelos-artesanato/atelie.html" },
+  { code: "Artesanato02", image: "./Modelos/modelos-artesanato/imgs/croche.webp", link: "./Modelos/modelos-artesanato/croche.html" },
+  { code: "Confeitaria01", image: "./Modelos/modelos-comida/imgs/confeitaria.webp", link: "./Modelos/modelos-comida/confeitaria.html" },
+  { code: "Confeitaria02", image: "./Modelos/modelos-comida/imgs/doceria.webp", link: "./Modelos/modelos-comida/doceria.html" },
+  { code: "Hamburgueria01", image: "./Modelos/modelos-comida/imgs/hamburgueria.webp", link: "./Modelos/modelos-comida/hamburgueria.html" },
+  { code: "Pizzaria01", image: "./Modelos/modelos-comida/imgs/pizzaria.webp", link: "./Modelos/modelos-comida/pizzaria.html" },
+  { code: "Criativo01", image: "./Modelos/modelos-premium/imgs/criativo.webp", link: "./Modelos/modelos-premium/criativo.html" },
+  { code: "Premium01", image: "./Modelos/modelos-premium/imgs/dark.webp", link: "./Modelos/modelos-premium/dark.html" },
+  { code: "Dentista01", image: "./Modelos/modelos-saude/imgs/dentista.webp", link: "./Modelos/modelos-saude/dentista.html" },  
+  { code: "Médico01", image: "./Modelos/modelos-saude/imgs/medico.webp", link: "./Modelos/modelos-saude/medico.html" }, 
+  { code: "Nutricionista01", image: "./Modelos/modelos-saude/imgs/nutricionista.webp", link: "./Modelos/modelos-saude/nutricionistas.html" },
+  { code: "Psicologa01", image: "./Modelos/modelos-saude/imgs/psicologa.webp", link: "./Modelos/modelos-saude/psicologa.html" }  
 ];
+
+const temMaisDeQuatro = modelos.length > 4;
 ---
 
-<div class="container">
-  <!-- Barra de Navegação dos Planos -->
-  <div class="modelos-wrapper">
-    <nav class="plans-bar" id="modelos" role="tablist">
-      {planos.map((plano, index) => (
-        <a
-          href={`#${plano.id}`}
-          class={`plan-btn ${index === 0 ? 'is-active' : ''}`}
-          data-target={plano.id}
-          role="tab"
-        >
-          {plano.titulo} <span class="price-tag">{plano.preco}</span>
-        </a>
-      ))}
-    </nav>
-  </div>
+<div class="container" id="modelos">
+  <section class="plan-section is-active">
+    <div class="plan-header">
+      <h2 class="plan-title">Modelos Disponíveis — <span class="highlight-price">R$ 39,99</span></h2>
+      <p class="plan-description">Escolha o modelo ideal para a sua área de atuação ou perfil de negócio.</p>
+    </div>
 
-  <!-- Seções dos Planos e Carrossel -->
-  {planos.map((plano, index) => {
-    const temMaisDeQuatro = plano.modelos.length > 4;
-    return (
-      <section id={plano.id} class={`plan-section ${index === 0 ? 'is-active' : ''}`}>
-        <div class="plan-header">
-          <h2 class="plan-title">{plano.titulo} — <span class="highlight-price">{plano.preco}</span></h2>
-          <p class="plan-description">{plano.descricao}</p>
-        </div>
-
-        <div class="carousel-container">
-          <button class="carousel-arrow prev" aria-label="Anterior">&#10094;</button>
-          
-          <div class="cards-grid">
-            {plano.modelos.map(item => (
-              <div class="card-item">
-                <Card 
-      title={plano.titulo}  {/* <-- ADICIONE ESTA LINHA */}
-      code={item.code}
-      image={item.image}
-      link={item.link}
-    />
-              </div>
-            ))}
+    <div class="carousel-container">
+      <button class="carousel-arrow prev" aria-label="Anterior">&#10094;</button>
+      
+      <div class="cards-grid">
+        {modelos.map(item => (
+          <div class="card-item">
+            <Card 
+              title="Mini Site & Bio" 
+              code={item.code}
+              image={item.image}
+              link={item.link}
+            />
           </div>
-          
-          <button class="carousel-arrow next" aria-label="Próximo">&#10095;</button>
-        </div>
+        ))}
+      </div>
+      
+      <button class="carousel-arrow next" aria-label="Próximo">&#10095;</button>
+    </div>
 
-        {temMaisDeQuatro && (
-          <div class="toggle-container">
-            <button class="btn-toggle-more" data-action="expand">
-              <span class="btn-text">Ver todos os modelos (+{plano.modelos.length - 4})</span>
-              <span class="btn-icon">↓</span>
-            </button>
-          </div>
-        )}
-      </section>
-    );
-  })}
+    {temMaisDeQuatro && (
+      <div class="toggle-container">
+        <button class="btn-toggle-more" data-action="expand">
+          <span class="btn-text">Ver todos os modelos (+{modelos.length - 4})</span>
+          <span class="btn-icon">↓</span>
+        </button>
+      </div>
+    )}
+  </section>
 </div>
 
 <style>
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 16px;
+  padding: 40px 16px;
   overflow: visible !important;
 }
 
-/* ============ WRAPPER FIXO ============ */
-.modelos-wrapper {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  margin-bottom: 24px;
-  background-color: transparent;
-  padding-top: 8px;
-}
-
-/* ============ PLAN TABS ============ */
-.plans-bar {
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  white-space: nowrap;
-  scrollbar-width: none;
-  background-color: rgba(38, 32, 41, 0.85);
-  backdrop-filter: blur(12px);
-  padding: 8px 12px;
-  border-radius: 12px;
-  border: 1px solid var(--border-soft, #333);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.plans-bar::-webkit-scrollbar {
-  display: none;
-}
-
-.plan-btn {
-  color: var(--text-muted, #aaa);
-  text-decoration: none;
-  padding: 8px 16px;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  background-color: transparent;
-  border: 1px solid transparent;
-  transition: all 0.2s ease;
-}
-
-.plan-btn:hover {
-  color: var(--text, #fff);
-  background-color: rgba(255, 255, 255, 0.05);
-}
-
-.plan-btn.is-active {
-  background: linear-gradient(135deg, var(--primary, #8a2be2), var(--highlight, #a855f7));
-  color: #ffffff;
-  box-shadow: 0 2px 10px rgba(154, 70, 242, 0.3);
-}
-
-/* ============ SECTIONS & HEADER ============ */
-.price-tag {
-  font-size: 0.75rem;
-  background: rgba(255, 255, 255, 0.15);
-  padding: 2px 6px;
-  border-radius: 6px;
-  margin-left: 6px;
-}
-
+/* ============ HEADER ============ */
 .plan-header {
-  margin-bottom: 20px;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.plan-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text, #fff);
+  margin-bottom: 8px;
 }
 
 .highlight-price {
@@ -197,39 +86,11 @@ const planos = [
 
 .plan-description {
   color: var(--text-muted, #aaa);
-  font-size: 0.95rem;
-  margin-top: 4px;
+  font-size: 1rem;
 }
 
 .plan-section {
-  display: none;
-  margin-bottom: 60px;
-  scroll-margin-top: 80px;
-}
-
-.plan-section.is-active {
-  display: block;
-  animation: fade-in 0.35s ease;
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(6px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.plan-title {
-  font-size: 1.7rem;
-  font-weight: 600;
-  color: var(--text, #fff);
-  margin-bottom: 16px;
-  padding-bottom: 10px;
-  border-bottom: 2px solid var(--purple-dark, #4b0082);
+  margin-bottom: 40px;
 }
 
 /* ============ CAROUSEL & CARDS ============ */
@@ -319,7 +180,7 @@ const planos = [
 /* ============ RESPONSIVE (MOBILE) ============ */
 @media (max-width: 640px) {
   .plan-title {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
   }
 
   .carousel-arrow {
@@ -363,33 +224,6 @@ const planos = [
 
 <script>
   function setupModelosSection() {
-    const tabs = document.querySelectorAll<HTMLAnchorElement>(".plan-btn");
-    const sections = document.querySelectorAll<HTMLElement>(".plan-section");
-
-    function activate(target: string, updateHash: boolean) {
-      sections.forEach((section) => {
-        section.classList.toggle("is-active", section.id === target);
-      });
-      tabs.forEach((tab) => {
-        const isActive = tab.dataset.target === target;
-        tab.classList.toggle("is-active", isActive);
-        tab.setAttribute("aria-selected", isActive ? "true" : "false");
-      });
-      if (updateHash && history.replaceState) {
-        history.replaceState(null, "", "#" + target);
-      }
-    }
-
-    tabs.forEach((tab) => {
-      tab.addEventListener("click", (event) => {
-        event.preventDefault();
-        const target = tab.dataset.target;
-        if (target) {
-          activate(target, true);
-        }
-      });
-    });
-
     // Controle do Botão "Ver mais / Ver menos" no Desktop
     document.querySelectorAll(".btn-toggle-more").forEach((btn) => {
       btn.addEventListener("click", (e) => {
@@ -410,7 +244,6 @@ const planos = [
           btnText.textContent = `Ver todos os modelos (+${totalItems - 4})`;
           btnIcon.textContent = "↓";
           
-          // Rola de volta para o topo da seção ao recolher
           section.scrollIntoView({ behavior: "smooth", block: "start" });
         }
       });
@@ -435,13 +268,6 @@ const planos = [
         };
       }
     });
-
-    // Ativação via Hash na URL
-    const initial = window.location.hash ? window.location.hash.replace("#", "") : null;
-    const validTargets = Array.from(tabs).map((t) => t.dataset.target);
-    if (initial && validTargets.includes(initial)) {
-      activate(initial, false);
-    }
   }
 
   document.addEventListener("DOMContentLoaded", setupModelosSection);

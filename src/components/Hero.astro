@@ -1,50 +1,53 @@
----
----
-
 <header class="hero" id="hero">
-      <div class="hero-container">
-        <div class="hero-copy">
-          <h1>Sua bio merece mais do que um link.</h1>
-          <p class="hero-subtitle">
-            Tenha um mini site profissional com seus serviços, produtos,
-            WhatsApp e redes sociais — pronto para colocar na bio do Instagram.
-          </p>
-          <div class="hero-actions">
-            <a href="#modelos" class="btn-hero-primary">Ver modelos</a>
-            <a
-              href="https://wa.me/5541984940848?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20os%20modelos%20de%20sites."
-              target="_blank"
-              rel="noopener"
-              class="btn-hero-secondary"
-              >Falar no WhatsApp</a
-            >
-          </div>
-          <div class="hero-trust">
-            <span>Entrega em 24–48h</span>
-            <span>1 ano online incluso</span>
-            <span>Pagamento único</span>
-          </div>
-        </div>
+  <div class="hero-container">
+    <div class="hero-copy">
+      <!-- Badge de Preço/Posicionamento -->
+      <div class="hero-badge">
+        <span>✨ Bio Profissional • Pagamento Único</span>
+      </div>
 
-        <div class="hero-visual" aria-hidden="true">
-          <div class="phone-frame">
-            <div class="phone-notch"></div>
-            <div class="phone-screen">
-              <div class="mock-avatar"></div>
-              <div class="mock-handle">@seunegocio</div>
-              <div class="mock-bio">Seu produto ou serviço, em um link só</div>
-              <div class="mock-btn">🛍️ Catálogo de produtos</div>
-              <div class="mock-btn">💬 Falar no WhatsApp</div>
-              <div class="mock-btn">📍 Nossa localização</div>
-              <div class="mock-btn mock-btn-ghost">⭐ Depoimentos</div>
-            </div>
-          </div>
+      <h1>Sua bio merece mais do que um simples agregador.</h1>
+      
+      <p class="hero-subtitle">
+        Tenha um mini site rápido e elegante para destacar seus serviços, links de contato, redes sociais e localização. Pronto para o Instagram.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#modelos" class="btn-hero-primary">Ver Modelos por R$ 39,99</a>
+        <a
+          href="https://wa.me/5541984940848?text=Ol%C3%A1!%20Gostaria%20de%20tirar%20d%C3%BAvidas%20sobre%20o%20Mini%20Site%20para%20Bio."
+          target="_blank"
+          rel="noopener"
+          class="btn-hero-secondary"
+        >Falar no WhatsApp</a>
+      </div>
+
+      <div class="hero-trust">
+        <span>Entrega em até 24h</span>
+        <span>Sem mensalidades</span>
+        <span>1 ano de hospedagem</span>
+      </div>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="mock-avatar"></div>
+          <div class="mock-handle">@seunegocio</div>
+          <div class="mock-bio">Apresentação profissional e atendimento rápido em um só link</div>
+          <div class="mock-btn">💬 Atendimento WhatsApp</div>
+          <div class="mock-btn">⭐ Conheça Meus Serviços</div>
+          <div class="mock-btn">📍 Onde Estamos</div>
+          <div class="mock-btn mock-btn-ghost">🌐 Meu Site Oficial</div>
         </div>
       </div>
-    </header>
+    </div>
+  </div>
+</header>
 
-    <style>
-/* Importação garantida das fontes Google Fonts */
+<style>
+/* Importação das fontes */
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap');
 
 .hero {
@@ -69,13 +72,33 @@
   align-items: center;
 }
 
+/* Style para o novo Badge */
+.hero-badge {
+  display: inline-block;
+  margin-bottom: 16px;
+}
+
+.hero-badge span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  background: rgba(168, 85, 247, 0.12);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  color: #d8b4fe;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
 .hero-copy h1 {
   font-family: 'Sora', sans-serif;
   font-size: clamp(2.1rem, 4vw, 3.1rem);
-  line-height: 1.1;
+  line-height: 1.15;
   font-weight: 800;
   letter-spacing: -0.02em;
-  max-width: 16ch;
+  max-width: 17ch;
   color: #ffffff;
 }
 
@@ -83,7 +106,8 @@
   margin-top: 20px;
   color: var(--text-muted, #c4b8d7);
   font-size: 1.05rem;
-  max-width: 46ch;
+  line-height: 1.6;
+  max-width: 48ch;
 }
 
 .hero-actions {
@@ -107,10 +131,12 @@
 .btn-hero-primary {
   background: linear-gradient(135deg, var(--primary, #8343c3), var(--highlight, #a855f7));
   color: #ffffff;
+  box-shadow: 0 4px 20px rgba(168, 85, 247, 0.35);
 }
 
 .btn-hero-primary:hover {
   transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(168, 85, 247, 0.5);
 }
 
 .btn-hero-secondary {
@@ -197,6 +223,7 @@
   font-family: 'Sora', sans-serif;
   font-weight: 700;
   font-size: 0.95rem;
+  color: #ffffff;
 }
 
 .mock-bio {
@@ -204,6 +231,7 @@
   color: var(--text-muted, #c4b8d7);
   text-align: center;
   margin-bottom: 6px;
+  line-height: 1.3;
 }
 
 .mock-btn {
@@ -215,6 +243,7 @@
   font-size: 0.74rem;
   font-weight: 600;
   text-align: center;
+  color: #ffffff;
 }
 
 .mock-btn-ghost {
@@ -224,7 +253,7 @@
   font-weight: 500;
 }
 
-/* Adjustments for Mobile */
+/* Responsividade */
 @media (max-width: 900px) {
   .hero-container {
     grid-template-columns: 1fr;
