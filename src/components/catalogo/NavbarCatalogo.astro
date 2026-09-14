@@ -3,7 +3,7 @@
 <header class="navbar">
   <div class="nav-container">
     <a href="/catalogo" class="nav-logo">
-      <span class="logo-text">Vitrine<span class="logo-highlight">Zap</span></span>
+      <img src="/Assets/logojak.png" alt="logo" class="navbar-logo-img" />
     </a>
 
     <nav class="nav-links">
@@ -42,13 +42,21 @@
 }
 
 .nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   text-decoration: none;
-  font-family: 'Sora', sans-serif;
-  font-size: 1.4rem;
-  font-weight: 800;
-  color: #ffffff;
+  color: var(--text);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: -0.01em;
+  flex-shrink: 0;
 }
-
+.nav-logo img {
+  height: 28px;
+  width: auto;
+}
 .logo-highlight {
   color: #9446f2;
 }
