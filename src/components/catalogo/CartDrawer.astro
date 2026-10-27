@@ -1,3 +1,16 @@
+---
+import { siteConfig } from '../../config/active';
+import { checkStoreStatus } from '../../scripts/businessHours';
+import type { SiteConfig } from '../../types';
+
+interface Props {
+  config?: SiteConfig;
+}
+
+const { config = siteConfig } = Astro.props;
+const status = checkStoreStatus(config.businessHours);
+---
+
 <div id="cart-modal" class="fixed inset-0 z-50 invisible pointer-events-none transition-all duration-300">
   <!-- Backdrop Escuro com Blur -->
   <div id="cart-backdrop" class="absolute inset-0 bg-neutral-950/60 backdrop-blur-sm opacity-0 transition-opacity duration-300"></div>
@@ -43,18 +56,42 @@
         <span id="cart-total" class="text-brand-primary text-xl font-black">R$ 0,00</span>
       </div>
 
+      <!-- Aviso se a loja estiver FECHADA -->
+      {!status.isOpen && (
+        <div class="p-3 bg-amber-50 border border-amber-200/80 rounded-2xl flex items-start gap-2.5 text-xs text-amber-800">
+          <svg class="w-4 h-4 text-amber-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <div>
+            <strong class="font-bold block">Estabelecimento Fechado</strong>
+            <p class="text-[11px] mt-0.5 text-amber-700">{status.message}</p>
+          </div>
+        </div>
+      )}
+
+      <!-- Botão de Checkout com Bloqueio Real -->
       <button 
         id="btn-checkout-modal" 
-        disabled 
-        class="w-full mt-2 py-3.5 px-4 bg-brand-primary hover:bg-brand-primary-hover disabled:bg-neutral-200 disabled:text-neutral-400 disabled:cursor-not-allowed text-white font-bold rounded-xl sm:rounded-2xl flex items-center justify-center gap-2 transition-all shadow-md active:scale-[0.99]"
+        disabled={!status.isOpen}
+        data-store-open={status.isOpen ? 'true' : 'false'}
+        class={`w-full mt-2 py-3.5 px-4 font-bold rounded-2xl flex items-center justify-center gap-2 transition-all shadow-md active:scale-[0.99] ${
+          status.isOpen 
+            ? 'bg-brand-primary hover:bg-brand-primary-hover disabled:bg-gray-300 disabled:cursor-not-allowed text-white' 
+            : 'bg-gray-200 text-gray-400 cursor-not-allowed border border-gray-300'
+        }`}
       >
-        <span>Avançar para o Pagamento</span>
-        <svg class="w-4 h-4 stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-        </svg>
+        <span>{status.isOpen ? 'Finalizar Pedido' : 'Pedidos Fechados no Momento'}</span>
+        {status.isOpen ? (
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        ) : (
+          <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+          </svg>
+        )}
       </button>
     </div>
-
   </div>
 </div>
 
@@ -69,11 +106,12 @@
   const subtotalEl = document.getElementById('cart-subtotal')!;
   const totalEl = document.getElementById('cart-total')!;
   const btnCheckout = document.getElementById('btn-checkout-modal') as HTMLButtonElement;
+  const isStoreOpen = btnCheckout.dataset.storeOpen === 'true';
 
   function toggle(open: boolean) {
     if (open) {
       modal.classList.remove('invisible', 'pointer-events-none');
-      document.body.style.overflow = 'hidden'; // Evita scroll de fundo
+      document.body.style.overflow = 'hidden';
       setTimeout(() => {
         backdrop.classList.add('opacity-100');
         panel.classList.remove('translate-x-full');
@@ -97,8 +135,14 @@
     subtotalEl.textContent = `R$ ${totalPrice.toFixed(2).replace('.', ',')}`;
     totalEl.textContent = `R$ ${totalPrice.toFixed(2).replace('.', ',')}`;
 
-    if (cart.length === 0) {
+    // 🔒 VALIDAÇÃO CORRETA: Só ativa se tiver itens E a loja estiver aberta
+    if (cart.length === 0 || !isStoreOpen) {
       btnCheckout.disabled = true;
+    } else {
+      btnCheckout.disabled = false;
+    }
+
+    if (cart.length === 0) {
       cartItemsContainer.innerHTML = `
         <div class="flex flex-col items-center justify-center h-full text-center text-neutral-400 gap-3 py-16">
           <div class="w-16 h-16 rounded-full bg-neutral-100 flex items-center justify-center text-neutral-300">
@@ -118,9 +162,7 @@
 
       document.getElementById('btn-empty-shop')?.addEventListener('click', () => toggle(false));
     } else {
-      btnCheckout.disabled = false;
-      cartItemsContainer.innerHTML = cart.map((item, index) => {
-        // CORREÇÃO CRUCIAL: Respeita o preço e a foto da variação selecionada
+      cartItemsContainer.innerHTML = cart.map((item: any, index: number) => {
         const unitPrice = item.unitPrice ?? item.product.price;
         const itemImage = item.selectedImage || item.product.image;
         const itemTotal = unitPrice * item.quantity;
@@ -192,8 +234,9 @@
     if (e.key === 'Escape') toggle(false);
   });
 
-  // Avançar para o checkout
+  // Avançar para o checkout (apenas se a loja estiver aberta)
   btnCheckout.addEventListener('click', () => {
+    if (!isStoreOpen) return;
     toggle(false);
     window.dispatchEvent(new CustomEvent('checkout:open'));
   });

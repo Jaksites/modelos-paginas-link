@@ -9,69 +9,176 @@ const { whatsappNumber } = Astro.props;
 <div 
   id="checkout-modal" 
   data-whatsapp={whatsappNumber}
-  class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-6"
+  class="fixed inset-0 z-50 hidden items-center justify-center p-3 sm:p-6"
 >
   <!-- Backdrop -->
-  <div id="checkout-backdrop" class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm cursor-pointer"></div>
+  <div id="checkout-backdrop" class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm cursor-pointer transition-opacity"></div>
 
   <!-- Modal Box -->
-  <div class="relative bg-white w-full max-w-lg rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] z-10">
-    <div class="p-5 bg-linear-to-r from-gray-900 to-slate-800 text-white flex items-center justify-between">
-      <div>
-        <h3 class="text-lg font-bold">Dados para Entrega</h3>
-        <p class="text-xs text-gray-300">Preencha para enviar seu pedido no WhatsApp</p>
+  <div class="relative bg-white w-full max-w-lg rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[92vh] z-10 border border-gray-100">
+    
+    <!-- Header do Checkout (padronizado com brand-dark) -->
+    <div class="p-5 bg-brand-dark text-white flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center text-brand-accent">
+          <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <h3 class="text-base sm:text-lg font-bold leading-tight">Finalizar Pedido</h3>
+          <p class="text-[11px] text-gray-300">Confirme seus dados para envio no WhatsApp</p>
+        </div>
       </div>
-      <button id="close-checkout-btn" type="button" class="p-1.5 text-gray-300 hover:text-white rounded-full transition-colors">
+      <button 
+        id="close-checkout-btn" 
+        type="button" 
+        class="p-2 text-gray-400 hover:text-white hover:bg-white/10 rounded-full transition-colors"
+        aria-label="Fechar"
+      >
         <i data-lucide="x" class="w-5 h-5"></i>
       </button>
     </div>
 
-    <form id="checkout-form" class="p-5 sm:p-6 overflow-y-auto flex flex-col gap-4 text-sm">
-      <div>
-        <label class="block font-semibold text-gray-700 mb-1" for="cust-name">Seu Nome Completo *</label>
-        <input type="text" id="cust-name" required placeholder="Ex: Maria Silva" class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-primary outline-none" />
-      </div>
+    <!-- Mini Resumo do Pedido -->
+    <div class="px-5 py-3 bg-brand-surface border-b border-gray-200/70 flex items-center justify-between text-xs">
+      <span class="text-gray-600 font-medium">
+        Itens no pedido: <strong id="checkout-items-count" class="text-gray-900 font-bold">0</strong>
+      </span>
+      <span class="text-gray-600 font-medium">
+        Total estimado: <strong id="checkout-total-value" class="text-brand-primary font-black text-sm">R$ 0,00</strong>
+      </span>
+    </div>
 
+    <!-- Formulário -->
+    <form id="checkout-form" class="p-5 sm:p-6 overflow-y-auto flex flex-col gap-4 text-xs sm:text-sm">
+      
+      <!-- Tipo de Pedido (Entrega ou Retirada) -->
       <div>
-        <label class="block font-semibold text-gray-700 mb-1" for="cust-phone">Seu WhatsApp *</label>
-        <input type="tel" id="cust-phone" required placeholder="Ex: (11) 99999-8888" class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-primary outline-none" />
-      </div>
-
-      <div>
-        <label class="block font-semibold text-gray-700 mb-1" for="cust-address">Endereço de Entrega *</label>
-        <input type="text" id="cust-address" required placeholder="Rua, número, complemento e bairro" class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-primary outline-none" />
-      </div>
-
-      <div class="grid grid-cols-2 gap-3">
-        <div>
-          <label class="block font-semibold text-gray-700 mb-1" for="cust-city">Cidade *</label>
-          <input type="text" id="cust-city" required placeholder="Ex: São Paulo" class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-primary outline-none" />
+        <label class="block font-bold text-gray-700 mb-2">Como deseja receber?</label>
+        <div class="grid grid-cols-2 gap-2.5">
+          <label class="delivery-option flex items-center justify-center gap-2 p-3 rounded-2xl border-2 border-brand-primary bg-brand-accent/30 text-brand-primary font-bold cursor-pointer transition-all">
+            <input type="radio" name="order-type" value="Entrega" checked class="hidden" />
+            <i data-lucide="truck" class="w-4 h-4"></i>
+            <span>Entrega</span>
+          </label>
+          <label class="delivery-option flex items-center justify-center gap-2 p-3 rounded-2xl border-2 border-gray-200 bg-white text-gray-600 font-semibold cursor-pointer transition-all hover:bg-gray-50">
+            <input type="radio" name="order-type" value="Retirada no Local" class="hidden" />
+            <i data-lucide="store" class="w-4 h-4"></i>
+            <span>Retirada</span>
+          </label>
         </div>
+      </div>
+
+      <!-- Dados Pessoais -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <div>
-          <label class="block font-semibold text-gray-700 mb-1" for="cust-uf">Estado (UF) *</label>
-          <input type="text" id="cust-uf" required maxlength="2" placeholder="SP" class="uppercase w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-primary outline-none" />
+          <label class="block font-semibold text-gray-700 mb-1" for="cust-name">Seu Nome *</label>
+          <input 
+            type="text" 
+            id="cust-name" 
+            required 
+            placeholder="Ex: Maria Silva" 
+            class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 outline-none transition-all bg-white" 
+          />
+        </div>
+
+        <div>
+          <label class="block font-semibold text-gray-700 mb-1" for="cust-phone">Seu WhatsApp *</label>
+          <input 
+            type="tel" 
+            id="cust-phone" 
+            required 
+            maxlength="15"
+            placeholder="(11) 99999-9999" 
+            class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 outline-none transition-all bg-white" 
+          />
         </div>
       </div>
 
-      <div>
-        <label class="block font-semibold text-gray-700 mb-1" for="cust-payment">Forma de Pagamento *</label>
-        <select id="cust-payment" class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-primary outline-none bg-white">
-          <option value="Pix (Aprovação Imediata)">Pix (Aprovação Imediata)</option>
-          <option value="Cartão de Crédito">Cartão de Crédito (Link de Pagamento)</option>
-          <option value="Boleto Bancário">Boleto Bancário</option>
-        </select>
+      <!-- Bloco de Endereço (Pode ser ocultado se for Retirada) -->
+      <div id="address-fields" class="flex flex-col gap-3 transition-all">
+        <div>
+          <label class="block font-semibold text-gray-700 mb-1" for="cust-address">Endereço de Entrega *</label>
+          <input 
+            type="text" 
+            id="cust-address" 
+            required 
+            placeholder="Rua, número, complemento e bairro" 
+            class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 outline-none transition-all bg-white" 
+          />
+        </div>
+
+        <div class="grid grid-cols-3 gap-2.5">
+          <div class="col-span-2">
+            <label class="block font-semibold text-gray-700 mb-1" for="cust-city">Cidade *</label>
+            <input 
+              type="text" 
+              id="cust-city" 
+              required 
+              placeholder="Sua cidade" 
+              class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 outline-none transition-all bg-white" 
+            />
+          </div>
+          <div>
+            <label class="block font-semibold text-gray-700 mb-1" for="cust-uf">UF *</label>
+            <input 
+              type="text" 
+              id="cust-uf" 
+              required 
+              maxlength="2" 
+              placeholder="SP" 
+              class="uppercase w-full px-3.5 py-2.5 rounded-xl border border-gray-300 focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 outline-none transition-all bg-white text-center" 
+            />
+          </div>
+        </div>
       </div>
 
+      <!-- Forma de Pagamento com Radio Cards -->
       <div>
-        <label class="block font-semibold text-gray-700 mb-1" for="cust-obs">Observações</label>
-        <textarea id="cust-obs" rows="2" placeholder="Ex: Preferência de entrega, referências..." class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-primary outline-none"></textarea>
+        <label class="block font-bold text-gray-700 mb-2">Forma de Pagamento Preferida *</label>
+        <div class="grid grid-cols-3 gap-2">
+          <label class="payment-card flex flex-col items-center justify-center p-2.5 rounded-xl border-2 border-brand-primary bg-brand-accent/20 cursor-pointer text-center transition-all">
+            <input type="radio" name="payment-method" value="Pix (Aprovação Imediata)" checked class="hidden" />
+            <i data-lucide="zap" class="w-4 h-4 text-emerald-600 mb-1"></i>
+            <span class="text-xs font-bold text-gray-900">Pix</span>
+          </label>
+
+          <label class="payment-card flex flex-col items-center justify-center p-2.5 rounded-xl border-2 border-gray-200 bg-white cursor-pointer text-center transition-all hover:bg-gray-50">
+            <input type="radio" name="payment-method" value="Cartão de Crédito" class="hidden" />
+            <i data-lucide="credit-card" class="w-4 h-4 text-blue-600 mb-1"></i>
+            <span class="text-xs font-semibold text-gray-700">Cartão</span>
+          </label>
+
+          <label class="payment-card flex flex-col items-center justify-center p-2.5 rounded-xl border-2 border-gray-200 bg-white cursor-pointer text-center transition-all hover:bg-gray-50">
+            <input type="radio" name="payment-method" value="Dinheiro / Boleto" class="hidden" />
+            <i data-lucide="banknote" class="w-4 h-4 text-amber-600 mb-1"></i>
+            <span class="text-xs font-semibold text-gray-700">Outros</span>
+          </label>
+        </div>
       </div>
 
-      <button type="submit" class="w-full mt-2 py-3.5 bg-green-600 hover:bg-green-700 text-white font-bold rounded-2xl flex items-center justify-center gap-2 transition-all shadow-lg shadow-green-600/20 active:scale-[0.99]">
-        <i data-lucide="message-square" class="w-5 h-5"></i>
+      <!-- Observações -->
+      <div>
+        <label class="block font-semibold text-gray-700 mb-1" for="cust-obs">Observações do Pedido</label>
+        <textarea 
+          id="cust-obs" 
+          rows="2" 
+          placeholder="Ex: Ponto de referência, preferências de preparo/tamanho..." 
+          class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 outline-none transition-all bg-white"
+        ></textarea>
+      </div>
+
+      <!-- Botão de Envio WhatsApp -->
+      <button 
+        type="submit" 
+        class="w-full mt-2 py-3.5 bg-[#25D366] hover:bg-[#20ba59] text-white font-bold rounded-2xl flex items-center justify-center gap-2.5 transition-all shadow-lg shadow-emerald-500/20 active:scale-[0.98]"
+      >
+        <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+          <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.04 14.69 2 12.04 2ZM12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.16 12.04 20.16C10.56 20.16 9.11 19.76 7.85 19.01L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67ZM8.53 7.33C8.37 7.33 8.1 7.39 7.87 7.64C7.65 7.89 7.02 8.48 7.02 9.69C7.02 10.9 7.9 12.07 8.02 12.23C8.15 12.39 9.74 14.84 12.19 15.89C14.23 16.77 14.65 16.59 15.09 16.55C15.54 16.51 16.53 15.96 16.74 15.38C16.94 14.79 16.94 14.29 16.88 14.19C16.82 14.09 16.66 14.03 16.42 13.91C16.17 13.79 14.97 13.2 14.74 13.12C14.52 13.04 14.36 13 14.2 13.24C14.03 13.49 13.56 14.03 13.41 14.21C13.27 14.38 13.12 14.4 12.88 14.28C12.63 14.16 11.83 13.9 10.89 13.06C10.15 12.4 9.66 11.59 9.51 11.34C9.37 11.1 9.49 10.96 9.62 10.84C9.73 10.73 9.87 10.55 10 10.39C10.12 10.24 10.17 10.12 10.25 9.96C10.33 9.79 10.29 9.65 10.23 9.53C10.17 9.41 9.69 8.24 9.49 7.76C9.3 7.29 9.1 7.35 8.94 7.34C8.8 7.33 8.63 7.33 8.53 7.33Z"/>
+        </svg>
         <span>Enviar Pedido pelo WhatsApp</span>
       </button>
     </form>
+
   </div>
 </div>
 
@@ -81,13 +188,29 @@ const { whatsappNumber } = Astro.props;
   const modal = document.getElementById('checkout-modal');
   const backdrop = document.getElementById('checkout-backdrop');
   const closeBtn = document.getElementById('close-checkout-btn');
-  const form = document.getElementById('checkout-form');
+  const form = document.getElementById('checkout-form') as HTMLFormElement;
+  const phoneInput = document.getElementById('cust-phone') as HTMLInputElement;
+  const addressContainer = document.getElementById('address-fields') as HTMLElement;
+  const addressInputs = addressContainer?.querySelectorAll('input');
 
+  // Abre o modal e atualiza o resumo
   function openCheckout() {
     if (!modal) return;
+    const { totalCount, totalPrice } = getCartTotals();
+
+    const countEl = document.getElementById('checkout-items-count');
+    const totalEl = document.getElementById('checkout-total-value');
+    if (countEl) countEl.textContent = `${totalCount} item(ns)`;
+    if (totalEl) totalEl.textContent = `R$ ${totalPrice.toFixed(2).replace('.', ',')}`;
+
     modal.classList.remove('hidden');
     modal.classList.add('flex');
     (window as any).lucide?.createIcons();
+
+    // Auto-foco no primeiro campo
+    setTimeout(() => {
+      (document.getElementById('cust-name') as HTMLInputElement)?.focus();
+    }, 150);
   }
 
   function closeCheckout() {
@@ -100,6 +223,69 @@ const { whatsappNumber } = Astro.props;
   closeBtn?.addEventListener('click', closeCheckout);
   backdrop?.addEventListener('click', closeCheckout);
 
+  // Fechar com a tecla ESC
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
+      closeCheckout();
+    }
+  });
+
+  // Alternância Entrega vs Retirada
+  document.querySelectorAll('input[name="order-type"]').forEach((radio) => {
+    radio.addEventListener('change', (e) => {
+      const target = e.target as HTMLInputElement;
+      const options = document.querySelectorAll('.delivery-option');
+
+      options.forEach(opt => {
+        opt.className = 'delivery-option flex items-center justify-center gap-2 p-3 rounded-2xl border-2 border-gray-200 bg-white text-gray-600 font-semibold cursor-pointer transition-all hover:bg-gray-50';
+      });
+
+      target.parentElement!.className = 'delivery-option flex items-center justify-center gap-2 p-3 rounded-2xl border-2 border-brand-primary bg-brand-accent/30 text-brand-primary font-bold cursor-pointer transition-all';
+
+      if (target.value === 'Retirada no Local') {
+        addressContainer.classList.add('hidden');
+        addressInputs.forEach(i => i.removeAttribute('required'));
+      } else {
+        addressContainer.classList.remove('hidden');
+        addressInputs.forEach(i => i.setAttribute('required', 'true'));
+      }
+    });
+  });
+
+  // Alternância Estilizada dos Cards de Pagamento
+  document.querySelectorAll('input[name="payment-method"]').forEach((radio) => {
+    radio.addEventListener('change', (e) => {
+      const target = e.target as HTMLInputElement;
+      const cards = document.querySelectorAll('.payment-card');
+
+      cards.forEach(card => {
+        card.className = 'payment-card flex flex-col items-center justify-center p-2.5 rounded-xl border-2 border-gray-200 bg-white cursor-pointer text-center transition-all hover:bg-gray-50';
+        const span = card.querySelector('span');
+        if (span) span.className = 'text-xs font-semibold text-gray-700';
+      });
+
+      target.parentElement!.className = 'payment-card flex flex-col items-center justify-center p-2.5 rounded-xl border-2 border-brand-primary bg-brand-accent/20 cursor-pointer text-center transition-all';
+      const activeSpan = target.parentElement!.querySelector('span');
+      if (activeSpan) activeSpan.className = 'text-xs font-bold text-gray-900';
+    });
+  });
+
+  // Máscara Automática de Telefone: (11) 99999-9999
+  phoneInput?.addEventListener('input', (e) => {
+    let value = (e.target as HTMLInputElement).value.replace(/\D/g, '');
+    if (value.length > 11) value = value.slice(0, 11);
+
+    if (value.length > 6) {
+      value = `(${value.slice(0, 2)}) ${value.slice(2, 7)}-${value.slice(7)}`;
+    } else if (value.length > 2) {
+      value = `(${value.slice(0, 2)}) ${value.slice(2)}`;
+    } else if (value.length > 0) {
+      value = `(${value}`;
+    }
+    (e.target as HTMLInputElement).value = value;
+  });
+
+  // Envio Formatado para o WhatsApp
   form?.addEventListener('submit', (e) => {
     e.preventDefault();
 
@@ -107,27 +293,32 @@ const { whatsappNumber } = Astro.props;
     const cart = getCart();
     const { totalPrice } = getCartTotals();
 
+    const orderType = (document.querySelector('input[name="order-type"]:checked') as HTMLInputElement).value;
+    const payment = (document.querySelector('input[name="payment-method"]:checked') as HTMLInputElement).value;
     const name = (document.getElementById('cust-name') as HTMLInputElement).value.trim();
-    const phone = (document.getElementById('cust-phone') as HTMLInputElement).value.trim();
-    const address = (document.getElementById('cust-address') as HTMLInputElement).value.trim();
-    const city = (document.getElementById('cust-city') as HTMLInputElement).value.trim();
-    const uf = (document.getElementById('cust-uf') as HTMLInputElement).value.trim().toUpperCase();
-    const payment = (document.getElementById('cust-payment') as HTMLSelectElement).value;
+    const phone = phoneInput.value.trim();
     const obs = (document.getElementById('cust-obs') as HTMLTextAreaElement).value.trim();
 
-    let msg = `🛍️ *NOVO PEDIDO*\n`;
+    let msg = `🛍️ *NOVO PEDIDO - ${orderType.toUpperCase()}*\n`;
     msg += `-------------------------------------------\n\n`;
     msg += `👤 *DADOS DO CLIENTE:*\n`;
     msg += `• *Nome:* ${name}\n`;
-    msg += `• *WhatsApp:* ${phone}\n`;
-    msg += `• *Endereço:* ${address}\n`;
-    msg += `• *Cidade/UF:* ${city} / ${uf}\n\n`;
+    msg += `• *Contato:* ${phone}\n`;
+    msg += `• *Modalidade:* ${orderType}\n`;
 
-    msg += `📦 *ITENS DO PEDIDO:*\n`;
+    if (orderType === 'Entrega') {
+      const address = (document.getElementById('cust-address') as HTMLInputElement).value.trim();
+      const city = (document.getElementById('cust-city') as HTMLInputElement).value.trim();
+      const uf = (document.getElementById('cust-uf') as HTMLInputElement).value.trim().toUpperCase();
+      msg += `• *Endereço:* ${address}\n`;
+      msg += `• *Cidade/UF:* ${city} / ${uf}\n`;
+    }
+
+    msg += `\n📦 *ITENS DO PEDIDO:*\n`;
     cart.forEach((item, i) => {
       const sub = (item.product.price * item.quantity).toFixed(2).replace('.', ',');
       msg += `${i + 1}. *${item.product.name}*\n`;
-      msg += `   └ Tam: ${item.selectedSize} | Qtd: ${item.quantity}x | R$ ${sub}\n`;
+      msg += `   └ Opção/Tam: ${item.selectedSize} | Qtd: ${item.quantity}x | R$ ${sub}\n`;
     });
 
     msg += `\n💰 *RESUMO FINANCEIRO:*\n`;
@@ -139,9 +330,10 @@ const { whatsappNumber } = Astro.props;
     }
 
     msg += `\n-------------------------------------------\n`;
-    msg += `Aguardando confirmação de estoque e valor do frete! ✨`;
+    msg += `Aguardando confirmação do pedido! ✨`;
 
-    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`;
+    const cleanNumber = whatsappNumber.replace(/\D/g, '');
+    const url = `https://wa.me/${cleanNumber}?text=${encodeURIComponent(msg)}`;
     window.open(url, '_blank');
   });
 </script>

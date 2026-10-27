@@ -17,27 +17,24 @@ const hasMultiple = variations.length > 1;
 const initialVariation = variations[0] || { name: 'Padrão', price: product.price, image: product.image };
 const initialPrice = initialVariation.price ?? product.price;
 const initialImage = initialVariation.image ?? product.image;
+
+// Empacota os dados de forma 100% segura contra quebra de aspas e compilação do Astro
+const safePayload = encodeURIComponent(JSON.stringify({ product, variations }));
 ---
 
 <div 
   class="bg-white rounded-2xl sm:rounded-3xl overflow-hidden border border-neutral-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group product-item"
   data-card-id={product.id}
-  data-product-name={product.name}
-  data-product-price={product.price}
-  data-product-category={product.category}
-  data-product-image={product.image}
+  data-product-payload={safePayload}
   data-category={product.category}
 >
-  <!-- Dados completos do produto para o modal rápido (imune a erros de aspas) -->
-  <script type="application/json" class="product-raw-data" set:html={JSON.stringify({ product, variations })} />
-
   <!-- Imagem com Ação de Abrir Modal -->
   <div class="relative w-full aspect-square overflow-hidden bg-neutral-100 cursor-pointer" data-open-modal>
     <img 
       data-card-img
       src={initialImage} 
       alt={product.name} 
-      class="w-full h-full object-cover group-hover:scale-105 transition-all duration-300 ease-out" 
+      class="w-full h-full object-cover group-hover:scale-105 transition-all duration-300 ease-out select-none" 
       loading="lazy" 
     />
     
@@ -47,7 +44,7 @@ const initialImage = initialVariation.image ?? product.image;
       </span>
     )}
 
-    <!-- 👁️ Ícone de Olho / Abrir Detalhes -->
+    <!-- Ícone de Olho / Abrir Detalhes -->
     <div 
       class="absolute top-2.5 right-2.5 z-10 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/90 hover:bg-white text-neutral-700 hover:text-neutral-900 backdrop-blur-md flex items-center justify-center shadow-md transition-all duration-200 hover:scale-110"
       title="Ver detalhes"
@@ -154,20 +151,14 @@ const initialImage = initialVariation.image ?? product.image;
     const price = Number(opt.dataset.price);
     const image = opt.dataset.image;
 
-    // Atualiza preço
     const priceEl = card.querySelector('[data-card-price]');
     if (priceEl && !isNaN(price)) {
       priceEl.textContent = `R$ ${price.toFixed(2).replace('.', ',')}`;
     }
 
-    // Atualiza imagem
     const imgEl = card.querySelector('[data-card-img]') as HTMLImageElement | null;
     if (imgEl && image) {
-      imgEl.style.opacity = '0.5';
-      setTimeout(() => {
-        imgEl.src = image;
-        imgEl.style.opacity = '1';
-      }, 150);
+      imgEl.src = image;
     }
   });
 
@@ -182,50 +173,45 @@ const initialImage = initialVariation.image ?? product.image;
     const card = addBtn.closest('[data-card-id]') as HTMLElement;
     if (!card) return;
 
-    // Obtém os dados do produto dos atributos do card
-    const id = card.dataset.cardId || '';
-    const name = card.dataset.productName || '';
-    const basePrice = Number(card.dataset.productPrice) || 0;
-    const category = card.dataset.productCategory || '';
-    const baseImage = card.dataset.productImage || '';
+    const rawPayload = card.dataset.productPayload;
+    if (!rawPayload) return;
 
-    // Obtém a variação selecionada (se houver select)
-    const select = card.querySelector('.card-variation-select') as HTMLSelectElement | null;
-    let selectedSize = 'Padrão';
-    let finalPrice = basePrice;
-    let finalImage = baseImage;
+    try {
+      const { product, variations } = JSON.parse(decodeURIComponent(rawPayload));
+      const select = card.querySelector('.card-variation-select') as HTMLSelectElement | null;
+      
+      let selectedSize = 'Padrão';
+      let finalPrice = product.price;
+      let finalImage = product.image;
 
-    if (select && select.selectedOptions[0]) {
-      const opt = select.selectedOptions[0];
-      selectedSize = opt.value;
-      finalPrice = Number(opt.dataset.price) || basePrice;
-      finalImage = opt.dataset.image || baseImage;
+      if (select && select.selectedOptions[0]) {
+        const opt = select.selectedOptions[0];
+        selectedSize = opt.value;
+        finalPrice = Number(opt.dataset.price) || product.price;
+        finalImage = opt.dataset.image || product.image;
+      } else if (variations && variations[0]) {
+        selectedSize = variations[0].name;
+        finalPrice = variations[0].price ?? product.price;
+        finalImage = variations[0].image || product.image;
+      }
+
+      addToCart(product, selectedSize, finalPrice, finalImage, 1);
+
+      const btnText = addBtn.querySelector('.btn-text');
+      const originalText = btnText ? btnText.textContent : 'Add';
+
+      addBtn.classList.remove('bg-neutral-900', 'hover:bg-neutral-800');
+      addBtn.classList.add('bg-emerald-600', 'hover:bg-emerald-700');
+      if (btnText) btnText.textContent = '✓';
+
+      setTimeout(() => {
+        addBtn.classList.remove('bg-emerald-600', 'hover:bg-emerald-700');
+        addBtn.classList.add('bg-neutral-900', 'hover:bg-neutral-800');
+        if (btnText) btnText.textContent = originalText;
+      }, 700);
+    } catch (err) {
+      console.error('Erro ao adicionar produto:', err);
     }
-
-    const productObj = {
-      id,
-      name,
-      price: basePrice,
-      category,
-      image: baseImage
-    };
-
-    // Adiciona ao Carrinho
-    addToCart(productObj as any, selectedSize, finalPrice, finalImage, 1);
-
-    // Efeito Visual de Confirmação no Botão
-    const btnText = addBtn.querySelector('.btn-text');
-    const originalText = btnText ? btnText.textContent : 'Add';
-
-    addBtn.classList.remove('bg-neutral-900', 'hover:bg-neutral-800');
-    addBtn.classList.add('bg-emerald-600', 'hover:bg-emerald-700');
-    if (btnText) btnText.textContent = '✓';
-
-    setTimeout(() => {
-      addBtn.classList.remove('bg-emerald-600', 'hover:bg-emerald-700');
-      addBtn.classList.add('bg-neutral-900', 'hover:bg-neutral-800');
-      if (btnText) btnText.textContent = originalText;
-    }, 800);
   });
 
   // 3. Clique para Abrir o Modal de Detalhes
@@ -241,19 +227,19 @@ const initialImage = initialVariation.image ?? product.image;
     const card = trigger.closest('[data-card-id]') as HTMLElement;
     if (!card) return;
 
-    const rawDataScript = card.querySelector('.product-raw-data');
-    if (!rawDataScript) return;
+    const rawPayload = card.dataset.productPayload;
+    if (!rawPayload) return;
 
     try {
-      const { product, variations } = JSON.parse(rawDataScript.textContent || '{}');
+      const data = JSON.parse(decodeURIComponent(rawPayload));
       const select = card.querySelector('.card-variation-select') as HTMLSelectElement | null;
       const initialVariationIndex = select ? select.selectedIndex : 0;
 
       window.dispatchEvent(new CustomEvent('open-quickview', { 
-        detail: { product: { ...product, variations }, initialVariationIndex } 
+        detail: { ...data, initialVariationIndex } 
       }));
     } catch (err) {
-      console.error('Erro ao abrir detalhes:', err);
+      console.error('Erro ao decodificar produto para o modal:', err);
     }
   });
 </script>

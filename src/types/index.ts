@@ -73,6 +73,29 @@ export interface TrustBadge {
   icon?: "shield" | "truck" | "clock" | "sparkles";
 }
 
+export interface DaySchedule {
+  open: string; // Ex: "10:00" ou "00:00"
+  close: string; // Ex: "19:00" ou "23:59"
+  closed?: boolean; // Se for folga/fechado o dia todo
+}
+
+export interface BusinessHoursConfig {
+  /** Se false ou omitido, o catálogo fica aberto 24h */
+  enabled?: boolean;
+  /** Mensagem customizada opcional para quando estiver fechado */
+  closedMessage?: string;
+  /** Escala semanal */
+  schedule?: {
+    domingo?: DaySchedule;
+    segunda?: DaySchedule;
+    terca?: DaySchedule;
+    quarta?: DaySchedule;
+    quinta?: DaySchedule;
+    sexta?: DaySchedule;
+    sabado?: DaySchedule;
+  };
+}
+
 export interface SiteConfig {
   name: string;
   tagline: string;
@@ -91,4 +114,5 @@ export interface SiteConfig {
   trustBadges?: TrustBadge[];
   contact?: BusinessContact;
   socials?: SocialLinks;
+  businessHours?: BusinessHoursConfig;
 }

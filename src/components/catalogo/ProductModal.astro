@@ -1,243 +1,203 @@
 ---
-// ProductModal.astro - Componente Único Global
+// src/components/catalogo/ProductModal.astro
 ---
 
 <div 
-  id="product-modal-container" 
-  class="fixed inset-0 z-50 flex items-end sm:items-center justify-center pointer-events-none opacity-0 transition-opacity duration-300"
-  aria-hidden="true"
+  id="product-quickview-modal" 
+  class="fixed inset-0 z-50 hidden items-end sm:items-center justify-center p-0 sm:p-4 md:p-6"
 >
   <!-- Backdrop Escuro com Blur -->
-  <div id="modal-backdrop" class="fixed inset-0 bg-neutral-950/60 backdrop-blur-sm transition-opacity"></div>
+  <div id="quickview-backdrop" class="absolute inset-0 bg-neutral-950/70 backdrop-blur-sm cursor-pointer transition-opacity"></div>
 
-  <!-- Janela Modal (Bottom-sheet no mobile / Pop-up no desktop) -->
-  <div 
-    id="modal-card"
-    class="relative w-full sm:max-w-lg bg-white rounded-t-3xl sm:rounded-3xl shadow-2xl overflow-hidden pointer-events-auto transform translate-y-full sm:translate-y-4 sm:scale-95 transition-all duration-300 max-h-[90vh] flex flex-col z-10"
-  >
-    <!-- Barra de Puxar (Visual Drag Indicator para Mobile) -->
-    <div class="sm:hidden flex justify-center pt-3 pb-1">
-      <div class="w-12 h-1 bg-neutral-200 rounded-full"></div>
+  <!-- Caixa do Modal: Bottom-sheet no mobile e Card centralizado no Desktop -->
+  <div class="relative bg-white w-full sm:max-w-2xl rounded-t-3xl sm:rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row max-h-[88vh] sm:max-h-[90vh] z-10 border-t sm:border border-neutral-100 transform transition-transform duration-300 ease-out">
+    
+    <!-- Puxador visual (Apenas Mobile) -->
+    <div class="sm:hidden w-full flex justify-center pt-2.5 pb-1 bg-white cursor-pointer" id="mobile-drag-handle">
+      <div class="w-10 h-1 rounded-full bg-neutral-300"></div>
     </div>
 
-    <!-- Botão Fechar -->
+    <!-- Botão Fechar Flutuante -->
     <button 
-      id="modal-close-btn"
-      class="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 w-8 h-8 rounded-full bg-neutral-100 hover:bg-neutral-200 text-neutral-600 flex items-center justify-center transition-colors"
+      id="close-quickview-btn" 
+      type="button"
+      class="absolute top-3 right-3 z-30 w-8 h-8 rounded-full bg-white/90 hover:bg-white text-neutral-600 hover:text-neutral-900 flex items-center justify-center shadow-md transition-all active:scale-95 cursor-pointer font-bold text-sm"
       aria-label="Fechar"
     >
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" />
-      </svg>
+      ✕
     </button>
 
-    <!-- Conteúdo com Scroll -->
-    <div class="overflow-y-auto grow p-4 sm:p-6 flex flex-col gap-4">
-      
-      <!-- Imagem Grande em Destaque -->
-      <div class="relative w-full aspect-video sm:aspect-4/3 rounded-2xl overflow-hidden bg-neutral-100">
-        <img id="modal-img" src="" alt="" class="w-full h-full object-cover" />
-        <span id="modal-badge" class="hidden absolute top-3 left-3 bg-neutral-900/60 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border border-white/20"></span>
-      </div>
+    <!-- Imagem do Produto (Mais compacta no mobile para não empurrar as informações) -->
+    <div class="w-full md:w-1/2 h-52 sm:h-64 md:h-auto md:aspect-auto bg-neutral-100 relative shrink-0">
+      <img id="qv-img" src="" alt="" class="w-full h-full object-cover select-none" />
+    </div>
 
-      <!-- Cabeçalho do Produto -->
+    <!-- Área de Conteúdo e Ações -->
+    <div class="p-4 sm:p-6 w-full md:w-1/2 flex flex-col justify-between overflow-y-auto">
       <div>
-        <span id="modal-category" class="text-[10px] font-bold text-neutral-400 uppercase tracking-widest block"></span>
-        <h3 id="modal-title" class="text-lg sm:text-xl font-black text-neutral-900 leading-snug mt-0.5"></h3>
+        <span id="qv-category" class="text-[9px] sm:text-[10px] font-bold text-neutral-400 uppercase tracking-widest"></span>
+        <h3 id="qv-title" class="text-base sm:text-xl font-bold text-neutral-900 mt-0.5 sm:mt-1 leading-snug"></h3>
         
-        <div class="flex items-baseline gap-2 mt-2">
-          <span id="modal-price" class="text-xl sm:text-2xl font-black text-neutral-900"></span>
-          <span id="modal-old-price" class="text-xs text-neutral-400 line-through hidden"></span>
+        <div class="mt-2 sm:mt-3">
+          <span id="qv-price" class="text-lg sm:text-2xl font-black text-brand-primary"></span>
+        </div>
+
+        <p id="qv-description" class="text-xs text-neutral-500 mt-2 leading-relaxed hidden line-clamp-4 sm:line-clamp-none"></p>
+
+        <!-- Seletor de Variações -->
+        <div id="qv-variations-container" class="mt-3 sm:mt-4 hidden">
+          <label class="block text-xs font-bold text-neutral-700 mb-1.5">Escolha uma opção:</label>
+          <div id="qv-variations-list" class="flex flex-wrap gap-1.5 sm:gap-2"></div>
         </div>
       </div>
 
-      <!-- Descrição (Essencial para joias, tecidos ou receitas) -->
-      <p id="modal-desc" class="text-xs sm:text-sm text-neutral-600 leading-relaxed font-normal">
-        Sem descrição disponível.
-      </p>
-
-      <!-- Seleção de Variações em Estilo "Pill Buttons" -->
-      <div id="modal-sizes-container" class="flex flex-col gap-2 pt-2 border-t border-neutral-100">
-        <label class="text-xs font-bold text-neutral-800">Escolha a opção:</label>
-        <div id="modal-sizes-list" class="flex flex-wrap gap-2"></div>
+      <!-- Rodapé com Botão Fixo de Compra -->
+      <div class="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-neutral-100 pb-2 sm:pb-0">
+        <button 
+          id="qv-btn-add" 
+          type="button"
+          class="w-full py-3 sm:py-3.5 bg-brand-dark hover:bg-brand-primary active:scale-[0.98] text-white font-bold rounded-2xl flex items-center justify-center gap-2 transition-all shadow-md text-xs sm:text-sm cursor-pointer"
+        >
+          <svg class="w-4 h-4 stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+          </svg>
+          <span>Adicionar à Sacola</span>
+        </button>
       </div>
     </div>
 
-    <!-- Rodapé Fixo com Quantidade e Botão Adicionar -->
-    <div class="p-4 sm:p-6 bg-neutral-50/80 border-t border-neutral-100 flex items-center gap-3">
-      
-      <!-- Seletor de Quantidade (- 1 +) -->
-      <div class="flex items-center bg-white border border-neutral-200 rounded-xl p-1 shadow-sm shrink-0">
-        <button id="qty-minus" class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg text-neutral-600 hover:bg-neutral-100 font-bold flex items-center justify-center transition-colors">
-          -
-        </button>
-        <span id="qty-value" class="w-8 text-center text-xs sm:text-sm font-bold text-neutral-800">1</span>
-        <button id="qty-plus" class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg text-neutral-600 hover:bg-neutral-100 font-bold flex items-center justify-center transition-colors">
-          +
-        </button>
-      </div>
-
-      <!-- Botão de Inserção -->
-      <button 
-        id="modal-add-btn" 
-        class="grow py-3 px-4 bg-neutral-900 hover:bg-neutral-800 active:scale-[0.98] text-white font-bold text-xs sm:text-sm rounded-xl flex items-center justify-between shadow-md transition-all"
-      >
-        <span>Adicionar</span>
-        <span id="modal-btn-total">R$ 0,00</span>
-      </button>
-
-    </div>
   </div>
 </div>
 
 <script>
   import { addToCart } from '../../scripts/cartStore';
 
+  const modal = document.getElementById('product-quickview-modal');
+  const backdrop = document.getElementById('quickview-backdrop');
+  const closeBtn = document.getElementById('close-quickview-btn');
+  const dragHandle = document.getElementById('mobile-drag-handle');
+  const imgEl = document.getElementById('qv-img') as HTMLImageElement;
+  const catEl = document.getElementById('qv-category');
+  const titleEl = document.getElementById('qv-title');
+  const priceEl = document.getElementById('qv-price');
+  const descEl = document.getElementById('qv-description');
+  const varContainer = document.getElementById('qv-variations-container');
+  const varList = document.getElementById('qv-variations-list');
+  const btnAdd = document.getElementById('qv-btn-add');
+
   let currentProduct: any = null;
-  let selectedSize: string = '';
-  let quantity: number = 1;
+  let selectedVariation: any = null;
 
-  const modalContainer = document.getElementById('product-modal-container')!;
-  const modalCard = document.getElementById('modal-card')!;
-  const backdrop = document.getElementById('modal-backdrop')!;
-  const closeBtn = document.getElementById('modal-close-btn')!;
-
-  const modalImg = document.getElementById('modal-img') as HTMLImageElement;
-  const modalTitle = document.getElementById('modal-title')!;
-  const modalCategory = document.getElementById('modal-category')!;
-  const modalPrice = document.getElementById('modal-price')!;
-  const modalDesc = document.getElementById('modal-desc')!;
-  const sizesContainer = document.getElementById('modal-sizes-container')!;
-  const sizesList = document.getElementById('modal-sizes-list')!;
-  
-  const qtyMinus = document.getElementById('qty-minus')!;
-  const qtyPlus = document.getElementById('qty-plus')!;
-  const qtyValue = document.getElementById('qty-value')!;
-  const modalAddBtn = document.getElementById('modal-add-btn')!;
-  const modalBtnTotal = document.getElementById('modal-btn-total')!;
-
-  function updateTotal() {
-    qtyValue.textContent = quantity.toString();
-    if (currentProduct) {
-      const variations = currentProduct.variations || [];
-      const v = variations.find((item: any) => item.name === selectedSize);
-      const unitPrice = v?.price ?? currentProduct.price;
-      const total = unitPrice * quantity;
-      modalBtnTotal.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
-    }
-  }
-
-  function openModal(data: any) {
-    const product = data.product;
-    const variations = product.variations && product.variations.length > 0
-      ? product.variations
-      : (product.sizes || []).map((s: string) => ({ name: s, price: product.price, image: product.image }));
-
-    let currentVarIndex = data.initialVariationIndex || 0;
-    currentProduct = product;
-    quantity = 1;
-
-    function applyVariation(index: number) {
-      currentVarIndex = index;
-      const v = variations[index];
-      selectedSize = v.name;
-      
-      if (v.image) modalImg.src = v.image;
-      else modalImg.src = product.image;
-
-      const currentPrice = v.price ?? product.price;
-      modalPrice.textContent = `R$ ${currentPrice.toFixed(2).replace('.', ',')}`;
-
-      updateTotal();
-    }
-
-    modalImg.src = product.image;
-    modalTitle.textContent = product.name;
-    modalCategory.textContent = product.category;
-    modalDesc.textContent = product.description || 'Produto artesanal com acabamento de alta qualidade.';
-
-    sizesList.innerHTML = '';
-    if (variations.length > 0) {
-      sizesContainer.classList.remove('hidden');
-      variations.forEach((v: any, idx: number) => {
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = `py-2 px-3.5 text-xs font-semibold rounded-xl border transition-all flex items-center gap-1.5 ${
-          idx === currentVarIndex
-            ? 'bg-neutral-900 text-white border-neutral-900 shadow-sm'
-            : 'bg-white text-neutral-700 border-neutral-200 hover:border-neutral-400'
-        }`;
-        
-        const priceDiff = v.price && v.price !== product.price 
-          ? `(R$ ${v.price.toFixed(2).replace('.', ',')})` 
-          : '';
-        btn.textContent = `${v.name} ${priceDiff}`.trim();
-
-        btn.onclick = () => {
-          sizesList.querySelectorAll('button').forEach((b) => {
-            b.className = 'py-2 px-3.5 text-xs font-semibold rounded-xl border border-neutral-200 text-neutral-700 bg-white hover:border-neutral-400 transition-all';
-          });
-          btn.className = 'py-2 px-3.5 text-xs font-semibold rounded-xl border border-neutral-900 bg-neutral-900 text-white shadow-sm transition-all';
-          applyVariation(idx);
-        };
-        sizesList.appendChild(btn);
-      });
-    } else {
-      sizesContainer.classList.add('hidden');
-    }
-
-    applyVariation(currentVarIndex);
-
-    modalContainer.classList.remove('pointer-events-none', 'opacity-0');
-    modalContainer.classList.add('pointer-events-auto', 'opacity-100');
-    modalCard.classList.remove('translate-y-full', 'sm:scale-95');
-    modalCard.classList.add('translate-y-0', 'sm:scale-100');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeModal() {
-    modalContainer.classList.add('opacity-0', 'pointer-events-none');
-    modalContainer.classList.remove('opacity-100', 'pointer-events-auto');
-    modalCard.classList.add('translate-y-full', 'sm:translate-y-4', 'sm:scale-95');
-    modalCard.classList.remove('translate-y-0', 'sm:scale-100');
+  function unlockScroll() {
     document.body.style.overflow = '';
   }
 
-  // Quantidade (+ e -)
-  qtyMinus.onclick = () => {
-    if (quantity > 1) {
-      quantity--;
-      updateTotal();
+  function close() {
+    if (!modal) return;
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    unlockScroll();
+  }
+
+  function open(detail: any) {
+    if (!modal) return;
+
+    try {
+      const { product, variations = [], initialVariationIndex = 0 } = detail;
+      if (!product) return;
+
+      currentProduct = product;
+      selectedVariation = variations[initialVariationIndex] || {
+        name: 'Padrão',
+        price: product.price,
+        image: product.image
+      };
+
+      if (imgEl) imgEl.src = selectedVariation.image || product.image;
+      if (catEl) catEl.textContent = product.category || '';
+      if (titleEl) titleEl.textContent = product.name || '';
+      
+      const price = selectedVariation.price ?? product.price;
+      if (priceEl) priceEl.textContent = `R$ ${Number(price).toFixed(2).replace('.', ',')}`;
+
+      if (descEl) {
+        if (product.description) {
+          descEl.textContent = product.description;
+          descEl.classList.remove('hidden');
+        } else {
+          descEl.classList.add('hidden');
+        }
+      }
+
+      if (varContainer && varList) {
+        if (variations.length > 1) {
+          varContainer.classList.remove('hidden');
+          varList.innerHTML = variations.map((v: any, idx: number) => `
+            <button 
+              type="button"
+              data-var-idx="${idx}"
+              class="px-2.5 py-1.5 sm:px-3 sm:py-1.5 rounded-xl text-[11px] sm:text-xs font-semibold border transition-all cursor-pointer ${
+                idx === initialVariationIndex 
+                  ? 'bg-neutral-900 text-white border-neutral-900 shadow-xs' 
+                  : 'bg-white text-neutral-700 border-neutral-200 hover:bg-neutral-50 active:bg-neutral-100'
+              }"
+            >
+              ${v.name}
+            </button>
+          `).join('');
+
+          varList.querySelectorAll('[data-var-idx]').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+              const idx = Number((e.currentTarget as HTMLElement).dataset.varIdx);
+              selectedVariation = variations[idx];
+
+              if (imgEl) imgEl.src = selectedVariation.image || product.image;
+              if (priceEl) {
+                const p = selectedVariation.price ?? product.price;
+                priceEl.textContent = `R$ ${Number(p).toFixed(2).replace('.', ',')}`;
+              }
+
+              varList.querySelectorAll('button').forEach((b, bIdx) => {
+                b.className = bIdx === idx 
+                  ? 'px-2.5 py-1.5 sm:px-3 sm:py-1.5 rounded-xl text-[11px] sm:text-xs font-semibold border transition-all bg-neutral-900 text-white border-neutral-900 shadow-xs' 
+                  : 'px-2.5 py-1.5 sm:px-3 sm:py-1.5 rounded-xl text-[11px] sm:text-xs font-semibold border transition-all bg-white text-neutral-700 border-neutral-200 hover:bg-neutral-50 active:bg-neutral-100';
+              });
+            });
+          });
+        } else {
+          varContainer.classList.add('hidden');
+        }
+      }
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+
+    } catch (err) {
+      console.error('Falha ao abrir modal:', err);
+      unlockScroll();
     }
-  };
+  }
 
-  qtyPlus.onclick = () => {
-    quantity++;
-    updateTotal();
-  };
-
-  // ÚNICA ação de Adicionar ao Carrinho do Modal
-  modalAddBtn.onclick = () => {
-    if (currentProduct) {
-      const variations = currentProduct.variations || [];
-      const v = variations.find((item: any) => item.name === selectedSize);
-      const finalPrice = v?.price ?? currentProduct.price;
-      const finalImage = v?.image ?? currentProduct.image;
-
-      addToCart(currentProduct, selectedSize, finalPrice, finalImage, quantity);
-      closeModal();
-    }
-  };
-
-  closeBtn.onclick = closeModal;
-  backdrop.onclick = closeModal;
-
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeModal();
+  window.addEventListener('open-quickview', (e: any) => {
+    open(e.detail);
   });
 
-  // Escuta abertura sem duplicar evento na window
-  window.addEventListener('open-quickview', (e: any) => {
-    openModal(e.detail);
+  closeBtn?.addEventListener('click', close);
+  backdrop?.addEventListener('click', close);
+  dragHandle?.addEventListener('click', close);
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') close();
+  });
+
+  btnAdd?.addEventListener('click', () => {
+    if (!currentProduct) return;
+    const finalPrice = selectedVariation?.price ?? currentProduct.price;
+    const finalImage = selectedVariation?.image || currentProduct.image;
+    const sizeName = selectedVariation?.name || 'Padrão';
+
+    addToCart(currentProduct, sizeName, finalPrice, finalImage, 1);
+    close();
   });
 </script>

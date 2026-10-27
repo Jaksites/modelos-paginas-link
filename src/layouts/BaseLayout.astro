@@ -3,6 +3,7 @@ import Header from '../components/catalogo/Header.astro';
 import Footer from '../components/catalogo/Footer.astro';
 import CartDrawer from '../components/catalogo/CartDrawer.astro';
 import CheckoutModal from '../components/catalogo/CheckoutModal.astro';
+import ProductModal from '../components/catalogo/ProductModal.astro'; 
 import WhatsAppButton from '../components/catalogo/WhatsAppButton.astro';
 import { siteConfig as defaultSiteConfig } from '../config/active';
 import type { SiteConfig } from '../types';
@@ -58,6 +59,7 @@ const { theme } = config;
 
     <CartDrawer />
     <CheckoutModal whatsappNumber={config.whatsappNumber} />
+    <ProductModal />
     <WhatsAppButton phone={config.whatsappNumber} />
 
     <script is:inline>
