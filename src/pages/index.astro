@@ -1,79 +1,31 @@
 ---
-import '../styles/index.css';
-import Navbar from '../components/Navbar.astro';
-import Hero from '../components/Hero.astro';
-import Modelos from '../components/Modelos.astro';
-import Cta from '../components/Cta.astro';
-import ComoFunciona from '../components/ComoFunciona.astro';
-import Planos from '../components/Planos.astro';
-import ServicosAdicionais from '../components/ServicosAdicionais.astro';
-import Faq from '../components/Faq.astro';
-import Footer from '../components/Footer.astro';
-import WhatsappFloat from '../components/WhatsappFloat.astro';
+// src/pages/index.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CategoryFilter from '../components/catalogo/CategoryFilter.astro';
+import HeroBanner from '../components/catalogo/HeroBanner.astro';
+import ProductGrid from '../components/catalogo/ProductGrid.astro';
+import { siteConfig, products } from '../config/active';
 
-// Informações globais de SEO
-const siteUrl = "https://sites-bio.pages.dev";
-const pageTitle = "Jak Digital — Mini Sites Prontos para Bio do Instagram";
-const pageDescription = "Modelos profissionais de mini sites para a bio do seu Instagram. Escolha um modelo, personalize e converta seguidores em clientes no WhatsApp.";
-const ogImage = `${siteUrl}/Assets/og-image.png`; // Crie essa imagem de capa na pasta public/Assets
+// Importe os componentes da sua sacola:
+import ProductModal from '../components/catalogo/ProductModal.astro'; 
+import CartDrawer from '../components/catalogo/CartDrawer.astro';
+import CartFloatingBar from '../components/catalogo/CartFloatingBar.astro';
+
+const categories = [...new Set(products.map(p => p.category).filter(Boolean))];
 ---
 
-<!doctype html>
-<html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="robots" content="index, follow" />
-    <meta name="author" content="Jak Digital Design" />
+<BaseLayout>
+  <HeroBanner banner={siteConfig.banner} />
+  
+  <!-- Filtros -->
+  <CategoryFilter categories={categories} />
 
-    <!-- SEO Primário -->
-    <title>{pageTitle}</title>
-    <meta name="title" content={pageTitle} />
-    <meta name="description" content={pageDescription} />
-    <meta name="keywords" content="mini site bio, link na bio instagram, pagina de links, cartao de visita digital, site para psicologos, site para advogados, landing page whatsapp, jak digital" />
-    <link rel="canonical" href={siteUrl} />
+  <!-- Grade de Produtos Dinâmica -->
+  <ProductGrid products={products} />
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/Assets/favicon1.png" />
-
-    <!-- Open Graph / Facebook / WhatsApp / Instagram / LinkedIn -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={siteUrl} />
-    <meta property="og:title" content={pageTitle} />
-    <meta property="og:description" content={pageDescription} />
-    <meta property="og:image" content={ogImage} />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:locale" content="pt_BR" />
-
-    <!-- Twitter / X -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={siteUrl} />
-    <meta property="twitter:title" content={pageTitle} />
-    <meta property="twitter:description" content={pageDescription} />
-    <meta property="twitter:image" content={ogImage} />
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-
-    <Navbar />
-    <Hero />
-    <Modelos />
-    <ComoFunciona />
-    <Planos />
-    <ServicosAdicionais />
-    <Faq />
-    <Cta />
-    <Footer />
-    <WhatsappFloat />
-
-  </body>
-</html>
-
+  <!-- Componentes Interativos Globais -->
+  <ProductModal />
+  <CartDrawer />
+  <CartFloatingBar 
+  />
+</BaseLayout>

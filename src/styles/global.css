@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+@theme {
+  /* Mapeia as classes do Tailwind (ex: bg-brand-primary, text-brand-surface) */
+  /* para as variáveis que o preset do cliente vai injetar */
+  --color-brand-primary: var(--brand-primary, #8343c3);
+  --color-brand-primary-hover: var(--brand-primary-hover, #a855f7);
+  --color-brand-accent: var(--brand-accent, rgba(168, 85, 247, 0.15));
+  --color-brand-accent-text: var(--brand-accent-text, #f8f6fc);
+  --color-brand-dark: var(--brand-dark, #1a1422);
+  --color-brand-surface: var(--brand-surface, #09070c);
+  
+  /* Tipografia */
+  --font-sans: "Inter", "Segoe UI", sans-serif;
+  --font-display: "Sora", "Segoe UI", sans-serif;
+}
+
+/* Regras base globais unificadas */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--brand-surface, #09070c);
+    color: var(--text, #f8f6fc);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--brand-primary, #a855f7);
+    outline-offset: 3px;
+  }
+}

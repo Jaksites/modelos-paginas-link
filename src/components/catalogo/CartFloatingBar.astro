@@ -1,0 +1,97 @@
+---
+// src/components/catalogo/CartFloatingBar.astro
+
+
+---
+
+<aside 
+  id="cart-floating-bar" 
+  class="fixed bottom-3 inset-x-3 sm:inset-x-auto sm:left-1/2 sm:-translate-x-1/2 sm:w-full sm:max-w-md z-40 transform translate-y-32 opacity-0 pointer-events-none transition-all duration-300 ease-out"
+>
+  <div class="bg-neutral-950/95 backdrop-blur-md text-white p-3 sm:p-3.5 rounded-2xl shadow-2xl flex items-center justify-between gap-3 border border-neutral-800">
+    
+    <!-- Resumo dos itens -->
+    <div class="flex items-center gap-3 min-w-0">
+      <div class="relative w-9 h-9 rounded-xl bg-neutral-900 border border-neutral-800 flex items-center justify-center shrink-0 text-white">
+        <svg class="w-4 h-4 stroke-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+        </svg>
+        <span id="floating-cart-count" class="absolute -top-1.5 -right-1.5 bg-brand-primary text-white text-[10px] font-black w-4 h-4 rounded-full flex items-center justify-center shadow-sm">
+          0
+        </span>
+      </div>
+
+      <div class="flex flex-col min-w-0">
+        <span class="text-[10px] sm:text-[11px] text-neutral-400 font-medium leading-tight">Total do Pedido</span>
+        <span id="floating-cart-total" class="text-sm sm:text-base font-black tracking-tight text-white truncate">
+          R$ 0,00
+        </span>
+      </div>
+    </div>
+
+    <!-- Botão de Ação -->
+    <button 
+      type="button"
+      id="btn-open-cart"
+      class="bg-brand-primary hover:brightness-110 active:scale-95 text-white font-bold text-xs sm:text-sm px-4 py-2.5 rounded-xl flex items-center gap-2 transition-transform shadow-md shrink-0 cursor-pointer"
+    >
+      <span>Ver Sacola</span>
+      <svg class="w-4 h-4 stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+      </svg>
+    </button>
+  </div>
+</aside>
+
+<script>
+  import { getCartTotals } from '../../scripts/cartStore';
+
+  const floatingBar = document.getElementById('cart-floating-bar');
+  const countEl = document.getElementById('floating-cart-count');
+  const totalEl = document.getElementById('floating-cart-total');
+  const openCartBtn = document.getElementById('btn-open-cart');
+
+  
+
+ 
+
+  function renderFloatingBar() {
+    if (!floatingBar || !countEl || !totalEl) return;
+
+    const { totalCount, totalPrice } = getCartTotals();
+
+    if (totalCount > 0) {
+      countEl.textContent = totalCount.toString();
+      totalEl.textContent = `R$ ${totalPrice.toFixed(2).replace('.', ',')}`;
+      
+      // Animação de entrada
+      floatingBar.classList.remove('translate-y-32', 'opacity-0', 'pointer-events-none');
+      floatingBar.classList.add('translate-y-0', 'opacity-100', 'pointer-events-auto');
+      
+      
+    } else {
+      // Animação de saída
+      floatingBar.classList.add('translate-y-32', 'opacity-0', 'pointer-events-none');
+      floatingBar.classList.remove('translate-y-0', 'opacity-100', 'pointer-events-auto');
+      
+     
+    }
+  }
+
+  // 1. Atualiza ao carregar
+  renderFloatingBar();
+
+  // 2. Escuta atualizações do carrinho
+  window.addEventListener('cart:updated', renderFloatingBar);
+
+  // 3. Reajusta em caso de redimensionamento da tela
+  window.addEventListener('resize', () => {
+    const { totalCount } = getCartTotals();
+  
+  });
+
+  // 4. Ao clicar em 'Ver Sacola', abre o drawer
+  openCartBtn?.addEventListener('click', () => {
+    window.dispatchEvent(new CustomEvent('cart:open'));
+  });
+</script>

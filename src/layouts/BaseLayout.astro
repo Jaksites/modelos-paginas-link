@@ -1,0 +1,69 @@
+---
+import Header from '../components/catalogo/Header.astro';
+import Footer from '../components/catalogo/Footer.astro';
+import CartDrawer from '../components/catalogo/CartDrawer.astro';
+import CheckoutModal from '../components/catalogo/CheckoutModal.astro';
+import WhatsAppButton from '../components/catalogo/WhatsAppButton.astro';
+import { siteConfig as defaultSiteConfig } from '../config/active';
+import type { SiteConfig } from '../types';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  config?: SiteConfig; 
+  
+}
+
+const { 
+  config = defaultSiteConfig, 
+  title = `${config.name} | Catálogo Virtual`, 
+  description = config.tagline 
+} = Astro.props;
+
+const { theme } = config;
+---
+
+<!doctype html>
+<html 
+  lang="pt-BR"
+  style={`
+    --brand-primary: ${theme.primary};
+    --brand-primary-hover: ${theme.primaryHover};
+    --brand-accent: ${theme.accent};
+    --brand-accent-text: ${theme.accentText};
+    --brand-dark: ${theme.dark};
+    --brand-surface: ${theme.surface};
+  `}
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  </head>
+  <body class="bg-brand-surface text-gray-800 min-h-screen flex flex-col justify-between selection:bg-brand-accent selection:text-brand-accentText">
+    <Header config={config as SiteConfig} />
+
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-10 w-full grow">
+      <slot />
+    </main>
+
+    <Footer config={config as SiteConfig} />
+
+    <CartDrawer />
+    <CheckoutModal whatsappNumber={config.whatsappNumber} />
+    <WhatsAppButton phone={config.whatsappNumber} />
+
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', () => {
+        if (window.lucide) window.lucide.createIcons();
+      });
+    </script>
+  </body>
+</html>

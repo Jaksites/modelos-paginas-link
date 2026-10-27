@@ -1,0 +1,97 @@
+---
+interface Props {
+  categories: string[];
+}
+
+const { categories } = Astro.props;
+---
+
+<section class="mb-8">
+  <div class="flex items-center justify-between mb-4">
+    <h3 class="text-lg font-bold text-gray-900 flex items-center gap-2">
+      <i data-lucide="sliders-horizontal" class="w-4 h-4 text-brand-primary"></i>
+      Categorias
+    </h3>
+  </div>
+
+  <div class="flex items-center gap-2 overflow-x-auto pb-2" id="category-filters">
+    {['Todos', ...categories].map((cat, idx) => (
+      <button 
+        type="button"
+        data-category-btn={cat} 
+        class={`category-btn px-4 py-2 rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all ${
+          idx === 0 
+            ? 'bg-brand-dark text-white' 
+            : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50'
+        }`}
+      >
+        {cat}
+      </button>
+    ))}
+  </div>
+</section>
+<script>
+  function setupCategoryFilter() {
+    const filterContainer = document.getElementById('category-filters');
+    if (!filterContainer) return;
+
+    const buttons = filterContainer.querySelectorAll<HTMLButtonElement>('[data-category-btn]');
+    const emptyState = document.getElementById('grid-empty-state');
+
+    const normalize = (str: string = '') => 
+      str.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
+    buttons.forEach(btn => {
+      btn.onclick = () => {
+        const rawBtn = btn.getAttribute('data-category-btn') || '';
+        const selected = normalize(rawBtn);
+
+        // Estilo dos botões
+        buttons.forEach(b => {
+          b.className = 'category-btn px-4 py-2 rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all bg-white text-gray-600 border border-gray-200 hover:bg-gray-50';
+        });
+        btn.className = 'category-btn px-4 py-2 rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all bg-brand-dark text-white';
+
+        const items = document.querySelectorAll<HTMLElement>('.product-item');
+        let visibleCount = 0;
+
+        console.group(`🔍 Clicou no botão: "${rawBtn}"`);
+
+        items.forEach(item => {
+          const prodName = item.getAttribute('data-product-name');
+          const rawCat = item.getAttribute('data-product-category') || item.getAttribute('data-category') || '';
+          const prodCat = normalize(rawCat);
+
+          const matches = selected === 'todos' || prodCat === selected || prodCat.includes(selected) || selected.includes(prodCat);
+
+          if (matches) {
+            item.classList.remove('hidden');
+            item.style.display = '';
+            visibleCount++;
+          } else {
+            item.classList.add('hidden');
+            item.style.display = 'none';
+          }
+
+          // Mostra no console o que cada produto tem cadastrado
+          console.log(`Produto: "${prodName}" | Categoria lida: "${rawCat}" -> ${matches ? '✅ VISÍVEL' : '❌ OCULTO'}`);
+        });
+
+        console.log(`Total exibidos: ${visibleCount}`);
+        console.groupEnd();
+
+        // Controla mensagem de estado vazio do ProductGrid
+        if (emptyState) {
+          if (visibleCount === 0) {
+            emptyState.classList.remove('hidden');
+          } else {
+            emptyState.classList.add('hidden');
+          }
+        }
+      };
+    });
+  }
+
+  setupCategoryFilter();
+  document.addEventListener('astro:page-load', setupCategoryFilter);
+</script>

@@ -1,0 +1,81 @@
+---
+// src/pages/demo/[niche].astro
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CategoryFilter from '../../components/catalogo/CategoryFilter.astro';
+import HeroBanner from '../../components/catalogo/HeroBanner.astro';
+import ProductGrid from '../../components/catalogo/ProductGrid.astro';
+import ProductModal from '../../components/catalogo/ProductModal.astro';
+import CartFloatingBar from '../../components/catalogo/CartFloatingBar.astro';
+import { presets } from '../../presets';
+import type { SiteConfig, Product } from '../../types';
+
+// Tipagem do Preset para autocomplete perfeito
+interface PresetData {
+  slug: string;
+  name: string;
+  config: SiteConfig;
+  products: Product[];
+}
+
+export function getStaticPaths() {
+  return Object.values(presets).map((preset) => ({
+    params: { niche: preset.slug },
+    props: { preset: preset as PresetData },
+  }));
+}
+
+const { preset } = Astro.props as { preset: PresetData };
+const { config, products } = preset;
+const categories = [...new Set(products.map((p) => p.category))];
+---
+
+<BaseLayout config={config}>
+  <!-- 1. Barra de Demonstração (Fixa ou discreta no topo) -->
+  <header class="mb-4 sm:mb-6 p-2.5 sm:p-3 bg-white/80 backdrop-blur-md rounded-2xl border border-neutral-200/70 shadow-sm flex flex-wrap items-center justify-between gap-2.5 text-xs">
+    <div class="flex items-center gap-2">
+      <span class="relative flex h-2 w-2">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+      </span>
+      <span class="font-bold text-neutral-600">Modelo Ativo:</span>
+      <span class="text-brand-primary font-bold">{preset.name}</span>
+    </div>
+
+    <!-- Seletor Rápido de Nichos para seu Cliente Testar -->
+    <nav class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5">
+      <span class="text-neutral-400 mr-1 hidden sm:inline font-medium">Trocar Nicho:</span>
+      {Object.values(presets).map((p) => (
+        <a 
+          href={`/demo/${p.slug}`}
+          class={`px-3 py-1 rounded-lg text-xs font-semibold whitespace-nowrap transition-all duration-200 ${
+            p.slug === preset.slug 
+              ? 'bg-neutral-900 text-white shadow-sm' 
+              : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200/70'
+          }`}
+        >
+          {p.name.split(' ')[0]}
+        </a>
+      ))}
+    </nav>
+  </header>
+
+  <!-- 2. Conteúdo Principal da Loja -->
+  <main class="space-y-6 sm:space-y-8 pb-28">
+    
+    <!-- Hero Banner do Nicho -->
+    <HeroBanner banner={config.banner} />
+
+    <!-- Filtro de Categorias -->
+    <CategoryFilter categories={categories} />
+
+    <!-- Grade de Produtos com os Cards Ajustados -->
+    <ProductGrid products={products} />
+
+  </main>
+
+  <!-- 3. Modal Global de Detalhes (Aberto via clique no Card) -->
+  <ProductModal />
+
+  <!-- 4. Barra Flutuante de Carrinho / Checkout WhatsApp (Mobile First) -->
+  <CartFloatingBar whatsappNumber={config.whatsappNumber} storeName={config.name} />
+</BaseLayout>

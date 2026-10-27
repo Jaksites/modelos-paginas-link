@@ -1,0 +1,168 @@
+---
+import type { SiteConfig, BannerSlide } from '../../types';
+
+interface Props {
+  banner?: SiteConfig['banner'];
+}
+
+const { banner = {} as SiteConfig['banner'] } = Astro.props;
+
+// Normaliza para uma lista de slides
+const slides: BannerSlide[] = banner?.slides && banner?.slides.length > 0
+  ? banner?.slides
+  : (banner?.images && banner?.images.length > 0)
+    ? banner?.images.map(img => ({
+        image: img,
+        badge: banner?.badge,
+        title: banner?.title,
+        description: banner?.description,
+      }))
+    : [{
+        image: '',
+        badge: banner?.badge,
+        title: banner?.title,
+        description: banner?.description,
+      }];
+
+const hasMultipleSlides = slides.length > 1;
+const interval = banner?.autoplayInterval || 5000;
+---
+
+<section 
+  id="hero-banner-carousel"
+  data-interval={interval}
+  class="relative w-full rounded-3xl overflow-hidden bg-brand-dark text-white p-6 sm:p-12 mb-8 shadow-xl min-h-70 sm:min-h-90 flex items-center"
+>
+  <!-- SLIDES DE IMAGENS -->
+  {slides.map((slide, index) => (
+    <div 
+      class={`carousel-slide absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+      data-slide-index={index}
+    >
+      {slide.image ? (
+        <img 
+          src={slide.image} 
+          alt={slide.title || 'Banner da Loja'} 
+          class="w-full h-full object-cover select-none"
+          loading={index === 0 ? 'eager' : 'lazy'}
+        />
+      ) : (
+       
+        <div class="w-full h-full bg-linear-to-r from-brand-dark via-purple-950 to-brand-dark"></div>
+      )}
+
+      <!-- Overlay Escuro Gradual para garantir contraste do texto -->
+      <div class="absolute inset-0 bg-linear-to-r from-black/85 via-black/55 to-transparent"></div>
+    </div>
+  ))}
+
+  <!-- CONTEÚDO TEXTUAL SOBRE O BANNER -->
+  <div class="relative z-20 max-w-xl">
+    {slides.map((slide, index) => (
+      <div 
+        class={`carousel-text-slide transition-all duration-700 ${index === 0 ? 'block' : 'hidden'}`}
+        data-text-index={index}
+      >
+        {slide.badge && (
+          <span class="inline-block px-3 py-1 bg-white/15 text-brand-accent backdrop-blur-md rounded-full text-xs font-bold tracking-wider uppercase mb-3 border border-white/10">
+            {slide.badge}
+          </span>
+        )}
+
+        {slide.title && (
+          <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight text-white drop-shadow-sm">
+            {slide.title}
+          </h2>
+        )}
+
+        {slide.description && (
+          <p class="text-sm sm:text-base text-gray-200 mt-2 font-normal leading-relaxed drop-shadow">
+            {slide.description}
+          </p>
+        )}
+      </div>
+    ))}
+  </div>
+
+  <!-- INDICADORES / BOLINHAS (somente se tiver mais de 1 imagem) -->
+  {hasMultipleSlides && (
+    <div class="absolute bottom-4 right-6 z-20 flex items-center gap-2">
+      {slides.map((_, index) => (
+        <button
+          type="button"
+          data-dot-index={index}
+          aria-label={`Ir para o slide ${index + 1}`}
+          class={`h-2 rounded-full transition-all duration-300 ${index === 0 ? 'w-6 bg-brand-primary' : 'w-2 bg-white/50 hover:bg-white'}`}
+        />
+      ))}
+    </div>
+  )}
+</section>
+
+<script>
+  const carousel = document.getElementById('hero-banner-carousel');
+  const slides = carousel?.querySelectorAll<HTMLElement>('.carousel-slide');
+  const textSlides = carousel?.querySelectorAll<HTMLElement>('.carousel-text-slide');
+  const dots = carousel?.querySelectorAll<HTMLButtonElement>('[data-dot-index]');
+
+  if (carousel && slides && slides.length > 1) {
+    const intervalTime = Number(carousel.dataset.interval) || 5000;
+    let currentIndex = 0;
+    let timer: number | null = null;
+
+    function goToSlide(newIndex: number) {
+      if (!slides || !textSlides) return;
+
+      // Desativa o atual
+      slides[currentIndex].classList.remove('opacity-100', 'z-10');
+      slides[currentIndex].classList.add('opacity-0', 'z-0');
+      textSlides[currentIndex].classList.add('hidden');
+      textSlides[currentIndex].classList.remove('block');
+
+      if (dots && dots[currentIndex]) {
+        dots[currentIndex].classList.remove('w-6', 'bg-brand-primary');
+        dots[currentIndex].classList.add('w-2', 'bg-white/50');
+      }
+
+      // Ativa o próximo
+      currentIndex = (newIndex + slides.length) % slides.length;
+
+      slides[currentIndex].classList.remove('opacity-0', 'z-0');
+      slides[currentIndex].classList.add('opacity-100', 'z-10');
+      textSlides[currentIndex].classList.remove('hidden');
+      textSlides[currentIndex].classList.add('block');
+
+      if (dots && dots[currentIndex]) {
+        dots[currentIndex].classList.remove('w-2', 'bg-white/50');
+        dots[currentIndex].classList.add('w-6', 'bg-brand-primary');
+      }
+    }
+
+    function startAutoPlay() {
+  if (timer) clearInterval(timer);
+  timer = window.setInterval(() => {
+    goToSlide(currentIndex + 1);
+  }, intervalTime);
+}
+
+    function stopAutoPlay() {
+      if (timer) clearInterval(timer);
+    }
+
+    // Clique nas bolinhas
+    dots?.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        const idx = Number(dot.dataset.dotIndex);
+        goToSlide(idx);
+        startAutoPlay();
+      });
+    });
+
+    // Pausa o carrossel se o usuário estiver com o mouse em cima
+    carousel.addEventListener('mouseenter', stopAutoPlay);
+    carousel.addEventListener('mouseleave', startAutoPlay);
+
+    // Inicia rotação automática
+    startAutoPlay();
+  }
+</script>

@@ -1,0 +1,200 @@
+<div id="cart-modal" class="fixed inset-0 z-50 invisible pointer-events-none transition-all duration-300">
+  <!-- Backdrop Escuro com Blur -->
+  <div id="cart-backdrop" class="absolute inset-0 bg-neutral-950/60 backdrop-blur-sm opacity-0 transition-opacity duration-300"></div>
+
+  <!-- Painel Lateral (Drawer) -->
+  <div id="cart-panel" class="absolute right-0 top-0 bottom-0 w-full max-w-md bg-white shadow-2xl flex flex-col justify-between transform translate-x-full transition-transform duration-300 ease-out z-10">
+    
+    <!-- Cabeçalho -->
+    <div class="p-4 sm:p-5 border-b border-neutral-100 flex items-center justify-between bg-neutral-50/70">
+      <div class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-xl bg-brand-primary/10 text-brand-primary flex items-center justify-center">
+          <svg class="w-4 h-4 stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+          </svg>
+        </div>
+        <div>
+          <h3 class="text-base font-bold text-neutral-900 leading-none">Sua Sacola</h3>
+          <span id="cart-header-count" class="text-[11px] text-neutral-400 font-medium">0 itens</span>
+        </div>
+      </div>
+
+      <button id="close-cart-btn" class="p-2 text-neutral-400 hover:text-neutral-700 hover:bg-neutral-200/50 rounded-full transition-colors" aria-label="Fechar carrinho">
+        <svg class="w-5 h-5 stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Lista de Itens do Carrinho -->
+    <div id="cart-items" class="p-4 sm:p-5 grow overflow-y-auto flex flex-col gap-3 divide-y divide-neutral-100">
+      <!-- Injetado via Javascript -->
+    </div>
+
+    <!-- Rodapé e Checkout -->
+    <div class="p-4 sm:p-5 border-t border-neutral-100 bg-neutral-50/90 flex flex-col gap-3">
+      <div class="flex items-center justify-between text-xs sm:text-sm text-neutral-500">
+        <span>Subtotal:</span>
+        <span id="cart-subtotal" class="font-bold text-neutral-800">R$ 0,00</span>
+      </div>
+
+      <div class="flex items-center justify-between text-base font-black text-neutral-900 pt-2 border-t border-neutral-200/60">
+        <span>Total:</span>
+        <span id="cart-total" class="text-brand-primary text-xl font-black">R$ 0,00</span>
+      </div>
+
+      <button 
+        id="btn-checkout-modal" 
+        disabled 
+        class="w-full mt-2 py-3.5 px-4 bg-brand-primary hover:bg-brand-primary-hover disabled:bg-neutral-200 disabled:text-neutral-400 disabled:cursor-not-allowed text-white font-bold rounded-xl sm:rounded-2xl flex items-center justify-center gap-2 transition-all shadow-md active:scale-[0.99]"
+      >
+        <span>Avançar para o Pagamento</span>
+        <svg class="w-4 h-4 stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+        </svg>
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  import { getCart, updateQuantity, getCartTotals } from '../../scripts/cartStore';
+
+  const modal = document.getElementById('cart-modal')!;
+  const backdrop = document.getElementById('cart-backdrop')!;
+  const panel = document.getElementById('cart-panel')!;
+  const cartItemsContainer = document.getElementById('cart-items')!;
+  const headerCountEl = document.getElementById('cart-header-count')!;
+  const subtotalEl = document.getElementById('cart-subtotal')!;
+  const totalEl = document.getElementById('cart-total')!;
+  const btnCheckout = document.getElementById('btn-checkout-modal') as HTMLButtonElement;
+
+  function toggle(open: boolean) {
+    if (open) {
+      modal.classList.remove('invisible', 'pointer-events-none');
+      document.body.style.overflow = 'hidden'; // Evita scroll de fundo
+      setTimeout(() => {
+        backdrop.classList.add('opacity-100');
+        panel.classList.remove('translate-x-full');
+      }, 10);
+      render();
+    } else {
+      backdrop.classList.remove('opacity-100');
+      panel.classList.add('translate-x-full');
+      document.body.style.overflow = '';
+      setTimeout(() => {
+        modal.classList.add('invisible', 'pointer-events-none');
+      }, 300);
+    }
+  }
+
+  function render() {
+    const cart = getCart();
+    const { totalCount, totalPrice } = getCartTotals();
+
+    headerCountEl.textContent = `${totalCount} ${totalCount === 1 ? 'item' : 'itens'}`;
+    subtotalEl.textContent = `R$ ${totalPrice.toFixed(2).replace('.', ',')}`;
+    totalEl.textContent = `R$ ${totalPrice.toFixed(2).replace('.', ',')}`;
+
+    if (cart.length === 0) {
+      btnCheckout.disabled = true;
+      cartItemsContainer.innerHTML = `
+        <div class="flex flex-col items-center justify-center h-full text-center text-neutral-400 gap-3 py-16">
+          <div class="w-16 h-16 rounded-full bg-neutral-100 flex items-center justify-center text-neutral-300">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+            </svg>
+          </div>
+          <div>
+            <p class="text-sm font-bold text-neutral-700">Sua sacola está vazia</p>
+            <p class="text-xs text-neutral-400 mt-0.5">Adicione itens para começar seu pedido.</p>
+          </div>
+          <button id="btn-empty-shop" class="mt-2 text-xs font-bold text-brand-primary hover:underline">
+            Explorar catálogo →
+          </button>
+        </div>
+      `;
+
+      document.getElementById('btn-empty-shop')?.addEventListener('click', () => toggle(false));
+    } else {
+      btnCheckout.disabled = false;
+      cartItemsContainer.innerHTML = cart.map((item, index) => {
+        // CORREÇÃO CRUCIAL: Respeita o preço e a foto da variação selecionada
+        const unitPrice = item.unitPrice ?? item.product.price;
+        const itemImage = item.selectedImage || item.product.image;
+        const itemTotal = unitPrice * item.quantity;
+
+        return `
+          <div class="pt-3 first:pt-0 flex items-center gap-3">
+            <img 
+              src="${itemImage}" 
+              alt="${item.product.name}" 
+              class="w-16 h-16 aspect-square object-cover rounded-xl bg-neutral-100 border border-neutral-100 shrink-0"
+            >
+            
+            <div class="grow min-w-0">
+              <h4 class="font-bold text-xs sm:text-sm text-neutral-900 truncate leading-tight">${item.product.name}</h4>
+              <p class="text-[11px] text-neutral-500 font-medium mt-0.5 truncate">
+                Opção: <span class="text-neutral-800 font-bold">${item.selectedSize}</span>
+              </p>
+              <div class="flex items-center gap-2 mt-1">
+                <span class="text-xs font-black text-neutral-900">R$ ${itemTotal.toFixed(2).replace('.', ',')}</span>
+                ${item.quantity > 1 ? `<span class="text-[10px] text-neutral-400 font-medium">(${item.quantity}x R$ ${unitPrice.toFixed(2).replace('.', ',')})</span>` : ''}
+              </div>
+            </div>
+
+            <!-- Controle de Quantidade -->
+            <div class="flex items-center gap-1 bg-neutral-50 border border-neutral-200/80 rounded-xl p-1 shrink-0">
+              <button 
+                data-qty-change="${index}" 
+                data-delta="-1" 
+                class="w-6 h-6 flex items-center justify-center text-neutral-500 hover:text-neutral-900 hover:bg-white rounded-lg transition-colors font-bold text-xs"
+                aria-label="Diminuir"
+              >
+                ${item.quantity === 1 ? '🗑️' : '-'}
+              </button>
+              <span class="text-xs font-bold w-4 text-center text-neutral-800">${item.quantity}</span>
+              <button 
+                data-qty-change="${index}" 
+                data-delta="1" 
+                class="w-6 h-6 flex items-center justify-center text-neutral-500 hover:text-neutral-900 hover:bg-white rounded-lg transition-colors font-bold text-xs"
+                aria-label="Aumentar"
+              >
+                +
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Ouvintes para botões de quantidade
+    document.querySelectorAll('[data-qty-change]').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        const target = e.currentTarget as HTMLElement;
+        const idx = Number(target.dataset.qtyChange);
+        const delta = Number(target.dataset.delta);
+        updateQuantity(idx, delta);
+        render();
+      });
+    });
+  }
+
+  // Ouvintes de abertura/fechamento
+  document.getElementById('close-cart-btn')?.addEventListener('click', () => toggle(false));
+  backdrop.addEventListener('click', () => toggle(false));
+  window.addEventListener('cart:open', () => toggle(true));
+  window.addEventListener('cart:updated', render);
+  
+  // Tecla ESC para fechar
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') toggle(false);
+  });
+
+  // Avançar para o checkout
+  btnCheckout.addEventListener('click', () => {
+    toggle(false);
+    window.dispatchEvent(new CustomEvent('checkout:open'));
+  });
+</script>
