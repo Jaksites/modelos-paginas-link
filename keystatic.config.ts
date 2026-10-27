@@ -1,68 +1,86 @@
 // keystatic.config.ts
 import { config, fields, collection, singleton } from "@keystatic/core";
 
-// Detecta se está rodando em produção de forma 100% compatível com o Astro/Vite
 const isProd = import.meta.env.PROD;
 
 export default config({
-  // 🔒 Define o storage com as propriedades exigidas pelo TypeScript
   storage: isProd
     ? {
         kind: "github",
         repo: {
-          owner: "seu-usuario-github", // 👈 Substitua pelo seu usuário ou organização no GitHub
-          name: "nome-do-repositorio", // 👈 Substitua pelo nome do repositório
+          owner: "seu-usuario-github",
+          name: "nome-do-repositorio",
         },
       }
     : {
         kind: "local",
       },
 
+  // 🎨 CUSTOMIZAÇÃO VISUAL DO PAINEL PARA O CLIENTE
+  ui: {
+    brand: {
+      name: "Painel da Loja", // 👈 Substitui "Keystatic" pelo nome da loja ou sistema
+    },
+    navigation: {
+      // Cria grupos no menu lateral em português:
+      "📦 Gestão de Produtos": ["products"],
+      "⚙️ Configurações Gerais": ["storeSettings"],
+    },
+  },
+
   collections: {
-    // 🛍️ GERENCIADOR DE PRODUTOS
     products: collection({
-      label: "Produtos do Catálogo",
+      label: "Produtos Cadastrados",
       slugField: "name",
       path: "src/content/products/*",
       format: { data: "json" },
       schema: {
         name: fields.text({
           label: "Nome do Produto",
+          description: "Ex: Pizza Margherita, Vestido Midi, etc.",
           validation: { isRequired: true },
         }),
         category: fields.text({
-          label: "Categoria (Ex: Pizzas, Casacos, Anéis)",
+          label: "Categoria",
+          description: "Ex: Pizzas Salgadas, Bebidas, Roupas, Anéis",
           validation: { isRequired: true },
         }),
         price: fields.number({
-          label: "Preço (R$)",
+          label: "Preço de Venda (R$)",
+          description: "Use ponto para centavos (ex: 49.90)",
           validation: { isRequired: true },
         }),
-        oldPrice: fields.number({ label: "Preço Antigo / Riscado (Opcional)" }),
+        oldPrice: fields.number({
+          label: "Preço Original / De R$ (Opcional)",
+          description: "Aparecerá riscado como promoção se preenchido.",
+        }),
         badge: fields.text({
-          label: "Etiqueta (Ex: Mais Vendido, Novo, Destaque)",
+          label: "Selo / Tag de Destaque (Opcional)",
+          description: "Ex: Mais Vendido, Novidade, Promoção",
         }),
 
-        // Upload de Imagem pelo painel
         image: fields.image({
           label: "Foto do Produto",
+          description:
+            "Envie uma foto quadrada ou no formato retrato com boa qualidade.",
           directory: "public/images/products",
           publicPath: "/images/products/",
         }),
 
-        // Opções / Variações (Tamanhos, Sabores, etc.)
         variations: fields.array(
           fields.object({
             name: fields.text({
-              label: "Nome da Opção (Ex: Média, P, 1kg, Ouro 18k)",
+              label: "Nome do Tamanho/Opção",
+              description: "Ex: P, M, G ou 4 Fatias, 8 Fatias",
             }),
             price: fields.number({
-              label: "Preço desta variação (se mudar o valor)",
+              label: "Preço desta variação",
+              description: "Deixe em branco se for o mesmo preço do produto.",
             }),
           }),
           {
-            label: "Variações / Tamanhos do Produto",
-            itemLabel: (props) => props.fields.name.value || "Nova Opção",
+            label: "Tamanhos ou Variações",
+            itemLabel: (props) => props.fields.name.value || "Nova Variação",
           },
         ),
       },
@@ -70,35 +88,47 @@ export default config({
   },
 
   singletons: {
-    // ⚙️ CONFIGURAÇÕES DA LOJA (Horários, Contato, Redes)
     storeSettings: singleton({
-      label: "Configurações da Loja",
+      label: "Dados da Loja & Horários",
       path: "src/content/settings/store",
       format: { data: "json" },
       schema: {
         name: fields.text({
-          label: "Nome da Loja",
+          label: "Nome Comercial da Loja",
           validation: { isRequired: true },
         }),
-        tagline: fields.text({ label: "Slogan / Descrição Curta" }),
+        tagline: fields.text({
+          label: "Slogan / Descrição Curta",
+          description: "Aparece abaixo do nome da loja no topo do site.",
+        }),
         whatsappNumber: fields.text({
-          label: "WhatsApp com DDD (Ex: 11999998888)",
+          label: "WhatsApp de Pedidos",
+          description: "Apenas números com DDD (ex: 11999998888)",
           validation: { isRequired: true },
         }),
-        shippingNotice: fields.text({ label: "Aviso de Envio / Entrega" }),
+        shippingNotice: fields.text({
+          label: "Aviso de Envio ou Entrega",
+          description: "Ex: Entregas em até 45 min • Taxa fixa R$ 7,00",
+        }),
 
-        // Horário de Funcionamento
         isStoreOpen24h: fields.checkbox({
           label: "Loja aberta 24 Horas direto?",
+          description:
+            "Desmarque caso deseje restringir pedidos apenas no horário comercial.",
           defaultValue: true,
         }),
         closedMessage: fields.text({
-          label: "Mensagem exibida quando estiver fechado",
+          label: "Mensagem quando estiver Fechado",
+          description: "Ex: Abrimos de Terça a Domingo a partir das 18h.",
         }),
 
-        // Redes Sociais
-        instagramUrl: fields.text({ label: "Link do Instagram" }),
-        facebookUrl: fields.text({ label: "Link do Facebook" }),
+        instagramUrl: fields.text({
+          label: "Link do Perfil do Instagram",
+          description: "Ex: https://instagram.com/sualoja",
+        }),
+        facebookUrl: fields.text({
+          label: "Link da Página do Facebook",
+        }),
       },
     }),
   },
