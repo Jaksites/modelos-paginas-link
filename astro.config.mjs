@@ -1,13 +1,13 @@
-// @ts-check
+// astro.config.mjs
 import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
+import react from "@astrojs/react";
 import keystatic from "@keystatic/astro";
 import cloudflare from "@astrojs/cloudflare";
-import react from "@astrojs/react";
 
-// https://astro.build/config
 export default defineConfig({
-  output: "server", // 👈 Alterado para "server" para suportar o adapter da Cloudflare corretamente
+  // 👇 Use 'static' com o adapter da Cloudflare, ou mude para 'hybrid' se sua versão do Astro for v4
+  output: "static",
   adapter: cloudflare({
     imageService: "passthrough",
   }),
