@@ -7,7 +7,7 @@ import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
-  output: "static", // 👈 Alterado de "hybrid" para "static"
+  output: "server", // 👈 Alterado para "server" para suportar o adapter da Cloudflare corretamente
   adapter: cloudflare({
     imageService: "passthrough",
   }),
