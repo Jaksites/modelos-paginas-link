@@ -1,24 +1,15 @@
 ---
-export const prerender = true;
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HeroBanner from '../components/catalogo/HeroBanner.astro';
 import CategoryFilter from '../components/catalogo/CategoryFilter.astro';
 import ProductGrid from '../components/catalogo/ProductGrid.astro';
+import { siteConfig, products } from '../config/active';
 
-// 👇 Importa a função que lê do Keystatic
-import { getCatalogData } from '../utils/keystatic';
-
-const { config, products } = await getCatalogData();
 const categories = [...new Set(products.map((p) => p.category))];
 ---
 
-<BaseLayout config={config}>
-  <!-- Hero Banner com imagens e textos do negócio -->
-  <HeroBanner banner={config.banner} />
-
-  <!-- Barra de Filtros de Categorias dinâmicas -->
+<BaseLayout config={siteConfig}>
+  <HeroBanner banner={siteConfig.banner} />
   <CategoryFilter categories={categories} />
-
-  <!-- Grade de Produtos cadastrados no painel -->
   <ProductGrid products={products} />
 </BaseLayout>

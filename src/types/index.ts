@@ -71,7 +71,7 @@ export type PaymentMethod =
 export interface TrustBadge {
   title: string;
   description: string;
-  icon?: "shield" | "truck" | "clock" | "sparkles";
+  icon?: string;
 }
 
 export interface DaySchedule {
@@ -111,7 +111,7 @@ export interface SiteConfig {
     images: string[];
     autoplayInterval?: number;
   };
-  paymentMethods: PaymentMethod[];
+  paymentMethods?: string[];
   trustBadges?: TrustBadge[];
   contact?: BusinessContact;
   socials?: SocialLinks;

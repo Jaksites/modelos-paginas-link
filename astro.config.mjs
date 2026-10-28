@@ -1,12 +1,9 @@
+// astro.config.mjs
 import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
-import react from "@astrojs/react";
-import keystatic from "@keystatic/astro";
-import vercel from "@astrojs/vercel";
 
 export default defineConfig({
-  adapter: vercel(),
-  integrations: [react(), keystatic()],
+  output: "static",
   vite: {
     plugins: [tailwindcss()],
   },
