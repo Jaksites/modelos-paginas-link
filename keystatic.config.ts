@@ -4,17 +4,9 @@ import { config, fields, collection, singleton } from "@keystatic/core";
 const isProd = import.meta.env.PROD;
 
 export default config({
-  storage: isProd
-    ? {
-        kind: "github",
-        repo: {
-          owner: "seu-usuario-github",
-          name: "nome-do-repositorio",
-        },
-      }
-    : {
-        kind: "local",
-      },
+  storage: {
+    kind: "local",
+  },
 
   // 🎨 CUSTOMIZAÇÃO VISUAL DO PAINEL PARA O CLIENTE
   ui: {
