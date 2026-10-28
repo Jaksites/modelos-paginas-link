@@ -6,7 +6,7 @@ export const joiasProducts = [
     price: 139.9,
     sizes: ["Banho Ouro 18k", "Prata 925"],
     image:
-      "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=80&w=600",
+      "https://images.unsplash.com/photo-1786052337650-9e1c0dd01f5e?q=80&w=687&auto=format&fit=crop&q=80&w=600",
     badge: "Clássico",
   },
   {
@@ -44,7 +44,7 @@ export const joiasProducts = [
     price: 219.9,
     sizes: ["Banho Ouro 18k"],
     image:
-      "https://images.unsplash.com/photo-1635767798638-3e25273a8236?auto=format&fit=crop&q=80&w=600",
+      "https://images.unsplash.com/photo-1708221235482-a6e2a807198f?q=80&w=687&?auto=format&fit=crop&q=80&w=600",
     badge: "Lançamento",
   },
   {
@@ -54,7 +54,7 @@ export const joiasProducts = [
     price: 149.0,
     sizes: ["16cm", "18cm", "20cm"],
     image:
-      "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&q=80&w=600",
+      "https://images.unsplash.com/photo-1693212793204-bcea856c75fe?q=80&w=880&?auto=format&fit=crop&q=80&w=600",
   },
   {
     id: 207,
@@ -73,6 +73,6 @@ export const joiasProducts = [
     price: 199.0,
     sizes: ["17cm", "18cm", "19cm", "20cm"],
     image:
-      "https://images.unsplash.com/photo-1611591472152-c070ec9bacde?auto=format&fit=crop&q=80&w=600",
+      "https://images.unsplash.com/photo-1717605383946-96c6884c36b4?q=80&w=687&auto=format&fit=crop&q=80&w=600",
   },
 ];

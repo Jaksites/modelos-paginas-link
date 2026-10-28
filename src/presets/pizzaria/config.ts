@@ -47,8 +47,7 @@ export const pizzariaConfig = {
   },
   businessHours: {
     enabled: true,
-    closedMessage:
-      "Fechado no momento. Atendimento de Terça a Domingo das 18h às 23h30.",
+    closedMessage: "Fechado no momento.",
     schedule: {
       segunda: { open: "00:00", close: "00:00", closed: true },
       terca: { open: "18:00", close: "23:30" },

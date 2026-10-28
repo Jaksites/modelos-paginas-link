@@ -1,4 +1,5 @@
 ---
+// src/components/catalogo/Header.astro
 import type { SiteConfig } from '../../types';
 import { checkStoreStatus } from '../../scripts/businessHours';
 
@@ -7,10 +8,12 @@ interface Props {
 }
 
 const { config } = Astro.props;
-const status = checkStoreStatus(config.businessHours);
+// Compatibilidade: busca businessHours na raiz ou dentro de contact
+const hours = (config as any).businessHours || config.contact?.businessHours || '';
+const status = checkStoreStatus(hours);
 ---
 
-<header class="sticky top-0 z-30 w-full bg-white/85 backdrop-blur-md border-b border-gray-200/80 transition-all">
+<header class="sticky top-0 z-30 w-full bg-white/85 backdrop-blur-md border-b border-neutral-200/80 transition-all">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
     
     <!-- Logo + Nome da Loja -->
@@ -19,16 +22,16 @@ const status = checkStoreStatus(config.businessHours);
         <img 
           src={config.logoUrl} 
           alt={`Logo ${config.name}`} 
-          class="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover border border-gray-200/80 shadow-xs"
+          class="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover border border-neutral-200/80 shadow-xs"
         />
       ) : (
-        <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-brand-dark text-white flex items-center justify-center font-extrabold text-lg tracking-wider shrink-0">
+        <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-neutral-900 text-white flex items-center justify-center font-extrabold text-lg tracking-wider shrink-0">
           {config.name.charAt(0)}
         </div>
       )}
 
       <div>
-        <h1 class="text-lg sm:text-xl font-extrabold tracking-tight text-gray-900 leading-none">
+        <h1 class="text-base sm:text-xl font-extrabold tracking-tight text-neutral-900 leading-none">
           {config.name.split(' ')[0]} <span class="text-brand-primary">{config.name.split(' ').slice(1).join(' ')}</span>
         </h1>
         
@@ -42,13 +45,76 @@ const status = checkStoreStatus(config.businessHours);
       </div>
     </a>
 
-    <!-- Botão Carrinho -->
-    <button id="open-cart-btn" class="relative p-2.5 sm:px-4 sm:py-2.5 bg-brand-dark hover:bg-brand-primary text-white rounded-2xl flex items-center gap-2.5 transition-all shadow-md active:scale-95">
-      <i data-lucide="shopping-bag" class="w-5 h-5"></i>
-      <span class="hidden sm:inline font-semibold text-sm">Meu Carrinho</span>
-      <span id="cart-badge" class="hidden bg-brand-primary text-white text-xs font-black px-2 py-0.5 rounded-full border-2 border-brand-dark animate-pulse">
+    <!-- Botão Carrinho com Badge Flutuante -->
+    <button 
+      id="open-cart-btn" 
+      class="relative p-2.5 sm:px-4 sm:py-2.5 bg-neutral-900 hover:bg-neutral-800 text-white rounded-2xl flex items-center gap-2.5 transition-all shadow-md active:scale-95 focus:outline-none"
+      aria-label="Abrir sacola de pedidos"
+    >
+      <!-- Ícone Sacola -->
+      <svg class="w-5 h-5 stroke-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+      </svg>
+      
+      <span class="hidden sm:inline font-bold text-xs sm:text-sm">Meu Carrinho</span>
+
+      <!-- Badge de Quantidade (Flutuando no canto superior direito) -->
+      <span 
+        id="cart-badge" 
+        class="hidden absolute -top-1.5 -right-1.5 bg-brand-primary text-white text-[11px] font-black h-5 min-w-5 px-1 rounded-full  items-center justify-center border-2 border-white shadow-sm transition-transform duration-300"
+      >
         0
       </span>
     </button>
   </div>
 </header>
+
+<script>
+  import { getCartTotals } from '../../scripts/cartStore';
+
+  function setupHeaderCart() {
+    const cartBtn = document.getElementById('open-cart-btn');
+    const badge = document.getElementById('cart-badge');
+
+    // 1. Atualiza o contador e aplica o efeito visual
+    function updateBadge(animate = false) {
+      if (!badge) return;
+      const { totalCount } = getCartTotals();
+
+      if (totalCount > 0) {
+        badge.textContent = totalCount > 99 ? '99+' : totalCount.toString();
+        badge.classList.remove('hidden');
+
+        // Micro-animação de "pulo" ao adicionar novo item
+        if (animate) {
+          badge.classList.add('scale-125');
+          cartBtn?.classList.add('scale-105');
+          setTimeout(() => {
+            badge.classList.remove('scale-125');
+            cartBtn?.classList.remove('scale-105');
+          }, 250);
+        }
+      } else {
+        badge.classList.add('hidden');
+      }
+    }
+
+    // 2. Dispara abertura da gaveta do carrinho
+    if (cartBtn) {
+      cartBtn.onclick = (e) => {
+        e.preventDefault();
+        window.dispatchEvent(new CustomEvent('cart:open'));
+      };
+    }
+
+    // 3. Renderiza o valor inicial na carga da página
+    updateBadge(false);
+
+    // 4. Escuta atualizações do carrinho com efeito de pulo
+    window.addEventListener('cart:updated', () => updateBadge(true));
+  }
+
+  // Inicialização compatível com navegação Astro
+  setupHeaderCart();
+  document.addEventListener('astro:page-load', setupHeaderCart);
+</script>

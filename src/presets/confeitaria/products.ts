@@ -6,7 +6,7 @@ export const confeitariaProducts = [
     price: 120.0,
     sizes: ["1kg (serve 10)", "2kg (serve 20)", "3kg (serve 30)"],
     image:
-      "https://images.unsplash.com/photo-1586985289688-ca3cf47d3e6e?auto=format&fit=crop&q=80&w=600",
+      "https://images.unsplash.com/photo-1586788680434-30d324b2d46f?q=80&w=951&auto=format&fit=crop&q=80&w=600",
     badge: "Destaque",
   },
   // --- Novos produtos criados abaixo ---
@@ -27,7 +27,7 @@ export const confeitariaProducts = [
     price: 95.0,
     sizes: ["Unidade (12 fatias)"],
     image:
-      "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&q=80&w=600",
+      "https://images.unsplash.com/photo-1676300185983-d5f242babe34?q=80&w=695&auto=format&fit=crop&q=80&w=600",
   },
   {
     id: 304,
@@ -36,7 +36,7 @@ export const confeitariaProducts = [
     price: 79.9,
     sizes: ["Média (10 fatias)", "Grande (15 fatias)"],
     image:
-      "https://images.unsplash.com/photo-1519869325930-281384150729?auto=format&fit=crop&q=80&w=600",
+      "https://images.unsplash.com/photo-1641848421525-e1da6f1b67aa?q=80&w=687&auto=format&fit=crop&q=80&w=600",
     badge: "Artesanal",
   },
   {
@@ -46,7 +46,7 @@ export const confeitariaProducts = [
     price: 48.0,
     sizes: ["Caixa com 12 un.", "Caixa com 24 un."],
     image:
-      "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?auto=format&fit=crop&q=80&w=600",
+      "https://images.unsplash.com/photo-1685708441240-14e2c711fc5c?q=80&w=1170&?auto=format&fit=crop&q=80&w=600",
     badge: "Delícia",
   },
   {

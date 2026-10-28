@@ -1,44 +1,63 @@
 export const modaConfig = {
-  name: "STUDIO LINHO",
-  tagline: "Moda Atemporal em Fibras Naturais",
-  whatsappNumber: "5511977777777",
-  shippingNotice: "Primeira troca grátis em até 30 dias",
+  name: "ATELIER URBANO",
+  tagline: "Moda Contemporânea e Minimalista",
+  whatsappNumber: "5511966665555",
+  shippingNotice:
+    "Frete grátis para todo o Brasil acima de R$ 299 e 1ª troca sem custo",
   theme: {
-    primary: "#78350f", // Marrom Terracota Terroso
-    primaryHover: "#451a03",
-    accent: "#fef3c7",
-    accentText: "#78350f",
-    dark: "#18181b",
-    surface: "#fafaf9",
+    primary: "#18181b", // Preto/Grafite minimalista (Zinc 900)
+    primaryHover: "#27272a",
+    accent: "#f4f4f5",
+    accentText: "#09090b",
+    dark: "#09090b",
+    surface: "#ffffff",
   },
-  paymentMethods: ["pix", "credit_card", "boleto"],
+  paymentMethods: ["pix", "credit_card", "bank_slip"],
   trustBadges: [
     {
-      title: "Troca Fácil",
-      description: "Até 30 dias sem custos adicionais",
-      icon: "shield",
+      title: "Primeira Troca Grátis",
+      description: "Até 30 dias após o recebimento",
+      icon: "refresh-cw",
     },
     {
-      title: "100% Linho Puro",
-      description: "Sustentabilidade e conforto térmico",
+      title: "Tecidos Sustentáveis",
+      description: "100% algodão orgânico e linho puro",
       icon: "sparkles",
     },
   ],
   banner: {
-    badge: "Alto Verão 🌿",
-    title: "Fluidez, elegância e o frescor das fibras naturais.",
+    badge: "Coleção Essenciais 🧥",
+    title: "Cortes precisos e atemporais para o seu dia a dia.",
     description:
-      "Confira as peças exclusivas da nova coleção e peça pelo WhatsApp.",
+      "Descubra peças versáteis que equilibram conforto, sofisticação e alta durabilidade.",
     images: [
       "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&q=80&w=1200",
     ],
+    autoplayInterval: 5000,
   },
   contact: {
-    address: "Rua Oscar Freire, 800 - Jardins, São Paulo - SP",
-    businessHours: "Segunda a Sábado: 10h às 20h",
-    email: "contato@studiolinho.com.br",
+    address: "Al. Lorena, 1200 - Cerqueira César, São Paulo - SP",
+    businessHours: "Segunda a Sábado: 10h às 20h | Domingo: 13h às 19h",
+    email: "suporte@atelierurbano.com.br",
+    cnpj: "34.567.890/0001-12",
   },
   socials: {
-    instagram: "https://instagram.com/studiolinho",
+    instagram: "https://instagram.com/atelierurbano",
+    facebook: "https://facebook.com/atelierurbano",
+  },
+  businessHours: {
+    enabled: true,
+    closedMessage:
+      "Loja física fechada. Compras pelo site são processadas normalmente 24 horas.",
+    schedule: {
+      segunda: { open: "10:00", close: "20:00" },
+      terca: { open: "10:00", close: "20:00" },
+      quarta: { open: "10:00", close: "20:00" },
+      quinta: { open: "10:00", close: "20:00" },
+      sexta: { open: "10:00", close: "20:00" },
+      sabado: { open: "10:00", close: "20:00" },
+      domingo: { open: "13:00", close: "19:00" },
+    },
   },
 };
