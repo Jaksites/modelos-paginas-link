@@ -3,17 +3,17 @@ import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import react from "@astrojs/react";
 import keystatic from "@keystatic/astro";
-import cloudflare from "@astrojs/cloudflare";
+
+// Detecta se está gerando o build para produção
+const isProd = process.env.NODE_ENV === "production" || import.meta.env.PROD;
 
 export default defineConfig({
-  output: "static", // 👈 Mantém o site rápido e pré-renderizado
-  adapter: cloudflare({
-    imageService: "passthrough",
-    routes: {
-      strategy: "auto", // 👈 Deixa a Cloudflare mapear automaticamente o que é estático e o que é API
-    },
-  }),
-  integrations: [react(), keystatic()],
+  output: "static", // 👈 Site 100% estático para a Cloudflare Pages
+  integrations: [
+    react(),
+    // 👇 Carrega o painel do Keystatic no seu localhost, mas não trava o build na Cloudflare
+    ...(isProd ? [] : [keystatic()]),
+  ],
   vite: {
     plugins: [tailwindcss()],
   },

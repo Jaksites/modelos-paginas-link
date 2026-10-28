@@ -5,7 +5,7 @@ const isProd = import.meta.env.PROD;
 
 export default config({
   storage: {
-    kind: "local",
+    kind: "local", // 👈 Armazenamento local direto no seu disco
   },
 
   // 🎨 CUSTOMIZAÇÃO VISUAL DO PAINEL PARA O CLIENTE
