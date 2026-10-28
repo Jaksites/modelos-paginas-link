@@ -4,10 +4,16 @@ import { config, fields, collection, singleton } from "@keystatic/core";
 const isProd = import.meta.env.PROD;
 
 export default config({
-  storage: {
-    kind: "local", // 👈 Armazenamento local direto no seu disco
+  storage: import.meta.env.PROD
+    ? {
+        kind: "cloud", // 👈 Ativa login online na Cloudflare
+      }
+    : {
+        kind: "local", // 👈 Continua rápido e sem login no seu computador
+      },
+  cloud: {
+    project: "jakdd/template-catalogo",
   },
-
   // 🎨 CUSTOMIZAÇÃO VISUAL DO PAINEL PARA O CLIENTE
   ui: {
     brand: {
