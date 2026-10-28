@@ -1,0 +1,16 @@
+{
+  "category": "Pizzas Doces",
+  "price": 62,
+  "oldPrice": 52,
+  "badge": "mais vendido",
+  "variations": [
+    {
+      "name": "Individual (4 fatias)",
+      "price": 62
+    },
+    {
+      "name": "Média (6 fatias)",
+      "price": 76
+    }
+  ]
+}

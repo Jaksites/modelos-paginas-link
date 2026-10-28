@@ -10,6 +10,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "seed": "npx tsx src/scripts/seed.ts",
     "generate-types": "wrangler types"
   },
   "dependencies": {
@@ -28,5 +29,8 @@
   },
   "allowScripts": {
     "esbuild": true
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5"
   }
 }

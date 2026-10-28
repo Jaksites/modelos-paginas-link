@@ -33,6 +33,7 @@ export interface BannerSlide {
   image: string;
   badge?: string;
   title?: string;
+  slides?: BannerSlide[];
   description?: string;
 }
 

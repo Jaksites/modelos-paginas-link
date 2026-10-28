@@ -12,17 +12,21 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
+  image?: string;
+  canonicalUrl?: string;
   config?: SiteConfig; 
-  
 }
 
 const { 
   config = defaultSiteConfig, 
   title = `${config.name} | Catálogo Virtual`, 
-  description = config.tagline 
+  description = config.tagline,
+  image = '/og-image.jpg', // Coloque uma imagem padrão no diretório public/
+  canonicalUrl = Astro.url.href
 } = Astro.props;
 
 const { theme } = config;
+const siteUrl = Astro.site ? new URL(image, Astro.site).href : new URL(image, Astro.url.origin).href;
 ---
 
 <!doctype html>
@@ -38,11 +42,34 @@ const { theme } = config;
   `}
 >
   <head>
+    <!-- Meta Tags Essenciais -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={description} />
     <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta name="robots" content="index, follow" />
 
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={siteUrl} />
+    <meta property="og:site_name" content={config.name} />
+    <meta property="og:locale" content="pt_BR" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalUrl} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={siteUrl} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Fontes e Ícones -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

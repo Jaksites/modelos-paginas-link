@@ -1,0 +1,22 @@
+{
+  "name": "Pizza Margherita Especial",
+  "category": "Pizzas Salgadas",
+  "price": 64.9,
+  "oldPrice": 72,
+  "badge": "Mais Pedida",
+  "image": "https://images.unsplash.com/photo-1604382355076-af4b0eb60143?auto=format&fit=crop&q=80&w=600",
+  "variations": [
+    {
+      "name": "Individual (4 fatias)",
+      "price": 64.9
+    },
+    {
+      "name": "Média (6 fatias)",
+      "price": 79.9
+    },
+    {
+      "name": "Grande (8 fatias)",
+      "price": 94.9
+    }
+  ]
+}

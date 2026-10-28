@@ -34,7 +34,7 @@ export const presets = {
     products: confeitariaProducts,
   },
   Moda: {
-    slug: "Moda",
+    slug: "moda",
     name: "Moda & Vestuário",
     config: modaConfig,
     products: modaProducts,

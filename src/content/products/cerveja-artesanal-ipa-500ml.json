@@ -1,0 +1,14 @@
+{
+  "name": "Cerveja Artesanal IPA 500ml",
+  "category": "Bebidas",
+  "price": 22,
+  "oldPrice": null,
+  "badge": null,
+  "image": "https://images.unsplash.com/photo-1608270586620-248524c67de9?auto=format&fit=crop&q=80&w=600",
+  "variations": [
+    {
+      "name": "Garrafa 500ml",
+      "price": 22
+    }
+  ]
+}

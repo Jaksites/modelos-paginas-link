@@ -1,31 +1,23 @@
 ---
-// src/pages/index.astro
 import BaseLayout from '../layouts/BaseLayout.astro';
-import CategoryFilter from '../components/catalogo/CategoryFilter.astro';
 import HeroBanner from '../components/catalogo/HeroBanner.astro';
+import CategoryFilter from '../components/catalogo/CategoryFilter.astro';
 import ProductGrid from '../components/catalogo/ProductGrid.astro';
-import { siteConfig, products } from '../config/active';
 
-// Importe os componentes da sua sacola:
-import ProductModal from '../components/catalogo/ProductModal.astro'; 
-import CartDrawer from '../components/catalogo/CartDrawer.astro';
-import CartFloatingBar from '../components/catalogo/CartFloatingBar.astro';
+// 👇 Importa a função que lê do Keystatic
+import { getCatalogData } from '../utils/keystatic';
 
-const categories = [...new Set(products.map(p => p.category).filter(Boolean))];
+const { config, products } = await getCatalogData();
+const categories = [...new Set(products.map((p) => p.category))];
 ---
 
-<BaseLayout>
-  <HeroBanner banner={siteConfig.banner} />
-  
-  <!-- Filtros -->
+<BaseLayout config={config}>
+  <!-- Hero Banner com imagens e textos do negócio -->
+  <HeroBanner banner={config.banner} />
+
+  <!-- Barra de Filtros de Categorias dinâmicas -->
   <CategoryFilter categories={categories} />
 
-  <!-- Grade de Produtos Dinâmica -->
+  <!-- Grade de Produtos cadastrados no painel -->
   <ProductGrid products={products} />
-
-  <!-- Componentes Interativos Globais -->
-  <ProductModal />
-  <CartDrawer />
-  <CartFloatingBar 
-  />
 </BaseLayout>
