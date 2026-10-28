@@ -5,15 +5,13 @@ import keystatic from "@keystatic/astro";
 import cloudflare from "@astrojs/cloudflare";
 import react from "@astrojs/react";
 
-const isProd = import.meta.env.PROD;
 // https://astro.build/config
 export default defineConfig({
-  output: "static",
-  adapter: isProd ? cloudflare({ imageService: "passthrough" }) : undefined,
-  integrations: [
-    react(), // 👈 Essencial para a interface do Keystatic rodar
-    keystatic(), // 👈 Ativa a rota /keystatic
-  ],
+  output: "static", // 👈 Alterado de "hybrid" para "static"
+  adapter: cloudflare({
+    imageService: "passthrough",
+  }),
+  integrations: [react(), keystatic()],
   vite: {
     plugins: [tailwindcss()],
   },
