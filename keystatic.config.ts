@@ -1,15 +1,13 @@
 // keystatic.config.ts
 import { config, fields, collection, singleton } from "@keystatic/core";
 
-const isProd = import.meta.env.PROD;
-
 export default config({
   storage: import.meta.env.PROD
     ? {
-        kind: "cloud", // 👈 Ativa login online na Cloudflare
+        kind: "cloud",
       }
     : {
-        kind: "local", // 👈 Continua rápido e sem login no seu computador
+        kind: "local",
       },
   cloud: {
     project: "jakdd/template-catalogo",
