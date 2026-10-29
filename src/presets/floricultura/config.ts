@@ -1,7 +1,7 @@
 export const floriculturaConfig = {
   name: "TERRA & VIOLETA",
   tagline: "Arranjos Florais, Buquês e Botânica Afetiva",
-  whatsappNumber: "5511955554444",
+  whatsappNumber: "559999999999",
   shippingNotice:
     "Entregas agendadas no mesmo dia com cartão de dedicatória cortesia",
   theme: {

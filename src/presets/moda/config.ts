@@ -1,7 +1,7 @@
 export const modaConfig = {
   name: "ATELIER URBANO",
   tagline: "Moda Contemporânea e Minimalista",
-  whatsappNumber: "5511966665555",
+  whatsappNumber: "559999999999",
   shippingNotice:
     "Frete grátis para todo o Brasil acima de R$ 299 e 1ª troca sem custo",
   theme: {

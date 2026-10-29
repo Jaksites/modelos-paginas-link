@@ -1,7 +1,7 @@
 export const confeitariaConfig = {
   name: "DULCE & PETIT",
   tagline: "Confeitaria Artesanal e Doces Finos",
-  whatsappNumber: "5511977776666",
+  whatsappNumber: "559999999999",
   shippingNotice:
     "Bolos e doces frescos entregues no mesmo dia para pedidos até às 14h",
   theme: {

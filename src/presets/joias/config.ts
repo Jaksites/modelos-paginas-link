@@ -1,7 +1,7 @@
 export const joiasConfig = {
   name: "ÁUREA & CO.",
   tagline: "Alta Joalheria em Ouro 18k e Pedras Naturais",
-  whatsappNumber: "5511988887777",
+  whatsappNumber: "559999999999",
   shippingNotice: "Frete expresso com seguro total em compras acima de R$ 499",
   theme: {
     primary: "#b45309", // Âmbar / Ouro envelhecido sofisticado
